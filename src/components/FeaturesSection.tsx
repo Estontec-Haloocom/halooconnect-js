@@ -4,8 +4,11 @@ import {
   Bot, 
   BarChart3, 
   Users, 
-  Globe 
+  Globe,
+  Headphones,
+  Zap
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const features = [
   {
@@ -41,9 +44,17 @@ const features = [
 ];
 
 const FeaturesSection = () => {
+  const scrollToForm = () => {
+    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="py-20 md:py-28 bg-muted/50">
-      <div className="container">
+    <section className="py-20 md:py-28 bg-muted/50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl translate-x-1/2" />
+      
+      <div className="container relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">Features</span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
@@ -54,11 +65,11 @@ const FeaturesSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {features.map((feature, index) => (
             <div 
               key={feature.title}
-              className="group bg-card rounded-2xl p-6 shadow-soft hover:shadow-elevated transition-all duration-300 border border-border/50 hover:border-primary/30"
+              className="group bg-card rounded-2xl p-6 shadow-soft hover:shadow-elevated transition-all duration-300 border border-border/50 hover:border-primary/30 hover:-translate-y-1"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
@@ -68,6 +79,14 @@ const FeaturesSection = () => {
               <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}
+        </div>
+        
+        {/* CTA */}
+        <div className="text-center">
+          <Button onClick={scrollToForm} variant="hero" size="lg">
+            <Headphones className="w-5 h-5" />
+            Schedule Your Demo Now
+          </Button>
         </div>
       </div>
     </section>

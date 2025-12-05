@@ -1,88 +1,100 @@
-import { Button } from "@/components/ui/button";
-import { Phone, MessageSquare, Bot } from "lucide-react";
+import { Phone, MessageSquare, Bot, CheckCircle } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
+import HeroForm from "./HeroForm";
+
+const benefits = [
+  "AI-Powered Voice & Chat",
+  "WhatsApp, Email, SMS Integration",
+  "Real-time Analytics Dashboard",
+  "24/7 Dedicated Support"
+];
 
 const HeroSection = () => {
-  const scrollToForm = () => {
-    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-hero-gradient">
+      {/* Darker Background */}
+      <div className="absolute inset-0 bg-secondary">
         <img 
           src={heroBg} 
           alt="" 
-          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-lighten"
+          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-lighten"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-secondary/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
       </div>
       
-      {/* Floating elements */}
-      <div className="absolute top-1/4 left-10 animate-float animation-delay-200">
+      {/* Floating elements - hidden on mobile for cleaner look */}
+      <div className="hidden lg:block absolute top-1/4 left-10 animate-float animation-delay-200">
         <div className="w-16 h-16 rounded-2xl bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
-          <Phone className="w-8 h-8 text-primary-foreground" />
+          <Phone className="w-8 h-8 text-primary" />
         </div>
       </div>
-      <div className="absolute top-1/3 right-20 animate-float animation-delay-400">
+      <div className="hidden lg:block absolute top-1/3 right-[55%] animate-float animation-delay-400">
         <div className="w-14 h-14 rounded-2xl bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
-          <MessageSquare className="w-7 h-7 text-primary-foreground" />
+          <MessageSquare className="w-7 h-7 text-primary" />
         </div>
       </div>
-      <div className="absolute bottom-1/3 left-1/4 animate-float animation-delay-600">
+      <div className="hidden lg:block absolute bottom-1/3 left-[15%] animate-float animation-delay-600">
         <div className="w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
-          <Bot className="w-6 h-6 text-primary-foreground" />
+          <Bot className="w-6 h-6 text-primary" />
         </div>
       </div>
       
       {/* Content */}
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="animate-fade-in-up">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary-foreground text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              AI-Powered Contact Center
-            </span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight mb-6 animate-fade-in-up animation-delay-100">
-            Transform Your
-            <span className="block text-primary"> Customer Engagement</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-            Connect 6.0 - Your all-in-one omnichannel platform with AI-powered voice, WhatsApp, email, and social media integration. Trusted by 500+ businesses worldwide.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
-            <Button onClick={scrollToForm} variant="hero" size="lg">
-              Get Free Demo
-            </Button>
-            <Button onClick={scrollToForm} variant="heroOutline" size="lg">
-              Talk to Sales
-            </Button>
-          </div>
-          
-          {/* Trust badges */}
-          <div className="mt-12 pt-8 border-t border-primary-foreground/10 animate-fade-in-up animation-delay-400">
-            <p className="text-primary-foreground/60 text-sm mb-4">Trusted by leading enterprises</p>
-            <div className="flex items-center justify-center gap-8 flex-wrap">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-foreground">100K+</div>
-                <div className="text-xs text-primary-foreground/60">Global Users</div>
-              </div>
-              <div className="w-px h-12 bg-primary-foreground/20 hidden sm:block" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-foreground">500+</div>
-                <div className="text-xs text-primary-foreground/60">Happy Clients</div>
-              </div>
-              <div className="w-px h-12 bg-primary-foreground/20 hidden sm:block" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-foreground">30M+</div>
-                <div className="text-xs text-primary-foreground/60">Calls/Month</div>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left Content */}
+          <div className="text-center lg:text-left">
+            <div className="animate-fade-in-up">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium mb-6">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                AI-Powered Contact Center
+              </span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary-foreground leading-tight mb-6 animate-fade-in-up animation-delay-100">
+              Transform Your
+              <span className="block text-primary"> Customer Engagement</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-secondary-foreground/70 mb-8 max-w-xl mx-auto lg:mx-0 animate-fade-in-up animation-delay-200">
+              Connect 6.0 - Your all-in-one omnichannel platform trusted by <span className="text-primary font-semibold">500+ businesses</span> worldwide.
+            </p>
+            
+            {/* Benefits list */}
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 animate-fade-in-up animation-delay-300">
+              {benefits.map((benefit) => (
+                <li key={benefit} className="flex items-center gap-2 text-secondary-foreground/80">
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-sm">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+            
+            {/* Trust badges */}
+            <div className="pt-6 border-t border-secondary-foreground/10 animate-fade-in-up animation-delay-400">
+              <div className="flex items-center justify-center lg:justify-start gap-8 flex-wrap">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">100K+</div>
+                  <div className="text-xs text-secondary-foreground/60">Global Users</div>
+                </div>
+                <div className="w-px h-10 bg-secondary-foreground/20" />
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">500+</div>
+                  <div className="text-xs text-secondary-foreground/60">Happy Clients</div>
+                </div>
+                <div className="w-px h-10 bg-secondary-foreground/20" />
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">30M+</div>
+                  <div className="text-xs text-secondary-foreground/60">Calls/Month</div>
+                </div>
               </div>
             </div>
+          </div>
+          
+          {/* Right - Form */}
+          <div className="flex justify-center lg:justify-end animate-fade-in-up animation-delay-300">
+            <HeroForm />
           </div>
         </div>
       </div>
