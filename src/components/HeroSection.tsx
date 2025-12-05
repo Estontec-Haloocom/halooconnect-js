@@ -79,7 +79,7 @@ const HeroSection = () => {
                 <div className="w-px h-10 bg-secondary-foreground/20" />
                 <div className="text-center">
                   <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">
-                    30M+
+                    30MN+
                   </div>
                   <div className="text-xs text-secondary-foreground/60">
                     Calls/Month
