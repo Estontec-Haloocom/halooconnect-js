@@ -11,7 +11,17 @@ const benefits = [
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section
+      className="
+        relative 
+        min-h-screen 
+        flex 
+        items-start lg:items-center 
+        pt-24 pb-24 
+        md:pt-28 md:pb-32 
+        overflow-hidden
+      "
+    >
       {/* Background with contact center image + dark overlay */}
       <div className="absolute inset-0">
         <img
