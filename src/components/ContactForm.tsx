@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import CountryCodeSelect from "./CountryCodeSelect";
 
 const ContactForm = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countryCode, setCountryCode] = useState("+91");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,16 +30,24 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Demo Request Received!",
-      description: "Our team will contact you within 24 hours.",
+    const { error } = await supabase.from("leads").insert({
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      country_code: countryCode,
+      company: formData.company.trim() || "Not provided",
+      email: formData.email.trim() || null,
     });
-    
-    setFormData({ name: "", email: "", phone: "", company: "" });
-    setIsSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+    } else {
+      navigate("/thank-you");
+    }
   };
 
   const benefits = [
@@ -88,21 +101,22 @@ const ContactForm = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Work Email *
+                    Work Email
                   </label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     placeholder="john@company.com"
-                    required
                     value={formData.email}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                   />
                 </div>
                 
@@ -110,15 +124,20 @@ const ContactForm = () => {
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                     Phone Number *
                   </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
+                  <div className="flex">
+                    <CountryCodeSelect value={countryCode} onChange={setCountryCode} />
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="98765 43210"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="rounded-l-none flex-1"
+                      disabled={isSubmitting}
+                    />
+                  </div>
                 </div>
                 
                 <div>
@@ -132,6 +151,7 @@ const ContactForm = () => {
                     placeholder="Your Company"
                     value={formData.company}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                   />
                 </div>
                 
@@ -143,7 +163,10 @@ const ContactForm = () => {
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    "Submitting..."
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Submitting...
+                    </>
                   ) : (
                     <>
                       Get Free Demo

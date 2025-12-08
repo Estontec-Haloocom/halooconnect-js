@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, Loader2 } from "lucide-react";
 import CountryCodeSelect from "./CountryCodeSelect";
+import { supabase } from "@/integrations/supabase/client";
 
 const HeroForm = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState("+91");
   const [formData, setFormData] = useState({
@@ -26,15 +29,23 @@ const HeroForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Request Received!",
-      description: "Our team will call you within 24 hours.",
+    const { error } = await supabase.from("leads").insert({
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      country_code: countryCode,
+      company: formData.company.trim() || "Not provided",
     });
-    
-    setFormData({ name: "", phone: "", company: "" });
-    setIsSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+    } else {
+      navigate("/thank-you");
+    }
   };
 
   return (
@@ -53,6 +64,7 @@ const HeroForm = () => {
           value={formData.name}
           onChange={handleChange}
           className="h-12"
+          disabled={isSubmitting}
         />
         
         <div className="flex">
@@ -65,6 +77,7 @@ const HeroForm = () => {
             value={formData.phone}
             onChange={handleChange}
             className="rounded-l-none h-12 flex-1"
+            disabled={isSubmitting}
           />
         </div>
         
@@ -75,6 +88,7 @@ const HeroForm = () => {
           value={formData.company}
           onChange={handleChange}
           className="h-12"
+          disabled={isSubmitting}
         />
         
         <Button 
@@ -85,7 +99,10 @@ const HeroForm = () => {
           disabled={isSubmitting}
         >
           {isSubmitting ? (
-            "Submitting..."
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Submitting...
+            </>
           ) : (
             <>
               Request Callback
