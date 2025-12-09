@@ -1,5 +1,6 @@
 import { Globe, Users, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import hexaImage from "@/assets/hexa-ai-assistant.png";
 
 const features = [
   {
@@ -26,17 +27,16 @@ const HexaAISection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}
           <div className="order-2 lg:order-1 relative">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/10 via-secondary/20 to-muted overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-3/4 rounded-full bg-gradient-to-br from-primary/20 to-secondary/30 flex items-center justify-center">
-                  <div className="w-1/2 h-1/2 rounded-full bg-gradient-to-br from-secondary/30 to-primary/40" />
-                </div>
-              </div>
-              {/* AI Robot Illustration */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-[120px] md:text-[180px] opacity-25 select-none">🤖</div>
-              </div>
+            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src={hexaImage}
+                alt="HEXA AI Assistant - Multilingual digital workforce"
+                className="w-full h-full object-cover"
+              />
             </div>
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -left-4 w-24 h-24 bg-secondary/20 rounded-full blur-2xl" />
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/30 rounded-full blur-3xl" />
           </div>
 
           {/* Content Side */}

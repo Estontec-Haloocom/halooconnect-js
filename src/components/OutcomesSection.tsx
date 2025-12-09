@@ -147,41 +147,27 @@ const OutcomesSection = () => {
           </p>
         </div>
 
-        {/* Top 3 – evenly aligned */}
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12 mb-10 place-items-center">
-          {outcomes.slice(0, 3).map((outcome) => (
+        {/* 4 in a row on desktop, 2 in a row on mobile */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          {outcomes.map((outcome) => (
             <div
               key={outcome.title}
-              className="text-center flex flex-col items-center h-full max-w-xs"
+              className="text-center flex flex-col items-center"
             >
               <CircleProgress
                 percentage={outcome.percentage}
                 value={outcome.value}
                 isVisible={isVisible}
+                size={160}
               />
-              <h3 className="text-lg md:text-xl font-semibold text-foreground mt-5 mb-2">
+              <h3 className="text-base md:text-lg font-semibold text-foreground mt-4 mb-2">
                 {outcome.title}
               </h3>
-              <p className="text-muted-foreground text-sm md:text-base">
+              <p className="text-muted-foreground text-xs md:text-sm">
                 {outcome.description}
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Bottom single circle – centered */}
-        <div className="max-w-xs md:max-w-sm mx-auto text-center mt-4">
-          <CircleProgress
-            percentage={outcomes[3].percentage}
-            value={outcomes[3].value}
-            isVisible={isVisible}
-          />
-          <h3 className="text-lg md:text-xl font-semibold text-foreground mt-5 mb-2">
-            {outcomes[3].title}
-          </h3>
-          <p className="text-muted-foreground text-sm md:text-base">
-            {outcomes[3].description}
-          </p>
         </div>
       </div>
     </section>

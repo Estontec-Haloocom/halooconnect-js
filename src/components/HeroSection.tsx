@@ -68,7 +68,7 @@ const HeroSection = () => {
 
             {/* Trust badges */}
             <div className="pt-6 border-t border-secondary-foreground/10 animate-fade-in-up animation-delay-400">
-              <div className="flex items-center justify-center lg:justify-start gap-8 flex-wrap">
+              <div className="flex items-center justify-center lg:justify-start gap-6 md:gap-8 flex-wrap">
                 <div className="text-center">
                   <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">
                     100K+
@@ -94,6 +94,21 @@ const HeroSection = () => {
                   <div className="text-xs text-secondary-foreground/60">
                     Calls/Month
                   </div>
+                </div>
+              </div>
+              
+              {/* Countries */}
+              <div className="mt-4 flex items-center justify-center lg:justify-start gap-2 flex-wrap">
+                <span className="text-xs text-secondary-foreground/50">Trusted in:</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg" title="India">🇮🇳</span>
+                  <span className="text-lg" title="United States">🇺🇸</span>
+                  <span className="text-lg" title="United Kingdom">🇬🇧</span>
+                  <span className="text-lg" title="United Arab Emirates">🇦🇪</span>
+                  <span className="text-lg" title="Singapore">🇸🇬</span>
+                  <span className="text-lg" title="Australia">🇦🇺</span>
+                  <span className="text-lg" title="Canada">🇨🇦</span>
+                  <span className="text-xs text-secondary-foreground/60">+15 more</span>
                 </div>
               </div>
             </div>

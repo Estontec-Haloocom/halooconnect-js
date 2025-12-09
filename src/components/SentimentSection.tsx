@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import sentimentImage from "@/assets/sentiment-analysis.png";
 
 const steps = [
   {
@@ -31,17 +32,16 @@ const SentimentSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}
           <div className="relative">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-secondary/20 via-primary/10 to-muted overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-3/4 rounded-full bg-gradient-to-br from-secondary/30 to-primary/20 flex items-center justify-center">
-                  <div className="w-1/2 h-1/2 rounded-full bg-gradient-to-br from-primary/30 to-secondary/40" />
-                </div>
-              </div>
-              {/* AI Face Illustration */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-[120px] md:text-[180px] opacity-20 select-none">🤖</div>
-              </div>
+            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src={sentimentImage}
+                alt="AI Sentiment Analysis visualization with audio waveforms"
+                className="w-full h-full object-cover"
+              />
             </div>
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/30 rounded-full blur-3xl" />
           </div>
 
           {/* Content Side */}
