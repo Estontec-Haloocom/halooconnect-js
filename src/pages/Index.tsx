@@ -13,6 +13,9 @@ import ClientsSection from "@/components/ClientsSection";
 import TopFeaturesSection from "@/components/TopFeaturesSection";
 import SentimentSection from "@/components/SentimentSection";
 import HexaAISection from "@/components/HexaAISection";
+import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
+import HexaPerformanceSection from "@/components/HexaPerformanceSection";
+import DeploymentSection from "@/components/DeploymentSection";
 
 const Index = () => {
   return (
@@ -23,6 +26,9 @@ const Index = () => {
       <TopFeaturesSection />
       <SentimentSection />
       <HexaAISection />
+      <BusinessIntelligenceSection />
+      <HexaPerformanceSection />
+      <DeploymentSection />
       <FeaturesSection />
       <ChannelsSection />
       <SecuritySection />

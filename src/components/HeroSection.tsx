@@ -95,20 +95,14 @@ const HeroSection = () => {
                     Calls/Month
                   </div>
                 </div>
-              </div>
-              
-              {/* Countries */}
-              <div className="mt-4 flex items-center justify-center lg:justify-start gap-2 flex-wrap">
-                <span className="text-xs text-secondary-foreground/50">Trusted in:</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg" title="India">🇮🇳</span>
-                  <span className="text-lg" title="United States">🇺🇸</span>
-                  <span className="text-lg" title="United Kingdom">🇬🇧</span>
-                  <span className="text-lg" title="United Arab Emirates">🇦🇪</span>
-                  <span className="text-lg" title="Singapore">🇸🇬</span>
-                  <span className="text-lg" title="Australia">🇦🇺</span>
-                  <span className="text-lg" title="Canada">🇨🇦</span>
-                  <span className="text-xs text-secondary-foreground/60">+15 more</span>
+                <div className="w-px h-10 bg-secondary-foreground/20" />
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-secondary-foreground">
+                    5+
+                  </div>
+                  <div className="text-xs text-secondary-foreground/60">
+                    Countries
+                  </div>
                 </div>
               </div>
             </div>
