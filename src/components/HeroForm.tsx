@@ -29,12 +29,14 @@ const HeroForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const { error } = await supabase.from("leads").insert({
+    const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
       country_code: countryCode,
       company: formData.company.trim() || "Not provided",
-    });
+    };
+
+    const { error } = await supabase.from("leads").insert(leadData);
 
     if (error) {
       toast({
@@ -44,6 +46,14 @@ const HeroForm = () => {
       });
       setIsSubmitting(false);
     } else {
+      // Send email notification
+      try {
+        await supabase.functions.invoke("send-lead-notification", {
+          body: { ...leadData, source: "Hero Form" },
+        });
+      } catch (emailError) {
+        console.error("Email notification error:", emailError);
+      }
       navigate("/thank-you");
     }
   };

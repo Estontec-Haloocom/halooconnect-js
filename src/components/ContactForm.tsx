@@ -30,13 +30,15 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const { error } = await supabase.from("leads").insert({
+    const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
       country_code: countryCode,
       company: formData.company.trim() || "Not provided",
       email: formData.email.trim() || null,
-    });
+    };
+
+    const { error } = await supabase.from("leads").insert(leadData);
 
     if (error) {
       toast({
@@ -46,6 +48,14 @@ const ContactForm = () => {
       });
       setIsSubmitting(false);
     } else {
+      // Send email notification
+      try {
+        await supabase.functions.invoke("send-lead-notification", {
+          body: { ...leadData, source: "Contact Form" },
+        });
+      } catch (emailError) {
+        console.error("Email notification error:", emailError);
+      }
       navigate("/thank-you");
     }
   };
