@@ -2,12 +2,25 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/haloo-connect-logo.png";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import TranslateWidget from "./TranslateWidget";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
+];
+
+const regionLinks = [
+  { label: "UAE & Dubai", href: "/uae" },
+  { label: "Singapore", href: "/singapore" },
+  { label: "Malaysia", href: "/malaysia" },
 ];
 
 const Header = () => {
@@ -34,7 +47,7 @@ const Header = () => {
         </Link>
         
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -46,9 +59,28 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
+          
+          {/* Regions Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              Regions <ChevronDown className="w-4 h-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {regionLinks.map((link) => (
+                <DropdownMenuItem key={link.href} asChild>
+                  <Link to={link.href} className="cursor-pointer">
+                    {link.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
         
         <div className="flex items-center gap-4">
+          <div className="hidden lg:block">
+            <TranslateWidget />
+          </div>
           <Button onClick={scrollToForm} variant="default" size="sm" className="hidden md:flex">
             Get Free Demo
           </Button>
@@ -80,7 +112,23 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <Button onClick={() => { scrollToForm(); setIsMenuOpen(false); }} variant="default" size="sm" className="w-full">
+            <div className="border-t border-border/50 pt-4">
+              <p className="text-xs text-muted-foreground mb-2">Regions</p>
+              {regionLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm font-medium py-2 block transition-colors hover:text-primary text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <div className="pt-2">
+              <TranslateWidget />
+            </div>
+            <Button onClick={() => { scrollToForm(); setIsMenuOpen(false); }} variant="default" size="sm" className="w-full mt-2">
               Get Free Demo
             </Button>
           </nav>

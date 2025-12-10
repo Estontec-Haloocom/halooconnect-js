@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-secondary py-16">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
           <div className="lg:col-span-1">
             <img src={logo} alt="Haloo Connect" className="h-10 w-auto brightness-0 invert mb-4" />
@@ -65,6 +65,33 @@ const Footer = () => {
                 <a href="https://haloocom.com/connectplus-crm-dialer/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
                   CRM Dialer
                 </a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Our Presence */}
+          <div>
+            <h4 className="text-secondary-foreground font-semibold mb-4">Our Presence</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                  🇮🇳 India
+                </Link>
+              </li>
+              <li>
+                <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                  🇦🇪 UAE & Dubai
+                </Link>
+              </li>
+              <li>
+                <Link to="/singapore" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                  🇸🇬 Singapore
+                </Link>
+              </li>
+              <li>
+                <Link to="/malaysia" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                  🇲🇾 Malaysia
+                </Link>
               </li>
             </ul>
           </div>
