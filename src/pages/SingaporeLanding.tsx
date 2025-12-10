@@ -4,18 +4,18 @@ import FeaturesSection from "@/components/FeaturesSection";
 import ChannelsSection from "@/components/ChannelsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactForm from "@/components/ContactForm";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import OutcomesSection from "@/components/OutcomesSection";
 import SecuritySection from "@/components/SecuritySection";
 import ClientsSection from "@/components/ClientsSection";
-import TopFeaturesSection from "@/components/TopFeaturesSection";
 import SentimentSection from "@/components/SentimentSection";
 import HexaAISection from "@/components/HexaAISection";
 import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
 import HexaPerformanceSection from "@/components/HexaPerformanceSection";
 import DeploymentSection from "@/components/DeploymentSection";
+import LocalizedOutcomesSection from "@/components/LocalizedOutcomesSection";
+import LocalizedTopFeaturesSection from "@/components/LocalizedTopFeaturesSection";
+import LocalizedCTASection from "@/components/LocalizedCTASection";
 import { Helmet } from "react-helmet-async";
 
 const singaporeContent = {
@@ -48,14 +48,14 @@ const SingaporeLanding = () => {
         />
         <meta
           name="keywords"
-          content="contact center software Singapore, call center Singapore, cloud contact center Singapore, customer service platform Singapore, AI call center Singapore, PDPA compliant"
+          content="contact center software Singapore, call center Singapore, cloud contact center Singapore, customer service platform Singapore, AI call center Singapore, PDPA compliant, omnichannel Singapore, cloud telephony Singapore, IVR solutions Singapore, enterprise call center"
         />
       </Helmet>
       <main className="min-h-screen">
         <Header />
         <LocalizedHeroSection {...singaporeContent} />
-        <OutcomesSection />
-        <TopFeaturesSection />
+        <LocalizedOutcomesSection country="Singapore" />
+        <LocalizedTopFeaturesSection country="Singapore" />
         <SentimentSection />
         <HexaAISection />
         <BusinessIntelligenceSection />
@@ -67,7 +67,7 @@ const SingaporeLanding = () => {
         <ClientsSection />
         <TestimonialsSection />
         <ContactForm />
-        <CTASection />
+        <LocalizedCTASection country="Singapore" />
         <Footer />
         <FloatingCTA />
       </main>

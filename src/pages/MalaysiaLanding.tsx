@@ -4,18 +4,18 @@ import FeaturesSection from "@/components/FeaturesSection";
 import ChannelsSection from "@/components/ChannelsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactForm from "@/components/ContactForm";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import OutcomesSection from "@/components/OutcomesSection";
 import SecuritySection from "@/components/SecuritySection";
 import ClientsSection from "@/components/ClientsSection";
-import TopFeaturesSection from "@/components/TopFeaturesSection";
 import SentimentSection from "@/components/SentimentSection";
 import HexaAISection from "@/components/HexaAISection";
 import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
 import HexaPerformanceSection from "@/components/HexaPerformanceSection";
 import DeploymentSection from "@/components/DeploymentSection";
+import LocalizedOutcomesSection from "@/components/LocalizedOutcomesSection";
+import LocalizedTopFeaturesSection from "@/components/LocalizedTopFeaturesSection";
+import LocalizedCTASection from "@/components/LocalizedCTASection";
 import { Helmet } from "react-helmet-async";
 
 const malaysiaContent = {
@@ -48,14 +48,14 @@ const MalaysiaLanding = () => {
         />
         <meta
           name="keywords"
-          content="call center software Malaysia, contact center Kuala Lumpur, cloud call center Malaysia, customer service software Malaysia, AI call center Malaysia, PDPA compliant Malaysia"
+          content="call center software Malaysia, contact center Kuala Lumpur, cloud call center Malaysia, customer service software Malaysia, AI call center Malaysia, PDPA compliant Malaysia, Bahasa Melayu voice bot, omnichannel Malaysia, cloud telephony Malaysia, IVR solutions KL"
         />
       </Helmet>
       <main className="min-h-screen">
         <Header />
         <LocalizedHeroSection {...malaysiaContent} />
-        <OutcomesSection />
-        <TopFeaturesSection />
+        <LocalizedOutcomesSection country="Malaysia" />
+        <LocalizedTopFeaturesSection country="Malaysia" />
         <SentimentSection />
         <HexaAISection />
         <BusinessIntelligenceSection />
@@ -67,7 +67,7 @@ const MalaysiaLanding = () => {
         <ClientsSection />
         <TestimonialsSection />
         <ContactForm />
-        <CTASection />
+        <LocalizedCTASection country="Malaysia" />
         <Footer />
         <FloatingCTA />
       </main>

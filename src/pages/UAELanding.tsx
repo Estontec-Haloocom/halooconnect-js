@@ -4,18 +4,18 @@ import FeaturesSection from "@/components/FeaturesSection";
 import ChannelsSection from "@/components/ChannelsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactForm from "@/components/ContactForm";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import OutcomesSection from "@/components/OutcomesSection";
 import SecuritySection from "@/components/SecuritySection";
 import ClientsSection from "@/components/ClientsSection";
-import TopFeaturesSection from "@/components/TopFeaturesSection";
 import SentimentSection from "@/components/SentimentSection";
 import HexaAISection from "@/components/HexaAISection";
 import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
 import HexaPerformanceSection from "@/components/HexaPerformanceSection";
 import DeploymentSection from "@/components/DeploymentSection";
+import LocalizedOutcomesSection from "@/components/LocalizedOutcomesSection";
+import LocalizedTopFeaturesSection from "@/components/LocalizedTopFeaturesSection";
+import LocalizedCTASection from "@/components/LocalizedCTASection";
 import { Helmet } from "react-helmet-async";
 
 const uaeContent = {
@@ -48,14 +48,14 @@ const UAELanding = () => {
         />
         <meta
           name="keywords"
-          content="call center software UAE, contact center Dubai, cloud call center UAE, customer service software Dubai, AI call center UAE, WhatsApp business API UAE"
+          content="call center software UAE, contact center Dubai, cloud call center UAE, customer service software Dubai, AI call center UAE, WhatsApp business API UAE, Arabic voice bot, omnichannel contact center UAE, cloud telephony Dubai, IVR solutions UAE"
         />
       </Helmet>
       <main className="min-h-screen">
         <Header />
         <LocalizedHeroSection {...uaeContent} />
-        <OutcomesSection />
-        <TopFeaturesSection />
+        <LocalizedOutcomesSection country="UAE & Dubai" />
+        <LocalizedTopFeaturesSection country="UAE & Dubai" />
         <SentimentSection />
         <HexaAISection />
         <BusinessIntelligenceSection />
@@ -67,7 +67,7 @@ const UAELanding = () => {
         <ClientsSection />
         <TestimonialsSection />
         <ContactForm />
-        <CTASection />
+        <LocalizedCTASection country="UAE & Dubai" />
         <Footer />
         <FloatingCTA />
       </main>

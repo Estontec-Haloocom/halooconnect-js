@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/haloo-connect-logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import TranslateWidget from "./TranslateWidget";
+import LanguageSelector from "./LanguageSelector";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -79,7 +79,7 @@ const Header = () => {
         
         <div className="flex items-center gap-4">
           <div className="hidden lg:block">
-            <TranslateWidget />
+            <LanguageSelector />
           </div>
           <Button onClick={scrollToForm} variant="default" size="sm" className="hidden md:flex">
             Get Free Demo
@@ -126,7 +126,7 @@ const Header = () => {
               ))}
             </div>
             <div className="pt-2">
-              <TranslateWidget />
+              <LanguageSelector />
             </div>
             <Button onClick={() => { scrollToForm(); setIsMenuOpen(false); }} variant="default" size="sm" className="w-full mt-2">
               Get Free Demo
