@@ -139,11 +139,9 @@ const ContactUs = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
-                      <p className="text-muted-foreground">+ 65 83765007
-+971 504298422
-+91 9513391279
-
-                    </p>
+                      <p className="text-muted-foreground">+ 65-83765007
++971-504298422
+ +91-9513391279</p>
                     </div>
                   </div>
 
