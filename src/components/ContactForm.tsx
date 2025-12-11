@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import CountryCodeSelect from "./CountryCodeSelect";
+import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -140,7 +140,7 @@ const ContactForm = () => {
                       id="phone"
                       name="phone"
                       type="tel"
-                      placeholder="98765 43210"
+                      placeholder={getPlaceholderPhone(countryCode)}
                       required
                       value={formData.phone}
                       onChange={handleChange}

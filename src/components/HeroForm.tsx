@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, Shield, Loader2 } from "lucide-react";
-import CountryCodeSelect from "./CountryCodeSelect";
+import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
 
 interface HeroFormProps {
@@ -87,7 +87,7 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
           <Input
             name="phone"
             type="tel"
-            placeholder="Mobile Number *"
+            placeholder={getPlaceholderPhone(countryCode)}
             required
             value={formData.phone}
             onChange={handleChange}

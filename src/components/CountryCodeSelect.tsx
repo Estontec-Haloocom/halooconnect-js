@@ -3,22 +3,20 @@ import { ChevronDown } from "lucide-react";
 
 const countries = [
   { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
-  { code: "+91", country: "IN", flag: "🇮🇳", name: "India" },
   { code: "+971", country: "AE", flag: "🇦🇪", name: "UAE" },
   { code: "+60", country: "MY", flag: "🇲🇾", name: "Malaysia" },
-  { code: "+1", country: "US", flag: "🇺🇸", name: "United States" },
-  { code: "+44", country: "GB", flag: "🇬🇧", name: "United Kingdom" },
-  { code: "+966", country: "SA", flag: "🇸🇦", name: "Saudi Arabia" },
-  { code: "+61", country: "AU", flag: "🇦🇺", name: "Australia" },
-  { code: "+49", country: "DE", flag: "🇩🇪", name: "Germany" },
-  { code: "+33", country: "FR", flag: "🇫🇷", name: "France" },
-  { code: "+81", country: "JP", flag: "🇯🇵", name: "Japan" },
-  { code: "+86", country: "CN", flag: "🇨🇳", name: "China" },
-  { code: "+55", country: "BR", flag: "🇧🇷", name: "Brazil" },
-  { code: "+52", country: "MX", flag: "🇲🇽", name: "Mexico" },
-  { code: "+27", country: "ZA", flag: "🇿🇦", name: "South Africa" },
-  { code: "+234", country: "NG", flag: "🇳🇬", name: "Nigeria" },
+  { code: "+91", country: "IN", flag: "🇮🇳", name: "India" },
 ];
+
+export const getPlaceholderPhone = (countryCode: string) => {
+  switch (countryCode) {
+    case "+65": return "8376 5007";
+    case "+971": return "50 429 8422";
+    case "+60": return "12 345 6789";
+    case "+91": return "95133 91279";
+    default: return "8376 5007";
+  }
+};
 
 interface CountryCodeSelectProps {
   value: string;
