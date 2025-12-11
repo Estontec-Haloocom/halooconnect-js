@@ -2,21 +2,12 @@ import { CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import heroBg from "@/assets/hero-bg.png";
 import HeroForm from "./HeroForm";
-
 const HeroSection = () => {
-  const { t } = useTranslation();
-
-  const benefits = [
-    t("hero.benefit1"),
-    t("hero.benefit2"),
-    t("hero.benefit3"),
-    t("hero.benefit4"),
-    t("hero.benefit5"),
-  ];
-
-  return (
-    <section
-      className="
+  const {
+    t
+  } = useTranslation();
+  const benefits = [t("hero.benefit1"), t("hero.benefit2"), t("hero.benefit3"), t("hero.benefit4"), t("hero.benefit5")];
+  return <section className="
         relative 
         min-h-screen 
         flex 
@@ -24,15 +15,10 @@ const HeroSection = () => {
         pt-24 pb-24 
         md:pt-28 md:pb-32 
         overflow-hidden
-      "
-    >
+      ">
       {/* Background with contact center image + dark overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Contact center background"
-          className="w-full h-full object-cover"
-        />
+        <img src={heroBg} alt="Contact center background" className="w-full h-full object-cover" />
         {/* Dark overlay to improve text visibility */}
         <div className="absolute inset-0 bg-secondary/90" />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-secondary/80" />
@@ -58,15 +44,10 @@ const HeroSection = () => {
 
             {/* Benefits list */}
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 animate-fade-in-up animation-delay-300">
-              {benefits.map((benefit, index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-2 text-secondary-foreground/80"
-                >
+              {benefits.map((benefit, index) => <li key={index} className="flex items-center gap-2 text-secondary-foreground/80">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm">{benefit}</span>
-                </li>
-              ))}
+                  <span className="text-sm text-left">{benefit}</span>
+                </li>)}
             </ul>
 
             {/* Trust badges */}
@@ -117,8 +98,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
