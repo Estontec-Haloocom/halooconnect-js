@@ -7,11 +7,16 @@ import { ArrowRight, Shield, Loader2 } from "lucide-react";
 import CountryCodeSelect from "./CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
 
-const HeroForm = () => {
+interface HeroFormProps {
+  defaultCountryCode?: string;
+  fixedCountryCode?: boolean;
+}
+
+const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: HeroFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [countryCode, setCountryCode] = useState("+91");
+  const [countryCode, setCountryCode] = useState(defaultCountryCode);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -78,7 +83,7 @@ const HeroForm = () => {
         />
         
         <div className="flex">
-          <CountryCodeSelect value={countryCode} onChange={setCountryCode} />
+          <CountryCodeSelect value={countryCode} onChange={setCountryCode} disabled={fixedCountryCode} />
           <Input
             name="phone"
             type="tel"

@@ -11,7 +11,7 @@ const ContactForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [countryCode, setCountryCode] = useState("+91");
+  const [countryCode, setCountryCode] = useState("+65");
   const [formData, setFormData] = useState({
     name: "",
     email: "",

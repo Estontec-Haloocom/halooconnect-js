@@ -4,6 +4,7 @@ import HeroForm from "./HeroForm";
 
 interface LocalizedHeroProps {
   country: string;
+  countryCode: string;
   headline: string;
   subheadline: string;
   benefits: string[];
@@ -17,6 +18,7 @@ interface LocalizedHeroProps {
 
 const LocalizedHeroSection = ({
   country,
+  countryCode,
   headline,
   subheadline,
   benefits,
@@ -119,7 +121,7 @@ const LocalizedHeroSection = ({
 
           {/* Right - Form */}
           <div className="flex justify-center lg:justify-end animate-fade-in-up animation-delay-300">
-            <HeroForm />
+            <HeroForm defaultCountryCode={countryCode} fixedCountryCode={true} />
           </div>
         </div>
       </div>

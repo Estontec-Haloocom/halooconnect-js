@@ -20,6 +20,7 @@ import { Helmet } from "react-helmet-async";
 
 const singaporeContent = {
   country: "Singapore",
+  countryCode: "+65",
   headline: "Enterprise Contact Center Software in",
   subheadline:
     "Singapore's trusted cloud contact center platform. PDPA compliant with AI-powered automation, multilingual support in English, Mandarin, Malay & Tamil.",

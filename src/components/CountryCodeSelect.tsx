@@ -2,12 +2,13 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const countries = [
+  { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
   { code: "+91", country: "IN", flag: "🇮🇳", name: "India" },
+  { code: "+971", country: "AE", flag: "🇦🇪", name: "UAE" },
+  { code: "+60", country: "MY", flag: "🇲🇾", name: "Malaysia" },
   { code: "+1", country: "US", flag: "🇺🇸", name: "United States" },
   { code: "+44", country: "GB", flag: "🇬🇧", name: "United Kingdom" },
-  { code: "+971", country: "AE", flag: "🇦🇪", name: "UAE" },
   { code: "+966", country: "SA", flag: "🇸🇦", name: "Saudi Arabia" },
-  { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
   { code: "+61", country: "AU", flag: "🇦🇺", name: "Australia" },
   { code: "+49", country: "DE", flag: "🇩🇪", name: "Germany" },
   { code: "+33", country: "FR", flag: "🇫🇷", name: "France" },
@@ -22,9 +23,10 @@ const countries = [
 interface CountryCodeSelectProps {
   value: string;
   onChange: (value: string) => void;
+  disabled?: boolean;
 }
 
-const CountryCodeSelect = ({ value, onChange }: CountryCodeSelectProps) => {
+const CountryCodeSelect = ({ value, onChange, disabled = false }: CountryCodeSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedCountry = countries.find(c => c.code === value) || countries[0];
 
@@ -32,12 +34,12 @@ const CountryCodeSelect = ({ value, onChange }: CountryCodeSelectProps) => {
     <div className="relative">
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 h-12 px-3 rounded-l-xl border-2 border-r-0 border-border bg-muted/50 hover:bg-muted transition-colors min-w-[90px]"
+        onClick={() => !disabled && setIsOpen(!isOpen)}
+        className={`flex items-center gap-1 h-12 px-3 rounded-l-xl border-2 border-r-0 border-border bg-muted/50 transition-colors min-w-[90px] ${disabled ? 'cursor-default' : 'hover:bg-muted'}`}
       >
         <span className="text-xl">{selectedCountry.flag}</span>
         <span className="text-sm font-medium text-foreground">{selectedCountry.code}</span>
-        <ChevronDown className="w-4 h-4 text-muted-foreground" />
+        {!disabled && <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       
       {isOpen && (

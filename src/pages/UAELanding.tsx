@@ -20,6 +20,7 @@ import { Helmet } from "react-helmet-async";
 
 const uaeContent = {
   country: "UAE & Dubai",
+  countryCode: "+971",
   headline: "Best Call Center Software in",
   subheadline:
     "Leading Cloud Contact Center Solution in Dubai & UAE. Trusted by 500+ enterprises for AI-powered customer engagement, omnichannel support, and Arabic language capabilities.",

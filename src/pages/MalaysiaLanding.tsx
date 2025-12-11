@@ -20,6 +20,7 @@ import { Helmet } from "react-helmet-async";
 
 const malaysiaContent = {
   country: "Malaysia",
+  countryCode: "+60",
   headline: "Leading Call Center Solution in",
   subheadline:
     "Malaysia's premier cloud contact center software. PDPA Malaysia compliant with Bahasa Melayu, English & Mandarin AI voice support for seamless customer engagement.",
