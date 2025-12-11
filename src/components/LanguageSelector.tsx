@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Globe, ChevronDown, Check } from "lucide-react";
 import {
   DropdownMenu,
@@ -34,7 +35,10 @@ const routeLanguageMap: Record<string, string> = {
 
 const LanguageSelector = () => {
   const location = useLocation();
-  const [currentLang, setCurrentLang] = useState<Language>(languages[0]);
+  const { i18n } = useTranslation();
+  const [currentLang, setCurrentLang] = useState<Language>(
+    languages.find((l) => l.code === i18n.language) || languages[0]
+  );
   const [suggestedLang, setSuggestedLang] = useState<Language | null>(null);
   const [showSuggestion, setShowSuggestion] = useState(false);
 
@@ -56,23 +60,18 @@ const LanguageSelector = () => {
     }
   }, [location.pathname, currentLang.code]);
 
-  const translatePage = (langCode: string) => {
+  const changeLanguage = (langCode: string) => {
     const lang = languages.find((l) => l.code === langCode);
     if (lang) {
       setCurrentLang(lang);
       setShowSuggestion(false);
+      i18n.changeLanguage(langCode);
       
-      // Use Google Translate URL API for translation
-      if (langCode === "en") {
-        // Reset to original
-        const currentUrl = window.location.href;
-        if (currentUrl.includes("translate.goog")) {
-          window.location.href = currentUrl.replace(/translate\.goog.*?\//, window.location.host + "/");
-        }
+      // Set RTL for Arabic
+      if (langCode === "ar") {
+        document.documentElement.dir = "rtl";
       } else {
-        // Trigger translation via Google Translate
-        const translateUrl = `https://translate.google.com/translate?sl=en&tl=${langCode}&u=${encodeURIComponent(window.location.href)}`;
-        window.open(translateUrl, "_self");
+        document.documentElement.dir = "ltr";
       }
     }
   };
@@ -84,7 +83,7 @@ const LanguageSelector = () => {
         <div className="absolute top-full right-0 mt-2 p-3 bg-card border border-border rounded-lg shadow-lg z-50 min-w-[220px] animate-fade-in">
           <p className="text-xs text-muted-foreground mb-2">Translate to:</p>
           <button
-            onClick={() => translatePage(suggestedLang.code)}
+            onClick={() => changeLanguage(suggestedLang.code)}
             className="flex items-center gap-2 w-full p-2 rounded-md hover:bg-muted transition-colors text-left"
           >
             <span className="text-lg">{suggestedLang.flag}</span>
@@ -110,11 +109,11 @@ const LanguageSelector = () => {
             <ChevronDown className="w-3 h-3 text-muted-foreground" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="min-w-[180px]">
+        <DropdownMenuContent align="end" className="min-w-[180px] bg-popover">
           {languages.map((lang) => (
             <DropdownMenuItem
               key={lang.code}
-              onClick={() => translatePage(lang.code)}
+              onClick={() => changeLanguage(lang.code)}
               className="flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center gap-2">

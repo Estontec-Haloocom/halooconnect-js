@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Home",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "regions": "Regions",
+    "getFreeDemo": "Get Free Demo"
+  },
+  "hero": {
+    "title": "Your Leap to AI Powered Contact Centers",
+    "subtitle": "Transform your customer experience with Haloo Connect's intelligent contact center solution",
+    "benefit1": "AI Powered Voice & Chat",
+    "benefit2": "WhatsApp, Email, Facebook, Instagram, SMS Integration",
+    "benefit3": "AI Powered Sentiment Analysis",
+    "benefit4": "AI Powered Score Card",
+    "benefit5": "AI Powered Business Intelligence"
+  },
+  "form": {
+    "name": "Full Name",
+    "phone": "Mobile Number",
+    "company": "Company Name",
+    "email": "Email Address",
+    "message": "Message",
+    "submit": "Get Free Demo",
+    "submitting": "Submitting...",
+    "secureNote": "Your information is secure with us"
+  },
+  "stats": {
+    "title": "Trusted by Leading Brands",
+    "callsHandled": "Calls Handled Daily",
+    "satisfaction": "Customer Satisfaction",
+    "uptime": "Uptime Guarantee",
+    "support": "Support Available"
+  },
+  "features": {
+    "title": "Powerful Features",
+    "subtitle": "Everything you need to transform your contact center"
+  },
+  "cta": {
+    "title": "Ready to Transform Your Contact Center?",
+    "subtitle": "Join thousands of businesses that trust Haloo Connect",
+    "button": "Get Started Today"
+  },
+  "footer": {
+    "company": "Company",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Us",
+    "ourPresence": "Our Presence",
+    "copyright": "All rights reserved"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "getStarted": "Get Started"
+  }
+}

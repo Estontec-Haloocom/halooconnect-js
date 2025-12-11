@@ -1,16 +1,19 @@
 import { CheckCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import heroBg from "@/assets/hero-bg.png";
 import HeroForm from "./HeroForm";
 
-const benefits = [
-  "AI Powered Voice & Chat",
-  "WhatsApp, Email, Facebook, Instagram, SMS Integration",
-  "AI Powered Sentiment Analysis",
-  "AI Powered Score Card",
-  "AI Powered Business Intelligence",
-];
-
 const HeroSection = () => {
+  const { t } = useTranslation();
+
+  const benefits = [
+    t("hero.benefit1"),
+    t("hero.benefit2"),
+    t("hero.benefit3"),
+    t("hero.benefit4"),
+    t("hero.benefit5"),
+  ];
+
   return (
     <section
       className="
@@ -44,8 +47,7 @@ const HeroSection = () => {
             <div className="animate-fade-in-up" />
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary-foreground leading-tight mb-6 animate-fade-in-up animation-delay-100">
-              Your Leap to
-              <span className="block text-primary"> AI Powered Contact Centers</span>
+              {t("hero.title")}
             </h1>
 
             <p className="text-lg md:text-xl text-secondary-foreground/70 mb-8 max-w-xl mx-auto lg:mx-0 animate-fade-in-up animation-delay-200">
@@ -56,9 +58,9 @@ const HeroSection = () => {
 
             {/* Benefits list */}
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 animate-fade-in-up animation-delay-300">
-              {benefits.map((benefit) => (
+              {benefits.map((benefit, index) => (
                 <li
-                  key={benefit}
+                  key={index}
                   className="flex items-center gap-2 text-secondary-foreground/80"
                 >
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
