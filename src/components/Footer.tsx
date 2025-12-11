@@ -75,27 +75,27 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                 🇸🇬 Singapore
+                 Singapore
                 </Link>
               </li>
               <li>
                 <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  🇦🇪 UAE
+                  UAE
                 </Link>
               </li>
                 <li>
                 <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                 🇮🇳 India
+                 India
                 </Link>
               </li>
               <li>
                 <Link to="/singapore" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  KEN Kenya
+                  Kenya
                 </Link>
               </li>
               <li>
                 <Link to="/malaysia" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  NG NIgeria
+                  Nigeria
                 </Link>
               </li>
             </ul>
