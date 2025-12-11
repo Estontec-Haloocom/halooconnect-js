@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Laman Utama",
+    "aboutUs": "Tentang Kami",
+    "contact": "Hubungi",
+    "regions": "Wilayah",
+    "getFreeDemo": "Dapatkan Demo Percuma"
+  },
+  "hero": {
+    "title": "Lonjakan Anda ke Pusat Hubungan Berkuasa AI",
+    "subtitle": "Transformasikan pengalaman pelanggan anda dengan penyelesaian pusat hubungan pintar Haloo Connect",
+    "benefit1": "Suara & Sembang Berkuasa AI",
+    "benefit2": "Integrasi WhatsApp, E-mel, Facebook, Instagram, SMS",
+    "benefit3": "Analisis Sentimen Berkuasa AI",
+    "benefit4": "Kad Skor Berkuasa AI",
+    "benefit5": "Kecerdasan Perniagaan Berkuasa AI"
+  },
+  "form": {
+    "name": "Nama Penuh",
+    "phone": "Nombor Telefon",
+    "company": "Nama Syarikat",
+    "email": "Alamat E-mel",
+    "message": "Mesej",
+    "submit": "Dapatkan Demo Percuma",
+    "submitting": "Menghantar...",
+    "secureNote": "Maklumat anda selamat bersama kami"
+  },
+  "stats": {
+    "title": "Dipercayai oleh Jenama Terkemuka",
+    "callsHandled": "Panggilan Dikendalikan Setiap Hari",
+    "satisfaction": "Kepuasan Pelanggan",
+    "uptime": "Jaminan Masa Aktif",
+    "support": "Sokongan Tersedia"
+  },
+  "features": {
+    "title": "Ciri-ciri Berkuasa",
+    "subtitle": "Semua yang anda perlukan untuk mengubah pusat hubungan anda"
+  },
+  "cta": {
+    "title": "Bersedia untuk Mengubah Pusat Hubungan Anda?",
+    "subtitle": "Sertai ribuan perniagaan yang mempercayai Haloo Connect",
+    "button": "Mulakan Hari Ini"
+  },
+  "footer": {
+    "company": "Syarikat",
+    "quickLinks": "Pautan Pantas",
+    "contact": "Hubungi Kami",
+    "ourPresence": "Kehadiran Kami",
+    "copyright": "Hak cipta terpelihara"
+  },
+  "common": {
+    "learnMore": "Ketahui Lebih Lanjut",
+    "contactUs": "Hubungi Kami",
+    "getStarted": "Mulakan"
+  }
+}
