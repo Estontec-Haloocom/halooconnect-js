@@ -16,10 +16,8 @@ import HexaAISection from "@/components/HexaAISection";
 import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
 import HexaPerformanceSection from "@/components/HexaPerformanceSection";
 import DeploymentSection from "@/components/DeploymentSection";
-
 const Index = () => {
-  return (
-    <main className="min-h-screen">
+  return <main className="min-h-screen">
       <Header />
       <HeroSection />
       <OutcomesSection />
@@ -29,17 +27,15 @@ const Index = () => {
       <BusinessIntelligenceSection />
       <HexaPerformanceSection />
       <DeploymentSection />
-      <FeaturesSection />
+      
       <ChannelsSection />
       <SecuritySection />
       <ClientsSection />
       <TestimonialsSection />
       <ContactForm />
-      <CTASection />
+      
       <Footer />
       <FloatingCTA />
-    </main>
-  );
+    </main>;
 };
-
 export default Index;
