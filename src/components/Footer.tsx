@@ -1,40 +1,45 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import logo from "@/assets/haloo-connect-logo.png";
 import { Phone, Mail } from "lucide-react";
+
 const Footer = () => {
-  return <footer className="bg-secondary py-16">
+  const { t } = useTranslation();
+
+  return (
+    <footer className="bg-secondary py-16">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
           <div className="lg:col-span-1">
             <img src={logo} alt="Haloo Connect" className="h-10 w-auto brightness-0 invert mb-4" />
             <p className="text-secondary-foreground/70 text-sm mb-4">
-              AI-powered telecom solutions for your business. From advanced Contact Center software to seamless Business Communication apps.
+              {t("footer.description")}
             </p>
           </div>
           
           {/* Quick Links */}
           <div>
-            <h4 className="text-secondary-foreground font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Home
+                  {t("footer.home")}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  About Us
+                  {t("footer.aboutUs")}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Contact Us
+                  {t("footer.contactUs")}
                 </Link>
               </li>
               <li>
                 <a href="https://haloocom.com/blog/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Blog
+                  {t("footer.blog")}
                 </a>
               </li>
             </ul>
@@ -42,26 +47,26 @@ const Footer = () => {
           
           {/* Services */}
           <div>
-            <h4 className="text-secondary-foreground font-semibold mb-4">Services</h4>
+            <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.services")}</h4>
             <ul className="space-y-2">
               <li>
                 <a href="https://haloocom.com/services/halooconnect/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Contact Center
+                  {t("footer.contactCenter")}
                 </a>
               </li>
               <li>
                 <a href="https://haloocom.com/hexa-ai/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Hexa AI
+                  {t("footer.hexaAi")}
                 </a>
               </li>
               <li>
                 <a href="https://haloocom.com/services/halooxchange/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Unified Communications
+                  {t("footer.unifiedComm")}
                 </a>
               </li>
               <li>
                 <a href="https://haloocom.com/connectplus-crm-dialer/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  CRM Dialer
+                  {t("footer.crmDialer")}
                 </a>
               </li>
             </ul>
@@ -69,31 +74,31 @@ const Footer = () => {
           
           {/* Our Presence */}
           <div>
-            <h4 className="text-secondary-foreground font-semibold mb-4">Our Presence</h4>
+            <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.ourPresence")}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                 Singapore
+                  {t("footer.singapore")}
                 </Link>
               </li>
               <li>
                 <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  UAE
+                  {t("footer.uae")}
                 </Link>
               </li>
-                <li>
+              <li>
                 <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                 India
+                  {t("footer.india")}
                 </Link>
               </li>
               <li>
                 <Link to="/singapore" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Kenya
+                  {t("footer.kenya")}
                 </Link>
               </li>
               <li>
                 <Link to="/malaysia" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
-                  Nigeria
+                  {t("footer.nigeria")}
                 </Link>
               </li>
             </ul>
@@ -101,7 +106,7 @@ const Footer = () => {
           
           {/* Contact Info */}
           <div>
-            <h4 className="text-secondary-foreground font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.contact")}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-secondary-foreground/70 mt-0.5" />
@@ -117,28 +122,26 @@ const Footer = () => {
                   enquiry@haloocom.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                
-                
-              </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-secondary-foreground/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-secondary-foreground/50 text-sm">
-            © {new Date().getFullYear()} Haloocom. All rights reserved.
+            © {new Date().getFullYear()} Haloocom. {t("footer.copyright")}.
           </p>
           <div className="flex items-center gap-6">
             <a href="https://haloocom.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/50 text-sm hover:text-secondary-foreground transition-colors">
-              Privacy Policy
+              {t("footer.privacyPolicy")}
             </a>
             <a href="https://haloocom.com/terms-and-conditions/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/50 text-sm hover:text-secondary-foreground transition-colors">
-              Terms & Conditions
+              {t("footer.terms")}
             </a>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

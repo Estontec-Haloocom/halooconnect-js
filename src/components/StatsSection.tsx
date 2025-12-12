@@ -1,33 +1,36 @@
+import { useTranslation } from "react-i18next";
 import { TrendingUp, Clock, Award, Globe } from "lucide-react";
 
-const stats = [
-  {
-    icon: TrendingUp,
-    value: "40%",
-    label: "Increase in Productivity",
-    description: "Average improvement in agent efficiency"
-  },
-  {
-    icon: Clock,
-    value: "30min",
-    label: "Quick Setup",
-    description: "Get started in under 30 minutes"
-  },
-  {
-    icon: Award,
-    value: "99.9%",
-    label: "Uptime Guarantee",
-    description: "Enterprise-grade reliability"
-  },
-  {
-    icon: Globe,
-    value: "5+",
-    label: "Countries",
-    description: "Global presence and support"
-  }
-];
-
 const StatsSection = () => {
+  const { t } = useTranslation();
+
+  const stats = [
+    {
+      icon: TrendingUp,
+      value: "40%",
+      label: t("stats.productivity"),
+      description: t("stats.productivityDesc")
+    },
+    {
+      icon: Clock,
+      value: "30min",
+      label: t("stats.setup"),
+      description: t("stats.setupDesc")
+    },
+    {
+      icon: Award,
+      value: "99.9%",
+      label: t("stats.uptime"),
+      description: t("stats.uptimeDesc")
+    },
+    {
+      icon: Globe,
+      value: "5+",
+      label: t("stats.countries"),
+      description: t("stats.countriesDesc")
+    }
+  ];
+
   return (
     <section className="py-16 bg-primary relative overflow-hidden">
       {/* Background pattern */}

@@ -4,7 +4,10 @@
     "aboutUs": "Tentang Kami",
     "contact": "Hubungi",
     "regions": "Wilayah",
-    "getFreeDemo": "Dapatkan Demo Percuma"
+    "getFreeDemo": "Dapatkan Demo Percuma",
+    "uae": "UAE & Dubai",
+    "singapore": "Singapura",
+    "malaysia": "Malaysia"
   },
   "hero": {
     "title": "Lonjakan Anda ke Pusat Hubungan Berkuasa AI",
@@ -16,37 +19,78 @@
     "benefit5": "Kecerdasan Perniagaan Berkuasa AI"
   },
   "form": {
-    "name": "Nama Penuh",
+    "title": "Dapatkan Demo Percuma",
+    "subtitle": "Persediaan dalam masa kurang 30 minit",
+    "name": "Nama Anda *",
     "phone": "Nombor Telefon",
     "company": "Nama Syarikat",
     "email": "Alamat E-mel",
     "message": "Mesej",
-    "submit": "Dapatkan Demo Percuma",
+    "submit": "Minta Panggilan Balik",
     "submitting": "Menghantar...",
-    "secureNote": "Maklumat anda selamat bersama kami"
+    "secureNote": "Data anda 100% selamat bersama kami",
+    "error": "Ralat",
+    "errorMessage": "Sesuatu tidak kena. Sila cuba lagi."
   },
   "stats": {
-    "title": "Dipercayai oleh Jenama Terkemuka",
-    "callsHandled": "Panggilan Dikendalikan Setiap Hari",
-    "satisfaction": "Kepuasan Pelanggan",
+    "productivity": "Peningkatan Produktiviti",
+    "productivityDesc": "Purata peningkatan kecekapan ejen",
+    "setup": "Persediaan Pantas",
+    "setupDesc": "Mula dalam kurang 30 minit",
     "uptime": "Jaminan Masa Aktif",
-    "support": "Sokongan Tersedia"
+    "uptimeDesc": "Kebolehpercayaan gred perusahaan",
+    "countries": "Negara",
+    "countriesDesc": "Kehadiran dan sokongan global"
   },
   "features": {
     "title": "Ciri-ciri Berkuasa",
-    "subtitle": "Semua yang anda perlukan untuk mengubah pusat hubungan anda"
+    "subtitle": "Semua yang anda perlukan untuk mengubah pusat hubungan anda",
+    "scheduleDemo": "Jadualkan Demo Anda Sekarang",
+    "voice": "Kecemerlangan Suara",
+    "voiceDesc": "Pendailan ramalan, pengendalian panggilan campuran, dan penghalaan pintar untuk produktiviti ejen maksimum.",
+    "omnichannel": "Pemesejan Omnichannel",
+    "omnichannelDesc": "WhatsApp, Telegram, E-mel, SMS - semua disatukan dalam satu platform berkuasa.",
+    "ai": "Dikuasakan AI",
+    "aiDesc": "Analisis sentimen masa nyata, pemarkahan AI, dan transkripsi panggilan pintar.",
+    "analytics": "Analitik Lanjutan",
+    "analyticsDesc": "Papan pemuka masa nyata, metrik prestasi, dan pandangan yang boleh diambil tindakan.",
+    "crm": "Integrasi CRM",
+    "crmDesc": "Integrasi lancar dengan sistem CRM dan ERP popular.",
+    "social": "Media Sosial",
+    "socialDesc": "Integrasi Facebook, Instagram untuk penglibatan sosial lengkap."
   },
   "cta": {
+    "limitedOffer": "Tawaran Masa Terhad",
     "title": "Bersedia untuk Mengubah Pusat Hubungan Anda?",
-    "subtitle": "Sertai ribuan perniagaan yang mempercayai Haloo Connect",
-    "button": "Mulakan Hari Ini"
+    "subtitle": "Dapatkan akses percuma 14 hari ke Connect 6.0. Tiada kad kredit diperlukan. Semua ciri termasuk.",
+    "scheduleDemo": "Jadualkan Demo Percuma",
+    "callUs": "Hubungi Kami Sekarang",
+    "noCreditCard": "Tiada Kad Kredit Diperlukan",
+    "freeTrial": "Percubaan Percuma 14 Hari",
+    "cancelAnytime": "Batal Bila-bila Masa"
   },
   "footer": {
-    "company": "Syarikat",
+    "description": "Penyelesaian telekomunikasi berkuasa AI untuk perniagaan anda. Dari perisian Pusat Hubungan canggih hingga aplikasi Komunikasi Perniagaan yang lancar.",
     "quickLinks": "Pautan Pantas",
-    "contact": "Hubungi Kami",
+    "home": "Laman Utama",
+    "aboutUs": "Tentang Kami",
+    "contactUs": "Hubungi Kami",
+    "blog": "Blog",
+    "services": "Perkhidmatan",
+    "contactCenter": "Pusat Hubungan",
+    "hexaAi": "Hexa AI",
+    "unifiedComm": "Komunikasi Bersatu",
+    "crmDialer": "CRM Dialer",
     "ourPresence": "Kehadiran Kami",
-    "copyright": "Hak cipta terpelihara"
+    "singapore": "Singapura",
+    "uae": "UAE",
+    "india": "India",
+    "kenya": "Kenya",
+    "nigeria": "Nigeria",
+    "contact": "Hubungi Kami",
+    "copyright": "Hak cipta terpelihara",
+    "privacyPolicy": "Dasar Privasi",
+    "terms": "Terma & Syarat"
   },
   "common": {
     "learnMore": "Ketahui Lebih Lanjut",

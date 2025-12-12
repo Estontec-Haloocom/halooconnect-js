@@ -4,7 +4,10 @@
     "aboutUs": "关于我们",
     "contact": "联系我们",
     "regions": "地区",
-    "getFreeDemo": "获取免费演示"
+    "getFreeDemo": "获取免费演示",
+    "uae": "阿联酋和迪拜",
+    "singapore": "新加坡",
+    "malaysia": "马来西亚"
   },
   "hero": {
     "title": "迈向人工智能驱动的联络中心",
@@ -16,37 +19,78 @@
     "benefit5": "AI 驱动的商业智能"
   },
   "form": {
-    "name": "全名",
+    "title": "获取免费演示",
+    "subtitle": "30分钟内完成设置",
+    "name": "您的姓名 *",
     "phone": "手机号码",
     "company": "公司名称",
     "email": "电子邮箱",
     "message": "留言",
-    "submit": "获取免费演示",
+    "submit": "请求回电",
     "submitting": "提交中...",
-    "secureNote": "您的信息在我们这里是安全的"
+    "secureNote": "您的数据100%安全",
+    "error": "错误",
+    "errorMessage": "出了点问题。请重试。"
   },
   "stats": {
-    "title": "受领先品牌信赖",
-    "callsHandled": "每日处理通话",
-    "satisfaction": "客户满意度",
+    "productivity": "生产力提升",
+    "productivityDesc": "代理效率平均提升",
+    "setup": "快速设置",
+    "setupDesc": "30分钟内开始使用",
     "uptime": "正常运行时间保证",
-    "support": "支持服务"
+    "uptimeDesc": "企业级可靠性",
+    "countries": "国家",
+    "countriesDesc": "全球覆盖和支持"
   },
   "features": {
     "title": "强大功能",
-    "subtitle": "转变您的联络中心所需的一切"
+    "subtitle": "转变您的联络中心所需的一切",
+    "scheduleDemo": "立即预约演示",
+    "voice": "语音卓越",
+    "voiceDesc": "预测拨号、混合呼叫处理和智能路由，实现最大代理生产力。",
+    "omnichannel": "全渠道消息",
+    "omnichannelDesc": "WhatsApp、Telegram、电子邮件、短信 - 全部统一在一个强大的平台中。",
+    "ai": "AI驱动",
+    "aiDesc": "实时情感分析、AI评分和智能通话转录。",
+    "analytics": "高级分析",
+    "analyticsDesc": "实时仪表板、性能指标和可操作的洞察。",
+    "crm": "CRM集成",
+    "crmDesc": "与流行的CRM和ERP系统无缝集成。",
+    "social": "社交媒体",
+    "socialDesc": "Facebook、Instagram集成，实现完整的社交互动。"
   },
   "cta": {
+    "limitedOffer": "限时优惠",
     "title": "准备好转变您的联络中心了吗？",
-    "subtitle": "加入数千家信任 Haloo Connect 的企业",
-    "button": "立即开始"
+    "subtitle": "免费使用Connect 6.0 14天。无需信用卡。包含全部功能。",
+    "scheduleDemo": "预约免费演示",
+    "callUs": "立即致电",
+    "noCreditCard": "无需信用卡",
+    "freeTrial": "14天免费试用",
+    "cancelAnytime": "随时取消"
   },
   "footer": {
-    "company": "公司",
+    "description": "为您的业务提供AI驱动的电信解决方案。从先进的联络中心软件到无缝的业务通信应用。",
     "quickLinks": "快速链接",
-    "contact": "联系我们",
+    "home": "首页",
+    "aboutUs": "关于我们",
+    "contactUs": "联系我们",
+    "blog": "博客",
+    "services": "服务",
+    "contactCenter": "联络中心",
+    "hexaAi": "Hexa AI",
+    "unifiedComm": "统一通信",
+    "crmDialer": "CRM拨号器",
     "ourPresence": "我们的存在",
-    "copyright": "版权所有"
+    "singapore": "新加坡",
+    "uae": "阿联酋",
+    "india": "印度",
+    "kenya": "肯尼亚",
+    "nigeria": "尼日利亚",
+    "contact": "联系我们",
+    "copyright": "版权所有",
+    "privacyPolicy": "隐私政策",
+    "terms": "条款和条件"
   },
   "common": {
     "learnMore": "了解更多",

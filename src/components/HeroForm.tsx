@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +16,7 @@ interface HeroFormProps {
 const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: HeroFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState(defaultCountryCode);
   const [formData, setFormData] = useState({
@@ -45,8 +47,8 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
 
     if (error) {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
+        title: t("form.error"),
+        description: t("form.errorMessage"),
         variant: "destructive",
       });
       setIsSubmitting(false);
@@ -66,15 +68,15 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
   return (
     <div className="bg-card/95 backdrop-blur-md rounded-2xl p-6 shadow-elevated border border-border/50 w-full max-w-md">
       <div className="text-center mb-5">
-        <h3 className="text-xl font-bold text-foreground mb-1">Get Free Demo</h3>
-        <p className="text-sm text-muted-foreground">Setup in under 30 minutes</p>
+        <h3 className="text-xl font-bold text-foreground mb-1">{t("form.title")}</h3>
+        <p className="text-sm text-muted-foreground">{t("form.subtitle")}</p>
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-3">
         <Input
           name="name"
           type="text"
-          placeholder="Your Name *"
+          placeholder={t("form.name")}
           required
           value={formData.name}
           onChange={handleChange}
@@ -99,7 +101,7 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
         <Input
           name="company"
           type="text"
-          placeholder="Company Name"
+          placeholder={t("form.company")}
           value={formData.company}
           onChange={handleChange}
           className="h-12"
@@ -116,11 +118,11 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
           {isSubmitting ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              Submitting...
+              {t("form.submitting")}
             </>
           ) : (
             <>
-              Request Callback
+              {t("form.submit")}
               <ArrowRight className="w-5 h-5" />
             </>
           )}
@@ -129,7 +131,7 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
       
       <div className="flex items-center justify-center gap-2 mt-4 text-xs text-muted-foreground">
         <Shield className="w-3.5 h-3.5" />
-        <span>Your data is 100% secure with us</span>
+        <span>{t("form.secureNote")}</span>
       </div>
     </div>
   );

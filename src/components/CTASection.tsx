@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, Phone, Calendar } from "lucide-react";
+import { Zap, Phone, Calendar } from "lucide-react";
 
 const CTASection = () => {
+  const { t } = useTranslation();
+
   const scrollToForm = () => {
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -26,15 +29,15 @@ const CTASection = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 mb-6">
             <Zap className="w-4 h-4 text-primary-foreground" />
-            <span className="text-primary-foreground text-sm font-medium">Limited Time Offer</span>
+            <span className="text-primary-foreground text-sm font-medium">{t("cta.limitedOffer")}</span>
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-            Ready to Transform Your Contact Center?
+            {t("cta.title")}
           </h2>
           
           <p className="text-primary-foreground/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            Get 14 days free access to Connect 6.0. No credit card required. Full features included.
+            {t("cta.subtitle")}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
@@ -44,7 +47,7 @@ const CTASection = () => {
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-elevated"
             >
               <Calendar className="w-5 h-5" />
-              Schedule Free Demo
+              {t("cta.scheduleDemo")}
             </Button>
             <Button 
               onClick={() => window.open('tel:+919876543210')}
@@ -52,7 +55,7 @@ const CTASection = () => {
               variant="heroOutline"
             >
               <Phone className="w-5 h-5" />
-              Call Us Now
+              {t("cta.callUs")}
             </Button>
           </div>
           
@@ -62,19 +65,19 @@ const CTASection = () => {
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
               </svg>
-              No Credit Card Required
+              {t("cta.noCreditCard")}
             </span>
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
               </svg>
-              14-Day Free Trial
+              {t("cta.freeTrial")}
             </span>
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
               </svg>
-              Cancel Anytime
+              {t("cta.cancelAnytime")}
             </span>
           </div>
         </div>

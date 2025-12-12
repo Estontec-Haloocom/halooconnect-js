@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import logo from "@/assets/haloo-connect-logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -11,21 +12,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
-
-const regionLinks = [
-  { label: "UAE & Dubai", href: "/uae" },
-  { label: "Singapore", href: "/singapore" },
-  { label: "Malaysia", href: "/malaysia" },
-];
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.aboutUs"), href: "/about" },
+    { label: t("nav.contact"), href: "/contact" },
+  ];
+
+  const regionLinks = [
+    { label: t("nav.uae"), href: "/uae" },
+    { label: t("nav.singapore"), href: "/singapore" },
+    { label: t("nav.malaysia"), href: "/malaysia" },
+  ];
 
   const scrollToForm = () => {
     if (location.pathname === "/") {
@@ -63,7 +65,7 @@ const Header = () => {
           {/* Regions Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-              Regions <ChevronDown className="w-4 h-4" />
+              {t("nav.regions")} <ChevronDown className="w-4 h-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {regionLinks.map((link) => (
@@ -82,7 +84,7 @@ const Header = () => {
             <LanguageSelector />
           </div>
           <Button onClick={scrollToForm} variant="default" size="sm" className="hidden md:flex">
-            Get Free Demo
+            {t("nav.getFreeDemo")}
           </Button>
           
           {/* Mobile Menu Button */}
@@ -113,7 +115,7 @@ const Header = () => {
               </Link>
             ))}
             <div className="border-t border-border/50 pt-4">
-              <p className="text-xs text-muted-foreground mb-2">Regions</p>
+              <p className="text-xs text-muted-foreground mb-2">{t("nav.regions")}</p>
               {regionLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -129,7 +131,7 @@ const Header = () => {
               <LanguageSelector />
             </div>
             <Button onClick={() => { scrollToForm(); setIsMenuOpen(false); }} variant="default" size="sm" className="w-full mt-2">
-              Get Free Demo
+              {t("nav.getFreeDemo")}
             </Button>
           </nav>
         </div>

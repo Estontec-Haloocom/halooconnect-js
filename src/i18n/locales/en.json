@@ -4,7 +4,10 @@
     "aboutUs": "About Us",
     "contact": "Contact",
     "regions": "Regions",
-    "getFreeDemo": "Get Free Demo"
+    "getFreeDemo": "Get Free Demo",
+    "uae": "UAE & Dubai",
+    "singapore": "Singapore",
+    "malaysia": "Malaysia"
   },
   "hero": {
     "title": "Your Leap to AI Powered Contact Centers",
@@ -16,37 +19,78 @@
     "benefit5": "AI Powered Business Intelligence"
   },
   "form": {
-    "name": "Full Name",
+    "title": "Get Free Demo",
+    "subtitle": "Setup in under 30 minutes",
+    "name": "Your Name *",
     "phone": "Mobile Number",
     "company": "Company Name",
     "email": "Email Address",
     "message": "Message",
-    "submit": "Get Free Demo",
+    "submit": "Request Callback",
     "submitting": "Submitting...",
-    "secureNote": "Your information is secure with us"
+    "secureNote": "Your data is 100% secure with us",
+    "error": "Error",
+    "errorMessage": "Something went wrong. Please try again."
   },
   "stats": {
-    "title": "Trusted by Leading Brands",
-    "callsHandled": "Calls Handled Daily",
-    "satisfaction": "Customer Satisfaction",
+    "productivity": "Increase in Productivity",
+    "productivityDesc": "Average improvement in agent efficiency",
+    "setup": "Quick Setup",
+    "setupDesc": "Get started in under 30 minutes",
     "uptime": "Uptime Guarantee",
-    "support": "Support Available"
+    "uptimeDesc": "Enterprise-grade reliability",
+    "countries": "Countries",
+    "countriesDesc": "Global presence and support"
   },
   "features": {
     "title": "Powerful Features",
-    "subtitle": "Everything you need to transform your contact center"
+    "subtitle": "Everything you need to transform your contact center",
+    "scheduleDemo": "Schedule Your Demo Now",
+    "voice": "Voice Excellence",
+    "voiceDesc": "Predictive dialing, blended call handling, and intelligent routing for maximum agent productivity.",
+    "omnichannel": "Omnichannel Messaging",
+    "omnichannelDesc": "WhatsApp, Telegram, Email, SMS - all unified in one powerful platform.",
+    "ai": "AI Powered",
+    "aiDesc": "Real-time sentiment analysis, AI scoring, and intelligent call transcription.",
+    "analytics": "Advanced Analytics",
+    "analyticsDesc": "Real-time dashboards, performance metrics, and actionable insights.",
+    "crm": "CRM Integration",
+    "crmDesc": "Seamless integration with popular CRM and ERP systems.",
+    "social": "Social Media",
+    "socialDesc": "Facebook, Instagram integration for complete social engagement."
   },
   "cta": {
+    "limitedOffer": "Limited Time Offer",
     "title": "Ready to Transform Your Contact Center?",
-    "subtitle": "Join thousands of businesses that trust Haloo Connect",
-    "button": "Get Started Today"
+    "subtitle": "Get 14 days free access to Connect 6.0. No credit card required. Full features included.",
+    "scheduleDemo": "Schedule Free Demo",
+    "callUs": "Call Us Now",
+    "noCreditCard": "No Credit Card Required",
+    "freeTrial": "14-Day Free Trial",
+    "cancelAnytime": "Cancel Anytime"
   },
   "footer": {
-    "company": "Company",
+    "description": "AI-powered telecom solutions for your business. From advanced Contact Center software to seamless Business Communication apps.",
     "quickLinks": "Quick Links",
-    "contact": "Contact Us",
+    "home": "Home",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "blog": "Blog",
+    "services": "Services",
+    "contactCenter": "Contact Center",
+    "hexaAi": "Hexa AI",
+    "unifiedComm": "Unified Communications",
+    "crmDialer": "CRM Dialer",
     "ourPresence": "Our Presence",
-    "copyright": "All rights reserved"
+    "singapore": "Singapore",
+    "uae": "UAE",
+    "india": "India",
+    "kenya": "Kenya",
+    "nigeria": "Nigeria",
+    "contact": "Contact Us",
+    "copyright": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms & Conditions"
   },
   "common": {
     "learnMore": "Learn More",
