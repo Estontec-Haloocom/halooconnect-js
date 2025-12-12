@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { CheckCircle } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
 import HeroForm from "./HeroForm";
@@ -24,6 +25,8 @@ const LocalizedHeroSection = ({
   benefits,
   stats,
 }: LocalizedHeroProps) => {
+  const { t } = useTranslation();
+
   return (
     <section
       className="
@@ -85,7 +88,7 @@ const LocalizedHeroSection = ({
                     {stats.users}
                   </div>
                   <div className="text-xs text-secondary-foreground/60">
-                    Global Users
+                    {t("hero.globalUsers")}
                   </div>
                 </div>
                 <div className="w-px h-10 bg-secondary-foreground/20" />
@@ -94,7 +97,7 @@ const LocalizedHeroSection = ({
                     {stats.clients}
                   </div>
                   <div className="text-xs text-secondary-foreground/60">
-                    Happy Clients
+                    {t("hero.happyClients")}
                   </div>
                 </div>
                 <div className="w-px h-10 bg-secondary-foreground/20" />
@@ -103,7 +106,7 @@ const LocalizedHeroSection = ({
                     {stats.calls}
                   </div>
                   <div className="text-xs text-secondary-foreground/60">
-                    Calls/Month
+                    {t("hero.callsMonth")}
                   </div>
                 </div>
                 <div className="w-px h-10 bg-secondary-foreground/20" />
@@ -112,7 +115,7 @@ const LocalizedHeroSection = ({
                     {stats.countries}
                   </div>
                   <div className="text-xs text-secondary-foreground/60">
-                    Countries
+                    {t("hero.countries")}
                   </div>
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Zap, Phone, Calendar } from "lucide-react";
 
@@ -6,44 +7,24 @@ interface LocalizedCTASectionProps {
 }
 
 const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
+  const { t } = useTranslation();
+
   const scrollToForm = () => {
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const getContent = () => {
+  const getPhone = () => {
     if (country?.includes("UAE") || country?.includes("Dubai")) {
-      return {
-        badge: "Limited Time Offer - UAE",
-        headline: "Transform Your UAE Contact Center Today",
-        description: "Get 14 days free access to the best call center software in Dubai & UAE. Arabic & English AI support included.",
-        phone: "+971 4 123 4567",
-      };
+      return "+971 50 429 8422";
     }
     if (country?.includes("Singapore")) {
-      return {
-        badge: "Limited Time Offer - Singapore",
-        headline: "Upgrade Your Singapore Contact Center",
-        description: "Get 14 days free access to PDPA-compliant contact center software. Multilingual support for Singapore enterprises.",
-        phone: "+65 6123 4567",
-      };
+      return "+65 8376 5007";
     }
     if (country?.includes("Malaysia")) {
-      return {
-        badge: "Limited Time Offer - Malaysia",
-        headline: "Elevate Your Malaysian Call Center",
-        description: "Get 14 days free access to Malaysia's leading contact center platform. Bahasa Melayu AI voice bot included.",
-        phone: "+60 3 1234 5678",
-      };
+      return "+60 3 1234 5678";
     }
-    return {
-      badge: "Limited Time Offer",
-      headline: "Ready to Transform Your Contact Center?",
-      description: "Get 14 days free access to Connect 6.0. No credit card required. Full features included.",
-      phone: "+919886620544",
-    };
+    return "+65 8376 5007";
   };
-
-  const content = getContent();
 
   return (
     <section className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
@@ -63,15 +44,15 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 mb-6">
             <Zap className="w-4 h-4 text-primary-foreground" />
-            <span className="text-primary-foreground text-sm font-medium">{content.badge}</span>
+            <span className="text-primary-foreground text-sm font-medium">{t("cta.limitedOffer")}</span>
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-            {content.headline}
+            {t("cta.title")}
           </h2>
 
           <p className="text-primary-foreground/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            {content.description}
+            {t("cta.subtitle")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
@@ -81,15 +62,15 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-elevated"
             >
               <Calendar className="w-5 h-5" />
-              Schedule Free Demo
+              {t("cta.scheduleDemo")}
             </Button>
             <Button
-              onClick={() => window.open(`tel:${content.phone.replace(/\s/g, "")}`)}
+              onClick={() => window.open(`tel:${getPhone().replace(/\s/g, "")}`)}
               size="xl"
               variant="heroOutline"
             >
               <Phone className="w-5 h-5" />
-              Call Us Now
+              {t("cta.callUs")}
             </Button>
           </div>
 
@@ -102,7 +83,7 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
                   clipRule="evenodd"
                 />
               </svg>
-              No Credit Card Required
+              {t("cta.noCreditCard")}
             </span>
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -112,7 +93,7 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
                   clipRule="evenodd"
                 />
               </svg>
-              14-Day Free Trial
+              {t("cta.freeTrial")}
             </span>
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -122,7 +103,7 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
                   clipRule="evenodd"
                 />
               </svg>
-              Cancel Anytime
+              {t("cta.cancelAnytime")}
             </span>
           </div>
         </div>
