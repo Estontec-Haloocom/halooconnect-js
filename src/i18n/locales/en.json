@@ -140,5 +140,83 @@
     "learnMore": "Learn More",
     "contactUs": "Contact Us",
     "getStarted": "Get Started"
+  },
+  "deployment": {
+    "title": "Flexible Deployment:",
+    "titleHighlight": "Your Way, Your Environment",
+    "onPremise": {
+      "title": "On-Premise Deployment",
+      "description": "For organizations with strict security requirements or regulatory compliance needs, Connect 6.0 can be deployed entirely within your infrastructure.",
+      "feature1": "Complete data sovereignty and control",
+      "feature2": "Enhanced security for sensitive communications",
+      "feature3": "Integration with existing systems",
+      "feature4": "Customizable to unique requirements"
+    },
+    "cloud": {
+      "title": "Cloud Deployment",
+      "description": "Get up and running quickly with our cloud-hosted solution, offering enterprise-grade capabilities without the infrastructure investment.",
+      "feature1": "Rapid deployment in days, not months",
+      "feature2": "Predictable, affordable pricing",
+      "feature3": "Automatic updates and scaling",
+      "feature4": "99.9% uptime guarantee"
+    },
+    "hybrid": {
+      "title": "Hybrid Options Available:",
+      "description": "Combine the best of both worlds with hybrid deployment, keeping sensitive data on-premise while leveraging cloud scalability for peak periods."
+    }
+  },
+  "security": {
+    "title": "Unwavering Security &",
+    "titleHighlight": "Compliance",
+    "description": "Haloocom is built on a foundation of trust and security. Our platforms and operations adhere to the highest international standards, ensuring your data and communications are always protected.",
+    "footer": "Rest assured, your business and customer data are in safe hands with Connect 6.0's comprehensive security framework.",
+    "iso": {
+      "title": "ISO Certified",
+      "description": "Adherence to ISO 9001:2015 for Quality Management and ISO 27001:2013 for Information Security Management, ensuring robust systems and processes."
+    },
+    "dpdp": {
+      "title": "AI Solution: DPDP Act Compliant",
+      "description": "Our AI solution fully complies with Digital Personal Data Protection (DPDP) Act, ensuring the highest standards of data privacy for Indian users."
+    },
+    "gdpr": {
+      "title": "Voice Solution: GDPR Compliant",
+      "description": "Haloocom's voice solutions meet the rigorous requirements of the General Data Protection Regulation, safeguarding customer privacy in the EU."
+    },
+    "pci": {
+      "title": "PCI Compliant",
+      "description": "Our voice solutions are Payment Card Industry Data Security Standard (PCI DSS) compliant, ensuring secure handling of sensitive payment information."
+    },
+    "soc2": {
+      "title": "Datacenters: SOC 2 Compliant",
+      "description": "Our data centers undergo independent SOC 2 audits, verifying stringent controls for security, availability, processing integrity, confidentiality, and privacy."
+    },
+    "hipaa": {
+      "title": "HIPAA Compliant",
+      "description": "Our Healthcare Products are HIPAA Compliant, ensuring data security with an On-Premise deployment."
+    }
+  },
+  "testimonials": {
+    "label": "Testimonials",
+    "title": "Trusted by Industry Leaders",
+    "subtitle": "See what our customers say about Connect 6.0",
+    "cta": "Join 500+ Happy Customers",
+    "testimonial1": {
+      "name": "Rajesh Kumar",
+      "role": "Operations Head",
+      "company": "TechSolutions India",
+      "content": "Connect 6.0 transformed our call center operations. We saw a 40% increase in agent productivity within the first month."
+    },
+    "testimonial2": {
+      "name": "Priya Sharma",
+      "role": "Customer Service Manager",
+      "company": "FinServe Corp",
+      "content": "The AI sentiment analysis feature is a game-changer. Our customer satisfaction scores improved significantly."
+    },
+    "testimonial3": {
+      "name": "Ahmed Hassan",
+      "role": "CTO",
+      "company": "GlobalConnect LLC",
+      "content": "Seamless integration with our existing CRM and the omnichannel capabilities made migration effortless."
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { 
   Phone, 
   PhoneIncoming, 
@@ -10,97 +11,106 @@ import {
   Brain, 
   BarChart3, 
   LineChart, 
-  FileText 
+  FileText,
+  LucideIcon
 } from "lucide-react";
 
-const features = [
+interface Feature {
+  icon: LucideIcon;
+  titleKey: string;
+  descriptionKey: string;
+}
+
+const features: Feature[] = [
   {
     icon: Phone,
-    title: "Predictive Dialing",
-    description: "Maximize agent talk time by automatically dialing numbers and connecting available agents only to live calls.",
+    titleKey: "topFeatures.predictiveDialing",
+    descriptionKey: "topFeatures.predictiveDialingDesc",
   },
   {
     icon: PhoneIncoming,
-    title: "Blended Call Handling",
-    description: "Seamlessly manage both inbound and outbound calls, optimizing agent productivity and customer service.",
+    titleKey: "topFeatures.blendedCalls",
+    descriptionKey: "topFeatures.blendedCallsDesc",
   },
   {
     icon: GitBranch,
-    title: "Drag & Drop IVR",
-    description: "Effortlessly design intuitive interactive voice response menus with a user-friendly visual interface.",
+    titleKey: "topFeatures.ivr",
+    descriptionKey: "topFeatures.ivrDesc",
   },
   {
     icon: User,
-    title: "Sticky Agents",
-    description: "Ensure customers are routed to the same agent for continuity, enhancing personalization and resolution rates.",
+    titleKey: "topFeatures.stickyAgents",
+    descriptionKey: "topFeatures.stickyAgentsDesc",
   },
   {
     icon: Users,
-    title: "Inbuilt CRM",
-    description: "Access comprehensive customer data and interaction history directly within the platform for informed service.",
+    titleKey: "topFeatures.inbuiltCrm",
+    descriptionKey: "topFeatures.inbuiltCrmDesc",
   },
   {
     icon: Share2,
-    title: "Social Media Integration",
-    description: "Engage customers on popular platforms like Facebook and Instagram for a truly omnichannel experience.",
+    titleKey: "topFeatures.socialMedia",
+    descriptionKey: "topFeatures.socialMediaDesc",
   },
   {
     icon: MessageSquare,
-    title: "Communication Channels",
-    description: "Connect via Email, WhatsApp, and SMS, providing diverse options for customer interaction.",
+    titleKey: "topFeatures.whatsapp",
+    descriptionKey: "topFeatures.whatsappDesc",
   },
   {
     icon: Link,
-    title: "3rd Party CRM & ERP",
-    description: "Integrate with existing CRM and ERP systems for a unified data view and streamlined workflows.",
+    titleKey: "topFeatures.thirdPartyCrm",
+    descriptionKey: "topFeatures.thirdPartyCrmDesc",
   },
   {
     icon: Brain,
-    title: "AI Sentiment Analysis",
-    description: "Understand customer emotions in real-time, allowing supervisors to respond proactively.",
+    titleKey: "topFeatures.sentiment",
+    descriptionKey: "topFeatures.sentimentDesc",
   },
   {
     icon: BarChart3,
-    title: "AI Scoring Model",
-    description: "Utilize AI to evaluate agent performance and customer interactions, driving continuous improvement.",
+    titleKey: "topFeatures.scoring",
+    descriptionKey: "topFeatures.scoringDesc",
   },
   {
     icon: LineChart,
-    title: "AI Business Intelligence",
-    description: "Gain actionable insights from your data with AI-powered analytics, optimizing strategies and outcomes.",
+    titleKey: "topFeatures.bi",
+    descriptionKey: "topFeatures.biDesc",
   },
   {
     icon: FileText,
-    title: "Transcription & Summary",
-    description: "Automatically transcribe voice calls and generate concise summaries for easy review and compliance.",
+    titleKey: "topFeatures.transcription",
+    descriptionKey: "topFeatures.transcriptionDesc",
   },
 ];
 
 const TopFeaturesSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 md:py-28 bg-muted/30">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Top Features of <span className="text-gradient">Connect 6.0</span>
+            {t("topFeatures.headline")} <span className="text-gradient">Connect 6.0</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Explore the innovative functionalities that make Connect 6.0 the leading AI-powered contact center solution.
+            {t("topFeatures.description")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {features.map((feature) => (
             <div
-              key={feature.title}
+              key={feature.titleKey}
               className="flex gap-4 p-4 rounded-xl hover:bg-card transition-colors group"
             >
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="font-semibold text-foreground mb-1">{t(feature.titleKey)}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{t(feature.descriptionKey)}</p>
               </div>
             </div>
           ))}

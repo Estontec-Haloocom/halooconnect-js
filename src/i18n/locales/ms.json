@@ -140,5 +140,83 @@
     "learnMore": "Ketahui Lebih Lanjut",
     "contactUs": "Hubungi Kami",
     "getStarted": "Mulakan"
+  },
+  "deployment": {
+    "title": "Pelaksanaan Fleksibel:",
+    "titleHighlight": "Cara Anda, Persekitaran Anda",
+    "onPremise": {
+      "title": "Pelaksanaan On-Premise",
+      "description": "Untuk organisasi dengan keperluan keselamatan yang ketat atau keperluan pematuhan peraturan, Connect 6.0 boleh dilaksanakan sepenuhnya dalam infrastruktur anda.",
+      "feature1": "Kedaulatan dan kawalan data penuh",
+      "feature2": "Keselamatan dipertingkatkan untuk komunikasi sensitif",
+      "feature3": "Integrasi dengan sistem sedia ada",
+      "feature4": "Boleh disesuaikan mengikut keperluan unik"
+    },
+    "cloud": {
+      "title": "Pelaksanaan Awan",
+      "description": "Mula dengan cepat dengan penyelesaian awan kami, menawarkan keupayaan gred perusahaan tanpa pelaburan infrastruktur.",
+      "feature1": "Pelaksanaan pantas dalam hari, bukan bulan",
+      "feature2": "Harga yang boleh diramal dan berpatutan",
+      "feature3": "Kemas kini dan penskalaan automatik",
+      "feature4": "Jaminan masa aktif 99.9%"
+    },
+    "hybrid": {
+      "title": "Pilihan Hibrid Tersedia:",
+      "description": "Gabungkan yang terbaik dari kedua-dua dunia dengan pelaksanaan hibrid, mengekalkan data sensitif on-premise sambil memanfaatkan skalabiliti awan untuk tempoh puncak."
+    }
+  },
+  "security": {
+    "title": "Keselamatan Teguh &",
+    "titleHighlight": "Pematuhan",
+    "description": "Haloocom dibina di atas asas kepercayaan dan keselamatan. Platform dan operasi kami mematuhi standard antarabangsa tertinggi, memastikan data dan komunikasi anda sentiasa dilindungi.",
+    "footer": "Yakinlah, data perniagaan dan pelanggan anda berada dalam tangan yang selamat dengan rangka kerja keselamatan komprehensif Connect 6.0.",
+    "iso": {
+      "title": "Disahkan ISO",
+      "description": "Pematuhan kepada ISO 9001:2015 untuk Pengurusan Kualiti dan ISO 27001:2013 untuk Pengurusan Keselamatan Maklumat, memastikan sistem dan proses yang kukuh."
+    },
+    "dpdp": {
+      "title": "Penyelesaian AI: Mematuhi Akta DPDP",
+      "description": "Penyelesaian AI kami mematuhi sepenuhnya Akta Perlindungan Data Peribadi Digital, memastikan standard tertinggi privasi data."
+    },
+    "gdpr": {
+      "title": "Penyelesaian Suara: Mematuhi GDPR",
+      "description": "Penyelesaian suara Haloocom memenuhi keperluan ketat Peraturan Perlindungan Data Umum, melindungi privasi pelanggan di EU."
+    },
+    "pci": {
+      "title": "Mematuhi PCI",
+      "description": "Penyelesaian suara kami mematuhi Standard Keselamatan Data Industri Kad Pembayaran (PCI DSS), memastikan pengendalian maklumat pembayaran sensitif yang selamat."
+    },
+    "soc2": {
+      "title": "Pusat Data: Mematuhi SOC 2",
+      "description": "Pusat data kami menjalani audit SOC 2 bebas, mengesahkan kawalan ketat untuk keselamatan, ketersediaan, integriti pemprosesan, kerahsiaan dan privasi."
+    },
+    "hipaa": {
+      "title": "Mematuhi HIPAA",
+      "description": "Produk Penjagaan Kesihatan kami mematuhi HIPAA, memastikan keselamatan data dengan pelaksanaan On-Premise."
+    }
+  },
+  "testimonials": {
+    "label": "Testimoni",
+    "title": "Dipercayai oleh Pemimpin Industri",
+    "subtitle": "Lihat apa yang pelanggan kami katakan tentang Connect 6.0",
+    "cta": "Sertai 500+ Pelanggan Gembira",
+    "testimonial1": {
+      "name": "Rajesh Kumar",
+      "role": "Ketua Operasi",
+      "company": "TechSolutions India",
+      "content": "Connect 6.0 mengubah operasi pusat panggilan kami. Kami melihat peningkatan 40% dalam produktiviti ejen dalam bulan pertama."
+    },
+    "testimonial2": {
+      "name": "Priya Sharma",
+      "role": "Pengurus Perkhidmatan Pelanggan",
+      "company": "FinServe Corp",
+      "content": "Ciri analisis sentimen AI adalah pengubah permainan. Skor kepuasan pelanggan kami meningkat dengan ketara."
+    },
+    "testimonial3": {
+      "name": "Ahmed Hassan",
+      "role": "CTO",
+      "company": "GlobalConnect LLC",
+      "content": "Integrasi lancar dengan CRM sedia ada dan keupayaan omnichannel menjadikan migrasi mudah."
+    }
   }
 }

@@ -1,31 +1,34 @@
 import { Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
-    role: "Operations Head",
-    company: "TechSolutions India",
-    content: "Connect 6.0 transformed our call center operations. We saw a 40% increase in agent productivity within the first month.",
+    nameKey: "testimonials.testimonial1.name",
+    roleKey: "testimonials.testimonial1.role",
+    companyKey: "testimonials.testimonial1.company",
+    contentKey: "testimonials.testimonial1.content",
     rating: 5
   },
   {
-    name: "Priya Sharma",
-    role: "Customer Service Manager",
-    company: "FinServe Corp",
-    content: "The AI sentiment analysis feature is a game-changer. Our customer satisfaction scores improved significantly.",
+    nameKey: "testimonials.testimonial2.name",
+    roleKey: "testimonials.testimonial2.role",
+    companyKey: "testimonials.testimonial2.company",
+    contentKey: "testimonials.testimonial2.content",
     rating: 5
   },
   {
-    name: "Ahmed Hassan",
-    role: "CTO",
-    company: "GlobalConnect LLC",
-    content: "Seamless integration with our existing CRM and the omnichannel capabilities made migration effortless.",
+    nameKey: "testimonials.testimonial3.name",
+    roleKey: "testimonials.testimonial3.role",
+    companyKey: "testimonials.testimonial3.company",
+    contentKey: "testimonials.testimonial3.content",
     rating: 5
   }
 ];
 
 const TestimonialsSection = () => {
+  const { t } = useTranslation();
+
   const scrollToForm = () => {
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -37,12 +40,12 @@ const TestimonialsSection = () => {
       
       <div className="container relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">Testimonials</span>
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider">{t("testimonials.label")}</span>
           <h2 className="text-3xl md:text-4xl font-bold text-secondary-foreground mt-3 mb-4">
-            Trusted by Industry Leaders
+            {t("testimonials.title")}
           </h2>
           <p className="text-secondary-foreground/70 text-lg">
-            See what our customers say about Connect 6.0
+            {t("testimonials.subtitle")}
           </p>
         </div>
         
@@ -61,13 +64,13 @@ const TestimonialsSection = () => {
               <Quote className="w-8 h-8 text-primary/30 mb-3" />
               
               <p className="text-secondary-foreground/90 mb-6 leading-relaxed">
-                "{testimonial.content}"
+                "{t(testimonial.contentKey)}"
               </p>
               
               <div className="border-t border-secondary-foreground/10 pt-4">
-                <p className="font-semibold text-secondary-foreground">{testimonial.name}</p>
+                <p className="font-semibold text-secondary-foreground">{t(testimonial.nameKey)}</p>
                 <p className="text-sm text-secondary-foreground/60">
-                  {testimonial.role}, {testimonial.company}
+                  {t(testimonial.roleKey)}, {t(testimonial.companyKey)}
                 </p>
               </div>
             </div>
@@ -81,7 +84,7 @@ const TestimonialsSection = () => {
             size="lg" 
             className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
           >
-            Join 500+ Happy Customers
+            {t("testimonials.cta")}
           </Button>
         </div>
       </div>

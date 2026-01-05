@@ -1,29 +1,32 @@
 import { Server, Cloud, Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import onPremiseImage from "@/assets/on-premise-server.png";
 import cloudImage from "@/assets/cloud-deployment.png";
 
-const onPremiseFeatures = [
-  "Complete data sovereignty and control",
-  "Enhanced security for sensitive communications",
-  "Integration with existing systems",
-  "Customizable to unique requirements",
-];
-
-const cloudFeatures = [
-  "Rapid deployment in days, not months",
-  "Predictable, affordable pricing",
-  "Automatic updates and scaling",
-  "99.9% uptime guarantee",
-];
-
 const DeploymentSection = () => {
+  const { t } = useTranslation();
+
+  const onPremiseFeatures = [
+    t("deployment.onPremise.feature1"),
+    t("deployment.onPremise.feature2"),
+    t("deployment.onPremise.feature3"),
+    t("deployment.onPremise.feature4"),
+  ];
+
+  const cloudFeatures = [
+    t("deployment.cloud.feature1"),
+    t("deployment.cloud.feature2"),
+    t("deployment.cloud.feature3"),
+    t("deployment.cloud.feature4"),
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-muted/30 overflow-hidden">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Flexible Deployment:{" "}
-            <span className="text-gradient">Your Way, Your Environment</span>
+            {t("deployment.title")}{" "}
+            <span className="text-gradient">{t("deployment.titleHighlight")}</span>
           </h2>
         </div>
 
@@ -40,14 +43,14 @@ const DeploymentSection = () => {
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Server className="w-5 h-5 text-primary" />
-                <h3 className="text-xl font-semibold text-foreground">On-Premise Deployment</h3>
+                <h3 className="text-xl font-semibold text-foreground">{t("deployment.onPremise.title")}</h3>
               </div>
               <p className="text-muted-foreground mb-4">
-                For organizations with strict security requirements or regulatory compliance needs, Connect 6.0 can be deployed entirely within your infrastructure.
+                {t("deployment.onPremise.description")}
               </p>
               <ul className="space-y-2">
-                {onPremiseFeatures.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+                {onPremiseFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Check className="w-4 h-4 text-primary flex-shrink-0" />
                     {feature}
                   </li>
@@ -68,14 +71,14 @@ const DeploymentSection = () => {
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Cloud className="w-5 h-5 text-primary" />
-                <h3 className="text-xl font-semibold text-foreground">Cloud Deployment</h3>
+                <h3 className="text-xl font-semibold text-foreground">{t("deployment.cloud.title")}</h3>
               </div>
               <p className="text-muted-foreground mb-4">
-                Get up and running quickly with our cloud-hosted solution, offering enterprise-grade capabilities without the infrastructure investment.
+                {t("deployment.cloud.description")}
               </p>
               <ul className="space-y-2">
-                {cloudFeatures.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+                {cloudFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Check className="w-4 h-4 text-primary flex-shrink-0" />
                     {feature}
                   </li>
@@ -91,9 +94,9 @@ const DeploymentSection = () => {
             <Check className="w-4 h-4 text-primary" />
           </div>
           <div>
-            <h4 className="font-semibold text-foreground mb-1">Hybrid Options Available:</h4>
+            <h4 className="font-semibold text-foreground mb-1">{t("deployment.hybrid.title")}</h4>
             <p className="text-muted-foreground text-sm">
-              Combine the best of both worlds with hybrid deployment, keeping sensitive data on-premise while leveraging cloud scalability for peak periods.
+              {t("deployment.hybrid.description")}
             </p>
           </div>
         </div>

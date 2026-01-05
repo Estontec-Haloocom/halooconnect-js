@@ -1,68 +1,78 @@
 import { Shield, Lock, FileCheck, Database, Heart, CheckCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LucideIcon } from "lucide-react";
 
-const certifications = [
+interface Certification {
+  icon: LucideIcon;
+  titleKey: string;
+  descriptionKey: string;
+}
+
+const certifications: Certification[] = [
   {
     icon: Shield,
-    title: "ISO Certified",
-    description: "Adherence to ISO 9001:2015 for Quality Management and ISO 27001:2013 for Information Security Management, ensuring robust systems and processes.",
+    titleKey: "security.iso.title",
+    descriptionKey: "security.iso.description",
   },
   {
     icon: Lock,
-    title: "AI Solution: DPDP Act Compliant",
-    description: "Our AI solution fully complies with Digital Personal Data Protection (DPDP) Act, ensuring the highest standards of data privacy for Indian users.",
+    titleKey: "security.dpdp.title",
+    descriptionKey: "security.dpdp.description",
   },
   {
     icon: FileCheck,
-    title: "Voice Solution: GDPR Compliant",
-    description: "Haloocom's voice solutions meet the rigorous requirements of the General Data Protection Regulation, safeguarding customer privacy in the EU.",
+    titleKey: "security.gdpr.title",
+    descriptionKey: "security.gdpr.description",
   },
   {
     icon: CheckCircle,
-    title: "PCI Compliant",
-    description: "Our voice solutions are Payment Card Industry Data Security Standard (PCI DSS) compliant, ensuring secure handling of sensitive payment information.",
+    titleKey: "security.pci.title",
+    descriptionKey: "security.pci.description",
   },
   {
     icon: Database,
-    title: "Datacenters: SOC 2 Compliant",
-    description: "Our data centers undergo independent SOC 2 audits, verifying stringent controls for security, availability, processing integrity, confidentiality, and privacy.",
+    titleKey: "security.soc2.title",
+    descriptionKey: "security.soc2.description",
   },
   {
     icon: Heart,
-    title: "HIPPA Compliant",
-    description: "Our Healthcare Products are HIPPA Compliant, ensuring data security with an On-Premise deployment.",
+    titleKey: "security.hipaa.title",
+    descriptionKey: "security.hipaa.description",
   },
 ];
 
 const SecuritySection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 md:py-28 bg-muted/30">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Unwavering Security & <span className="text-gradient">Compliance</span>
+            {t("security.title")} <span className="text-gradient">{t("security.titleHighlight")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Haloocom is built on a foundation of trust and security. Our platforms and operations adhere to the highest international standards, ensuring your data and communications are always protected.
+            {t("security.description")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert) => (
             <div
-              key={cert.title}
+              key={cert.titleKey}
               className="bg-card rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all hover:shadow-lg group"
             >
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <cert.icon className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{cert.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{cert.description}</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">{t(cert.titleKey)}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{t(cert.descriptionKey)}</p>
             </div>
           ))}
         </div>
 
         <p className="text-center text-muted-foreground mt-12">
-          Rest assured, your business and customer data are in safe hands with Connect 6.0's comprehensive security framework.
+          {t("security.footer")}
         </p>
       </div>
     </section>

@@ -1,38 +1,36 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface OutcomeCircle {
   value: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   percentage: number;
 }
 
 const outcomes: OutcomeCircle[] = [
   {
     value: "3X",
-    title: "Productivity Boost",
-    description: "Increase in overall workforce output and agent effectiveness.",
+    titleKey: "outcomes.productivity",
+    descriptionKey: "outcomes.productivityDesc",
     percentage: 75,
   },
   {
     value: "5X",
-    title: "Operational Efficiency",
-    description:
-      "Improvement across all business processes, from handling inquiries to issue resolution.",
+    titleKey: "outcomes.efficiency",
+    descriptionKey: "outcomes.efficiencyDesc",
     percentage: 83,
   },
   {
     value: "3X",
-    title: "Data Processing Speed",
-    description:
-      "Faster analysis of customer interactions for quicker insights and decision-making.",
+    titleKey: "outcomes.dataSpeed",
+    descriptionKey: "outcomes.dataSpeedDesc",
     percentage: 75,
   },
   {
     value: "30–50%",
-    title: "Cost Reduction",
-    description:
-      "Significant savings on operational expenses through automation and optimized resource allocation.",
+    titleKey: "outcomes.costReduction",
+    descriptionKey: "outcomes.costReductionDesc",
     percentage: 50,
   },
 ];
@@ -41,7 +39,7 @@ const CircleProgress = ({
   percentage,
   value,
   isVisible,
-  size = 180, // overall circle size in px
+  size = 180,
 }: {
   percentage: number;
   value: string;
@@ -64,7 +62,6 @@ const CircleProgress = ({
       style={{ width: size, height: size }}
     >
       <svg height={size} width={size} className="transform -rotate-90">
-        {/* Background circle */}
         <circle
           stroke="hsl(var(--muted))"
           fill="transparent"
@@ -73,7 +70,6 @@ const CircleProgress = ({
           cx={radius}
           cy={radius}
         />
-        {/* Progress circle */}
         <circle
           stroke="url(#gradient)"
           fill="transparent"
@@ -96,7 +92,6 @@ const CircleProgress = ({
         </defs>
       </svg>
 
-      {/* Center value */}
       <div className="absolute inset-0 flex items-center justify-center">
         <span
           className={`font-bold text-foreground ${
@@ -113,6 +108,7 @@ const CircleProgress = ({
 };
 
 const OutcomesSection = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -138,20 +134,18 @@ const OutcomesSection = () => {
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Guaranteed Outcomes with{" "}
+            {t("outcomes.headline")}{" "}
             <span className="text-gradient">Connect 6.0</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Connect 6.0 delivers measurable and impactful results across your
-            organization, ensuring a significant return on your investment:
+            {t("outcomes.description")}
           </p>
         </div>
 
-        {/* 4 in a row on desktop, 2 in a row on mobile */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {outcomes.map((outcome) => (
             <div
-              key={outcome.title}
+              key={outcome.titleKey}
               className="text-center flex flex-col items-center"
             >
               <CircleProgress
@@ -161,10 +155,10 @@ const OutcomesSection = () => {
                 size={160}
               />
               <h3 className="text-base md:text-lg font-semibold text-foreground mt-4 mb-2">
-                {outcome.title}
+                {t(outcome.titleKey)}
               </h3>
               <p className="text-muted-foreground text-xs md:text-sm">
-                {outcome.description}
+                {t(outcome.descriptionKey)}
               </p>
             </div>
           ))}

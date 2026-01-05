@@ -21,8 +21,6 @@ const languages: Language[] = [
   { code: "en", name: "English", nativeName: "English", flag: "🇬🇧" },
   { code: "ar", name: "Arabic", nativeName: "العربية", flag: "🇦🇪" },
   { code: "ms", name: "Malay", nativeName: "Bahasa Melayu", flag: "🇲🇾" },
-  { code: "zh-CN", name: "Chinese", nativeName: "中文", flag: "🇨🇳" },
-  { code: "ta", name: "Tamil", nativeName: "தமிழ்", flag: "🇮🇳" },
   { code: "hi", name: "Hindi", nativeName: "हिन्दी", flag: "🇮🇳" },
 ];
 
@@ -30,7 +28,7 @@ const languages: Language[] = [
 const routeLanguageMap: Record<string, string> = {
   "/uae": "ar",
   "/malaysia": "ms",
-  "/singapore": "zh-CN",
+  "/singapore": "en",
 };
 
 const LanguageSelector = () => {
