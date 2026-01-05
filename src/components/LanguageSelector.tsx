@@ -21,7 +21,6 @@ const languages: Language[] = [
   { code: "en", name: "English", nativeName: "English", flag: "🇬🇧" },
   { code: "ar", name: "Arabic", nativeName: "العربية", flag: "🇦🇪" },
   { code: "ms", name: "Malay", nativeName: "Bahasa Melayu", flag: "🇲🇾" },
-  { code: "hi", name: "Hindi", nativeName: "हिन्दी", flag: "🇮🇳" },
 ];
 
 // Map routes to suggested languages

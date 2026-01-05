@@ -1,16 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Mail, Send, Facebook, Instagram, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const channels = [
-  { icon: Phone, name: "Voice Calls", color: "bg-green-500" },
-  { icon: MessageCircle, name: "WhatsApp", color: "bg-emerald-500" },
-  { icon: Mail, name: "Email", color: "bg-blue-500" },
-  { icon: Send, name: "SMS", color: "bg-purple-500" },
-  { icon: Facebook, name: "Facebook", color: "bg-indigo-500" },
-  { icon: Instagram, name: "Instagram", color: "bg-pink-500" },
+  { icon: Phone, nameKey: "channels.voiceCalls", color: "bg-green-500" },
+  { icon: MessageCircle, nameKey: "channels.whatsapp", color: "bg-emerald-500" },
+  { icon: Mail, nameKey: "channels.email", color: "bg-blue-500" },
+  { icon: Send, nameKey: "channels.sms", color: "bg-purple-500" },
+  { icon: Facebook, nameKey: "channels.facebook", color: "bg-indigo-500" },
+  { icon: Instagram, nameKey: "channels.instagram", color: "bg-pink-500" },
 ];
 
 const ChannelsSection = () => {
+  const { t } = useTranslation();
+
   const scrollToForm = () => {
     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -24,14 +27,14 @@ const ChannelsSection = () => {
             <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
               {channels.map((channel, index) => (
                 <div 
-                  key={channel.name}
+                  key={channel.nameKey}
                   className="aspect-square rounded-2xl bg-card shadow-soft border border-border/50 flex flex-col items-center justify-center gap-2 p-4 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className={`w-12 h-12 rounded-xl ${channel.color} flex items-center justify-center`}>
                     <channel.icon className="w-6 h-6 text-white" />
                   </div>
-                  <span className="text-xs font-medium text-foreground text-center">{channel.name}</span>
+                  <span className="text-xs font-medium text-foreground text-center">{t(channel.nameKey)}</span>
                 </div>
               ))}
             </div>
@@ -48,12 +51,12 @@ const ChannelsSection = () => {
           
           {/* Right - Content */}
           <div>
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">Omnichannel</span>
+            <span className="text-primary font-semibold text-sm uppercase tracking-wider">{t("channels.label")}</span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
-              All Your Channels, <span className="text-gradient">One Platform</span>
+              {t("channels.title")} <span className="text-gradient">{t("channels.titleHighlight")}</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6">
-              Connect with your customers on their preferred channels. Voice, WhatsApp, Email, SMS, and social media - all unified in a single, powerful dashboard.
+              {t("channels.description")}
             </p>
             
             <ul className="space-y-3 mb-8">
@@ -61,24 +64,24 @@ const ChannelsSection = () => {
                 <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
                   <ArrowRight className="w-3 h-3 text-primary" />
                 </div>
-                Unified conversation history across all channels
+                {t("channels.benefit1")}
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
                   <ArrowRight className="w-3 h-3 text-primary" />
                 </div>
-                Seamless handoff between channels
+                {t("channels.benefit2")}
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
                   <ArrowRight className="w-3 h-3 text-primary" />
                 </div>
-                Single view of customer interactions
+                {t("channels.benefit3")}
               </li>
             </ul>
             
             <Button onClick={scrollToForm} variant="default" size="lg">
-              Start Free Trial
+              {t("channels.cta")}
               <ArrowRight className="w-5 h-5" />
             </Button>
           </div>

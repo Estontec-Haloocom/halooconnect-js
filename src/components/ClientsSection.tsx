@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import bluedartLogo from "@/assets/clients/bluedart.webp";
 import vuLogo from "@/assets/clients/vu.webp";
 import quessLogo from "@/assets/clients/quess.webp";
@@ -23,15 +24,17 @@ const clients = [
 ];
 
 const ClientsSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Trusted by <span className="text-gradient">Industry Leaders</span> Worldwide
+            {t("clients.title")} <span className="text-gradient">{t("clients.titleHighlight")}</span> {t("clients.titleEnd")}
           </h2>
           <p className="text-muted-foreground text-lg">
-            Connect 6.0 powers customer interactions for leading organizations across diverse sectors. Our proven platform is trusted by global brands for its reliability, innovation, and impact on the customer experience.
+            {t("clients.description")}
           </p>
         </div>
 
@@ -51,7 +54,7 @@ const ClientsSection = () => {
         </div>
 
         <p className="text-center text-muted-foreground mt-12">
-          Join the ranks of businesses transforming their customer experience with Connect 6.0.
+          {t("clients.footer")}
         </p>
       </div>
     </section>

@@ -218,5 +218,100 @@
       "company": "GlobalConnect LLC",
       "content": "Integrasi lancar dengan CRM sedia ada dan keupayaan omnichannel menjadikan migrasi mudah."
     }
+  },
+  "sentiment": {
+    "title": "Analisis Sentimen Lanjutan",
+    "titleHighlight": "& Jaminan Kualiti",
+    "description": "Ubah jaminan kualiti dari proses manual yang memakan masa kepada sistem pintar yang boleh berskala yang menyediakan peluang bimbingan dan memastikan pematuhan di setiap interaksi.",
+    "step1": {
+      "title": "Transkripsi Masa Nyata",
+      "description": "Setiap panggilan ditranskripsi secara automatik dengan ketepatan terkemuka industri, mencipta rekod teks yang boleh dicari."
+    },
+    "step2": {
+      "title": "Pengesanan Sentimen",
+      "description": "AI kami menganalisis nada emosi, mengesan kekecewaan, kepuasan, atau kemendesakan."
+    },
+    "step3": {
+      "title": "Pemarkahan Pintar",
+      "description": "Audit kualiti automatik menilai prestasi ejen terhadap kriteria yang boleh disesuaikan dan standard pematuhan."
+    },
+    "step4": {
+      "title": "Ringkasan Boleh Tindakan",
+      "description": "Ringkasan panggilan yang dijana AI menyerlahkan perkara utama, hasil, dan tindakan susulan yang diperlukan."
+    }
+  },
+  "businessIntelligence": {
+    "title": "Kecerdasan Perniagaan Berkuasa AI:",
+    "titleHighlight": "Carian pada Kelajuan Fikiran",
+    "subtitle": "Carian Seperti Google Merentas Data Suara",
+    "description1": "Bayangkan mempunyai kuasa untuk mencari melalui berjuta-juta rakaman suara semudah mencari di web. Alat Kecerdasan Perniagaan berasaskan AI revolusioner Connect 6.0 mengubah data suara anda menjadi pandangan yang boleh diambil tindakan.",
+    "description2": "Enjin carian berasaskan teks lanjutan kami mengindeks setiap perbualan, menjadikannya mudah untuk mencari interaksi, topik, atau sebutan pelanggan tertentu merentas keseluruhan sejarah panggilan anda. Tiada lagi sesi mendengar yang tidak berkesudahan – hanya hasil yang segera dan relevan.",
+    "feature1": "Cari berjuta-juta rakaman dalam beberapa saat",
+    "feature2": "Pertanyaan bahasa semula jadi yang memahami konteks",
+    "feature3": "Tapis mengikut ejen, tarikh, sentimen, atau parameter tersuai",
+    "feature4": "Tonjolkan trend dan corak secara automatik",
+    "cta": "Terokai Ciri BI"
+  },
+  "hexaPerformance": {
+    "title": "HEXA AI dalam Tindakan:",
+    "titleHighlight": "Prestasi Dunia Sebenar",
+    "description": "HEXA AI memberikan hasil yang boleh diukur yang memberi kesan kepada keuntungan anda. Organisasi yang memanfaatkan teknologi bot suara kami melihat peningkatan dramatik dalam kecekapan, kepuasan pelanggan, dan kos operasi dalam suku pertama pelaksanaan.",
+    "stat1": {
+      "title": "Kadar Penyelesaian Panggilan",
+      "description": "HEXA berjaya menyelesaikan pertanyaan pelanggan tanpa campur tangan manusia"
+    },
+    "stat2": {
+      "title": "Peningkatan Kapasiti",
+      "description": "Kendalikan tiga kali ganda interaksi pelanggan dengan saiz pasukan yang sama"
+    },
+    "stat3": {
+      "title": "Pengurangan Kos",
+      "description": "Kurangkan perbelanjaan operasi sambil meningkatkan skor kepuasan pelanggan"
+    },
+    "stat4": {
+      "title": "Masa Respons",
+      "description": "Jawapan segera yang mengekalkan pelanggan terlibat dan berpuas hati"
+    }
+  },
+  "channels": {
+    "label": "Omnichannel",
+    "title": "Semua Saluran Anda,",
+    "titleHighlight": "Satu Platform",
+    "description": "Berhubung dengan pelanggan anda di saluran pilihan mereka. Suara, WhatsApp, E-mel, SMS, dan media sosial - semua disatukan dalam satu papan pemuka yang berkuasa.",
+    "voiceCalls": "Panggilan Suara",
+    "whatsapp": "WhatsApp",
+    "email": "E-mel",
+    "sms": "SMS",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "benefit1": "Sejarah perbualan bersatu merentas semua saluran",
+    "benefit2": "Penyerahan lancar antara saluran",
+    "benefit3": "Pandangan tunggal interaksi pelanggan",
+    "cta": "Mulakan Percubaan Percuma"
+  },
+  "clients": {
+    "title": "Dipercayai oleh",
+    "titleHighlight": "Pemimpin Industri",
+    "titleEnd": "Seluruh Dunia",
+    "description": "Connect 6.0 menggerakkan interaksi pelanggan untuk organisasi terkemuka merentas pelbagai sektor. Platform kami yang terbukti dipercayai oleh jenama global untuk kebolehpercayaan, inovasi, dan kesannya terhadap pengalaman pelanggan.",
+    "footer": "Sertai barisan perniagaan yang mengubah pengalaman pelanggan mereka dengan Connect 6.0."
+  },
+  "hexaAI": {
+    "title": "Temui HEXA AI: Tenaga Kerja",
+    "titleHighlight": "Digital Berbilang Bahasa Anda",
+    "description": "HEXA AI bukan sekadar bot – ia adalah pekerja digital serba boleh yang bercakap bahasa pelanggan anda, secara literal.",
+    "feature1": {
+      "title": "120+ Bahasa",
+      "description": "Berinteraksi secara semula jadi dengan pelanggan di seluruh dunia dalam lebih 120 bahasa, memecahkan halangan komunikasi dan mengembangkan jangkauan global anda dengan mudah."
+    },
+    "feature2": {
+      "title": "Keupayaan Pelbagai Persona",
+      "description": "HEXA menyesuaikan personaliti dan pendekatannya berdasarkan tugas – menjadi wakil jualan yang meyakinkan, pakar sokongan yang sabar, atau ejen kutipan yang tegas mengikut keperluan."
+    },
+    "feature3": {
+      "title": "Sentiasa Tersedia",
+      "description": "Sediakan perkhidmatan pelanggan 24/7 tanpa overhead, mengendalikan pertanyaan rutin sambil meningkatkan isu kompleks kepada ejen manusia dengan lancar."
+    },
+    "cta": "Alami HEXA AI"
   }
 }

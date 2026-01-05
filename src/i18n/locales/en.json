@@ -218,5 +218,100 @@
       "company": "GlobalConnect LLC",
       "content": "Seamless integration with our existing CRM and the omnichannel capabilities made migration effortless."
     }
+  },
+  "sentiment": {
+    "title": "Advanced Sentiment Analysis",
+    "titleHighlight": "& Quality Assurance",
+    "description": "Transform quality assurance from a time-consuming manual process into an intelligent, scalable system that provides coaching opportunities and ensures compliance across every interaction.",
+    "step1": {
+      "title": "Real-Time Transcription",
+      "description": "Every call is automatically transcribed with industry-leading accuracy, creating searchable text records."
+    },
+    "step2": {
+      "title": "Sentiment Detection",
+      "description": "Our AI analyzes emotional tone, detecting frustration, satisfaction, or urgency."
+    },
+    "step3": {
+      "title": "Intelligent Scoring",
+      "description": "Automated quality audits score agent performance against customizable criteria and compliance standards."
+    },
+    "step4": {
+      "title": "Actionable Summaries",
+      "description": "AI-generated call summaries highlight key points, outcomes, and follow-up actions needed."
+    }
+  },
+  "businessIntelligence": {
+    "title": "AI-Powered Business Intelligence:",
+    "titleHighlight": "Search at the Speed of Thought",
+    "subtitle": "Google-Like Search Across Voice Data",
+    "description1": "Imagine having the power to search through millions of voice recordings as easily as searching the web. Connect 6.0's revolutionary AI-based Business Intelligence tool transforms your voice data into actionable insights.",
+    "description2": "Our advanced text-based search engine indexes every conversation, making it effortless to find specific interactions, topics, or customer mentions across your entire call history. No more endless listening sessions – just instant, relevant results.",
+    "feature1": "Search millions of recordings in seconds",
+    "feature2": "Natural language queries that understand context",
+    "feature3": "Filter by agent, date, sentiment, or custom parameters",
+    "feature4": "Surface trends and patterns automatically",
+    "cta": "Explore BI Features"
+  },
+  "hexaPerformance": {
+    "title": "HEXA AI in Action:",
+    "titleHighlight": "Real-World Performance",
+    "description": "HEXA AI delivers measurable results that impact your bottom line. Organizations leveraging our voice bot technology see dramatic improvements in efficiency, customer satisfaction, and operational costs within the first quarter of deployment.",
+    "stat1": {
+      "title": "Call Resolution Rate",
+      "description": "HEXA successfully resolves customer inquiries without human intervention"
+    },
+    "stat2": {
+      "title": "Capacity Increase",
+      "description": "Handle triple the customer interactions with the same team size"
+    },
+    "stat3": {
+      "title": "Cost Reduction",
+      "description": "Lower operational expenses while improving customer satisfaction scores"
+    },
+    "stat4": {
+      "title": "Response Time",
+      "description": "Instant answers that keep customers engaged and satisfied"
+    }
+  },
+  "channels": {
+    "label": "Omnichannel",
+    "title": "All Your Channels,",
+    "titleHighlight": "One Platform",
+    "description": "Connect with your customers on their preferred channels. Voice, WhatsApp, Email, SMS, and social media - all unified in a single, powerful dashboard.",
+    "voiceCalls": "Voice Calls",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "sms": "SMS",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "benefit1": "Unified conversation history across all channels",
+    "benefit2": "Seamless handoff between channels",
+    "benefit3": "Single view of customer interactions",
+    "cta": "Start Free Trial"
+  },
+  "clients": {
+    "title": "Trusted by",
+    "titleHighlight": "Industry Leaders",
+    "titleEnd": "Worldwide",
+    "description": "Connect 6.0 powers customer interactions for leading organizations across diverse sectors. Our proven platform is trusted by global brands for its reliability, innovation, and impact on the customer experience.",
+    "footer": "Join the ranks of businesses transforming their customer experience with Connect 6.0."
+  },
+  "hexaAI": {
+    "title": "Meet HEXA AI: Your",
+    "titleHighlight": "Multilingual Digital Workforce",
+    "description": "HEXA AI isn't just a bot – it's a versatile digital employee that speaks your customers' language, literally.",
+    "feature1": {
+      "title": "120+ Languages",
+      "description": "Interact naturally with customers worldwide in over 120 languages, breaking down communication barriers and expanding your global reach effortlessly."
+    },
+    "feature2": {
+      "title": "Multi-Persona Capability",
+      "description": "HEXA adapts its personality and approach based on the task – becoming a persuasive sales representative, a patient support specialist, or a firm collections agent as needed."
+    },
+    "feature3": {
+      "title": "Always Available",
+      "description": "Provide 24/7 customer service without the overhead, handling routine inquiries while seamlessly escalating complex issues to human agents."
+    },
+    "cta": "Experience HEXA AI"
   }
 }
