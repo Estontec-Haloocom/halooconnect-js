@@ -313,5 +313,111 @@
       "description": "Provide 24/7 customer service without the overhead, handling routine inquiries while seamlessly escalating complex issues to human agents."
     },
     "cta": "Experience HEXA AI"
+  },
+  "aboutUs": {
+    "label": "About Us",
+    "hero": {
+      "title": "Powering the Future of",
+      "titleHighlight": "Voice Technology",
+      "description": "Haloocom is at the forefront of AI-powered telecom solutions, revolutionizing how businesses communicate with their customers through cutting-edge voice technology."
+    },
+    "stats": {
+      "customers": "Enterprise Customers",
+      "users": "Active Users",
+      "countries": "Countries",
+      "projects": "Projects Delivered"
+    },
+    "story": {
+      "label": "Our Story",
+      "title": "The Amalgamation of AI & Voice Technology",
+      "paragraph1": "The amalgamation of Artificial Intelligence (AI) and voice technology is revolutionizing the way humans interact with machines. Voice technology, once limited to simple phone and chat communication, has evolved dramatically.",
+      "paragraph2": "Haloocom, with its proven expertise of serving over 500 customers and 120K+ active users across 5+ countries, has built cutting-edge enterprise communication systems including IP PBX, Unified Communications, and Contact Center software.",
+      "paragraph3": "We have transformed Voice Tech with the power of AI, leveraging natural language processing (NLP), machine learning, and deep learning to deliver superior customer experiences.",
+      "cta": "Get in Touch"
+    },
+    "features": {
+      "expertTeam": {
+        "title": "Expert Team",
+        "description": "Highly skilled engineers offering round-the-clock support"
+      },
+      "globalReach": {
+        "title": "Global Reach",
+        "description": "Serving enterprises across 5+ countries worldwide"
+      },
+      "industryLeader": {
+        "title": "Industry Leader",
+        "description": "Largest implementation of enterprise telecom solutions"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Cutting-edge AI-powered voice technology"
+      }
+    },
+    "valuesSection": {
+      "label": "Our Values",
+      "title": "What Drives Us Forward",
+      "description": "Our core values shape everything we do, from product development to customer support."
+    },
+    "values": {
+      "customerFirst": {
+        "title": "Customer First",
+        "description": "We value our customers and their success is our success. We go above and beyond to deliver exceptional solutions."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We bring the hunger for innovation and passion to every project, constantly pushing the boundaries of what's possible."
+      },
+      "dedication": {
+        "title": "Dedication",
+        "description": "Our highly competent and professional team is dedicated to implementing the largest telecom projects around the globe."
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Business?",
+      "description": "Join 500+ enterprises who trust Haloocom for their communication needs.",
+      "button": "Contact Us Today"
+    }
+  },
+  "contactUs": {
+    "label": "Contact Us",
+    "hero": {
+      "title": "Let's Start a",
+      "titleHighlight": "Conversation",
+      "description": "Ready to transform your customer engagement? Our team is here to help you get started with Connect 6.0."
+    },
+    "info": {
+      "phone": {
+        "title": "Phone"
+      },
+      "email": {
+        "title": "Email"
+      },
+      "office": {
+        "title": "Office",
+        "singapore": "Singapore",
+        "uae": "UAE",
+        "india": "India"
+      },
+      "support": {
+        "title": "Support",
+        "line1": "24/7 Customer Support",
+        "line2": "Round the clock assistance"
+      }
+    },
+    "form": {
+      "sectionLabel": "Get in Touch",
+      "title": "We'd Love to Hear From You",
+      "description": "Whether you have a question about our products, pricing, need a demo, or anything else, our team is ready to answer all your questions.",
+      "formTitle": "Send us a Message",
+      "messagePlaceholder": "Tell us about your requirements...",
+      "submitButton": "Send Message",
+      "disclaimer": "By submitting, you agree to our Privacy Policy and Terms of Service."
+    },
+    "sidebar": {
+      "callUs": "Call Us",
+      "emailUs": "Email Us",
+      "support": "24/7 Support",
+      "supportDesc": "We're here to assist you anytime"
+    }
   }
 }

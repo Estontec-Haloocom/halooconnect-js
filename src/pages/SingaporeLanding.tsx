@@ -16,7 +16,8 @@ import DeploymentSection from "@/components/DeploymentSection";
 import LocalizedOutcomesSection from "@/components/LocalizedOutcomesSection";
 import LocalizedTopFeaturesSection from "@/components/LocalizedTopFeaturesSection";
 import LocalizedCTASection from "@/components/LocalizedCTASection";
-import { Helmet } from "react-helmet-async";
+import MidPageCTA from "@/components/MidPageCTA";
+import SEOHead from "@/components/SEOHead";
 
 const singaporeContent = {
   country: "Singapore",
@@ -39,30 +40,56 @@ const singaporeContent = {
 };
 
 const SingaporeLanding = () => {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Haloo Connect Singapore",
+    "description": "Leading AI-powered contact center software provider in Singapore",
+    "url": "https://halooconnect.com/singapore",
+    "telephone": "+65-83765007",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Singapore",
+      "addressCountry": "SG"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 1.3521,
+      "longitude": 103.8198
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "priceRange": "$$",
+    "areaServed": ["Singapore"]
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Best Contact Center Software Singapore | Cloud Call Center Solution</title>
-        <meta
-          name="description"
-          content="Enterprise cloud contact center software in Singapore. PDPA compliant with AI automation, multilingual support, and omnichannel customer engagement platform."
-        />
-        <meta
-          name="keywords"
-          content="contact center software Singapore, call center Singapore, cloud contact center Singapore, customer service platform Singapore, AI call center Singapore, PDPA compliant, omnichannel Singapore, cloud telephony Singapore, IVR solutions Singapore, enterprise call center"
-        />
-      </Helmet>
+      <SEOHead 
+        title="Best Contact Center Software Singapore 2025 | Cloud Call Center Solution"
+        description="#1 enterprise contact center software in Singapore. PDPA compliant, AI-powered with multilingual voice bot (English, Mandarin, Malay). Free demo + 14-day trial."
+        keywords="contact center software Singapore, call center Singapore, cloud contact center Singapore, customer service platform Singapore, AI call center Singapore, PDPA compliant, omnichannel Singapore, cloud telephony Singapore, IVR solutions Singapore, enterprise call center Singapore, best call center software 2025"
+        canonical="https://halooconnect.com/singapore"
+        schema={localBusinessSchema}
+      />
       <main className="min-h-screen">
         <Header />
         <LocalizedHeroSection {...singaporeContent} />
         <LocalizedOutcomesSection country="Singapore" />
         <LocalizedTopFeaturesSection country="Singapore" />
+        <MidPageCTA variant="secondary" country="Singapore" />
         <SentimentSection />
         <HexaAISection />
+        <MidPageCTA variant="primary" country="Singapore" />
         <BusinessIntelligenceSection />
         <HexaPerformanceSection />
         <DeploymentSection />
         <FeaturesSection />
+        <MidPageCTA variant="secondary" country="Singapore" />
         <ChannelsSection />
         <SecuritySection />
         <ClientsSection />
