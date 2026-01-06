@@ -313,5 +313,111 @@
       "description": "Sediakan perkhidmatan pelanggan 24/7 tanpa overhead, mengendalikan pertanyaan rutin sambil meningkatkan isu kompleks kepada ejen manusia dengan lancar."
     },
     "cta": "Alami HEXA AI"
+  },
+  "aboutUs": {
+    "label": "Tentang Kami",
+    "hero": {
+      "title": "Memacu Masa Depan",
+      "titleHighlight": "Teknologi Suara",
+      "description": "Haloocom berada di barisan hadapan penyelesaian telekomunikasi berkuasa AI, merevolusikan cara perniagaan berkomunikasi dengan pelanggan mereka melalui teknologi suara canggih."
+    },
+    "stats": {
+      "customers": "Pelanggan Perusahaan",
+      "users": "Pengguna Aktif",
+      "countries": "Negara",
+      "projects": "Projek Dihantar"
+    },
+    "story": {
+      "label": "Cerita Kami",
+      "title": "Penggabungan AI & Teknologi Suara",
+      "paragraph1": "Penggabungan Kecerdasan Buatan (AI) dan teknologi suara merevolusikan cara manusia berinteraksi dengan mesin. Teknologi suara, yang dulunya terhad kepada komunikasi telefon dan sembang mudah, telah berkembang secara dramatik.",
+      "paragraph2": "Haloocom, dengan kepakaran terbukti dalam melayani lebih 500 pelanggan dan 120K+ pengguna aktif di 5+ negara, telah membina sistem komunikasi perusahaan canggih termasuk IP PBX, Komunikasi Bersatu, dan perisian Pusat Hubungan.",
+      "paragraph3": "Kami telah mengubah Teknologi Suara dengan kuasa AI, memanfaatkan pemprosesan bahasa semula jadi (NLP), pembelajaran mesin, dan pembelajaran mendalam untuk memberikan pengalaman pelanggan yang unggul.",
+      "cta": "Hubungi Kami"
+    },
+    "features": {
+      "expertTeam": {
+        "title": "Pasukan Pakar",
+        "description": "Jurutera berkemahiran tinggi menawarkan sokongan sepanjang masa"
+      },
+      "globalReach": {
+        "title": "Jangkauan Global",
+        "description": "Melayani perusahaan di 5+ negara seluruh dunia"
+      },
+      "industryLeader": {
+        "title": "Pemimpin Industri",
+        "description": "Pelaksanaan terbesar penyelesaian telekomunikasi perusahaan"
+      },
+      "innovation": {
+        "title": "Inovasi",
+        "description": "Teknologi suara berkuasa AI yang canggih"
+      }
+    },
+    "valuesSection": {
+      "label": "Nilai Kami",
+      "title": "Apa yang Mendorong Kami",
+      "description": "Nilai teras kami membentuk semua yang kami lakukan, dari pembangunan produk hingga sokongan pelanggan."
+    },
+    "values": {
+      "customerFirst": {
+        "title": "Pelanggan Didahulukan",
+        "description": "Kami menghargai pelanggan kami dan kejayaan mereka adalah kejayaan kami. Kami melangkaui jangkaan untuk memberikan penyelesaian luar biasa."
+      },
+      "innovation": {
+        "title": "Inovasi",
+        "description": "Kami membawa semangat inovasi dan keghairahan ke setiap projek, sentiasa menolak sempadan apa yang mungkin."
+      },
+      "dedication": {
+        "title": "Dedikasi",
+        "description": "Pasukan kami yang berkebolehan tinggi dan profesional berdedikasi untuk melaksanakan projek telekomunikasi terbesar di seluruh dunia."
+      }
+    },
+    "cta": {
+      "title": "Bersedia untuk Mengubah Perniagaan Anda?",
+      "description": "Sertai 500+ perusahaan yang mempercayai Haloocom untuk keperluan komunikasi mereka.",
+      "button": "Hubungi Kami Hari Ini"
+    }
+  },
+  "contactUs": {
+    "label": "Hubungi Kami",
+    "hero": {
+      "title": "Mari Mulakan",
+      "titleHighlight": "Perbualan",
+      "description": "Bersedia untuk mengubah penglibatan pelanggan anda? Pasukan kami di sini untuk membantu anda bermula dengan Connect 6.0."
+    },
+    "info": {
+      "phone": {
+        "title": "Telefon"
+      },
+      "email": {
+        "title": "E-mel"
+      },
+      "office": {
+        "title": "Pejabat",
+        "singapore": "Singapura",
+        "uae": "UAE",
+        "india": "India"
+      },
+      "support": {
+        "title": "Sokongan",
+        "line1": "Sokongan Pelanggan 24/7",
+        "line2": "Bantuan sepanjang masa"
+      }
+    },
+    "form": {
+      "sectionLabel": "Hubungi Kami",
+      "title": "Kami Ingin Mendengar Dari Anda",
+      "description": "Sama ada anda mempunyai soalan tentang produk kami, harga, memerlukan demo, atau apa sahaja, pasukan kami bersedia untuk menjawab semua soalan anda.",
+      "formTitle": "Hantar Mesej kepada Kami",
+      "messagePlaceholder": "Beritahu kami tentang keperluan anda...",
+      "submitButton": "Hantar Mesej",
+      "disclaimer": "Dengan menghantar, anda bersetuju dengan Dasar Privasi dan Terma Perkhidmatan kami."
+    },
+    "sidebar": {
+      "callUs": "Hubungi Kami",
+      "emailUs": "E-mel Kami",
+      "support": "Sokongan 24/7",
+      "supportDesc": "Kami di sini untuk membantu anda pada bila-bila masa"
+    }
   }
 }
