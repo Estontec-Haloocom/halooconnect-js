@@ -18,7 +18,6 @@ import HexaPerformanceSection from "@/components/HexaPerformanceSection";
 import DeploymentSection from "@/components/DeploymentSection";
 import MidPageCTA from "@/components/MidPageCTA";
 import SEOHead from "@/components/SEOHead";
-import PopupForm from "@/components/PopupForm";
 
 const Index = () => {
   const faqSchema = {
@@ -82,7 +81,6 @@ const Index = () => {
         <CTASection />
         <Footer />
         <FloatingCTA />
-        <PopupForm />
       </main>
     </>
   );
