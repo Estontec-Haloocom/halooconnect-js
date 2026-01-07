@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, Shield, Loader2 } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
+import { trackLeadConversion } from "@/lib/gtag";
 
 interface HeroFormProps {
   defaultCountryCode?: string;
@@ -53,6 +54,9 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
       });
       setIsSubmitting(false);
     } else {
+      // Track Google Ads conversion
+      trackLeadConversion("Hero Form");
+      
       // Send email notification
       try {
         await supabase.functions.invoke("send-lead-notification", {

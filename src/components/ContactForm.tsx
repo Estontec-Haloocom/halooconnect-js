@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
+import { trackLeadConversion } from "@/lib/gtag";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -48,6 +49,9 @@ const ContactForm = () => {
       });
       setIsSubmitting(false);
     } else {
+      // Track Google Ads conversion
+      trackLeadConversion("Contact Form");
+      
       // Send email notification
       try {
         await supabase.functions.invoke("send-lead-notification", {

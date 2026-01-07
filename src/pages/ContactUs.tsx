@@ -12,6 +12,7 @@ import { ArrowRight, Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react";
 import CountryCodeSelect from "@/components/CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
 import SEOHead from "@/components/SEOHead";
+import { trackLeadConversion } from "@/lib/gtag";
 
 const ContactUs = () => {
   const { t } = useTranslation();
@@ -81,6 +82,9 @@ const ContactUs = () => {
       setIsSubmitting(false);
       return;
     }
+
+    // Track Google Ads conversion
+    trackLeadConversion("Contact Page");
 
     try {
       await supabase.functions.invoke("send-lead-notification", {
