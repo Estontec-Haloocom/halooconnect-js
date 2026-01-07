@@ -7,6 +7,7 @@ import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { trackLeadConversion } from "@/lib/gtag";
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -30,6 +31,33 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Execute reCAPTCHA
+    const recaptchaToken = await executeRecaptcha("contact_form");
+    if (!recaptchaToken) {
+      toast({
+        title: "Error",
+        description: "reCAPTCHA verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Verify reCAPTCHA token
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
+      body: { token: recaptchaToken },
+    });
+
+    if (verifyError || !verifyData?.success) {
+      toast({
+        title: "Error",
+        description: "Security verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
     
     const leadData = {
       name: formData.name.trim(),

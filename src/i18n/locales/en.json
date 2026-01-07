@@ -419,5 +419,10 @@
       "support": "24/7 Support",
       "supportDesc": "We're here to assist you anytime"
     }
+  },
+  "popup": {
+    "title": "Get Your Free Demo",
+    "subtitle": "Limited time offer - 14 days free",
+    "cta": "Claim Free Demo"
   }
 }
