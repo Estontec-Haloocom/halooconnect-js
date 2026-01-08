@@ -8,6 +8,7 @@ import { ArrowRight, Shield, Loader2 } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/gtag";
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 interface HeroFormProps {
   defaultCountryCode?: string;
@@ -36,6 +37,33 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Execute reCAPTCHA
+    const recaptchaToken = await executeRecaptcha("hero_form");
+    if (!recaptchaToken) {
+      toast({
+        title: t("form.error"),
+        description: "reCAPTCHA verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Verify reCAPTCHA token
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
+      body: { token: recaptchaToken },
+    });
+
+    if (verifyError || !verifyData?.success) {
+      toast({
+        title: t("form.error"),
+        description: "Security verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
     
     const leadData = {
       name: formData.name.trim(),

@@ -419,5 +419,10 @@
       "support": "Sokongan 24/7",
       "supportDesc": "Kami di sini untuk membantu anda pada bila-bila masa"
     }
+  },
+  "popup": {
+    "title": "Dapatkan Demo Percuma Anda",
+    "subtitle": "Tawaran masa terhad - 14 hari percuma",
+    "cta": "Tuntut Demo Percuma"
   }
 }
