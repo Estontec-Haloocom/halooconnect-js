@@ -13,6 +13,7 @@ import CountryCodeSelect from "@/components/CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
 import SEOHead from "@/components/SEOHead";
 import { trackLeadConversion } from "@/lib/gtag";
+import { executeRecaptcha } from "@/lib/recaptcha";
 
 const ContactUs = () => {
   const { t } = useTranslation();
@@ -62,6 +63,33 @@ const ContactUs = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Execute reCAPTCHA
+    const recaptchaToken = await executeRecaptcha("contact_page");
+    if (!recaptchaToken) {
+      toast({
+        title: t("form.error"),
+        description: "reCAPTCHA verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Verify reCAPTCHA token
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
+      body: { token: recaptchaToken },
+    });
+
+    if (verifyError || !verifyData?.success) {
+      toast({
+        title: t("form.error"),
+        description: "Security verification failed. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     const leadData = {
       name: formData.name.trim(),
