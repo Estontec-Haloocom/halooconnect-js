@@ -96,20 +96,18 @@ const PopupForm = () => {
         variant: "destructive",
       });
       setIsSubmitting(false);
-    } else {
-      trackLeadConversion("Popup Form");
-      
-      try {
-        await supabase.functions.invoke("send-lead-notification", {
-          body: { ...leadData, source: "Popup Form" },
-        });
-      } catch (emailError) {
-        console.error("Email notification error:", emailError);
-      }
-      
-      handleClose();
-      navigate("/thank-you");
+      return;
     }
+    
+    // Track and navigate immediately
+    trackLeadConversion("Popup Form");
+    handleClose();
+    navigate("/thank-you");
+    
+    // Fire-and-forget email
+    supabase.functions.invoke("send-lead-notification", {
+      body: { ...leadData, source: "Popup Form" },
+    }).catch(console.error);
   };
 
   if (!isVisible) return null;

@@ -76,20 +76,17 @@ const ContactForm = () => {
         variant: "destructive",
       });
       setIsSubmitting(false);
-    } else {
-      // Track Google Ads conversion
-      trackLeadConversion("Contact Form");
-      
-      // Send email notification
-      try {
-        await supabase.functions.invoke("send-lead-notification", {
-          body: { ...leadData, source: "Contact Form" },
-        });
-      } catch (emailError) {
-        console.error("Email notification error:", emailError);
-      }
-      navigate("/thank-you");
+      return;
     }
+    
+    // Track and navigate immediately
+    trackLeadConversion("Contact Form");
+    navigate("/thank-you");
+    
+    // Fire-and-forget email
+    supabase.functions.invoke("send-lead-notification", {
+      body: { ...leadData, source: "Contact Form" },
+    }).catch(console.error);
   };
 
   const benefits = [
