@@ -72,6 +72,7 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
       company: formData.company.trim() || "Not provided",
     };
 
+    // Insert lead - don't wait for email, navigate immediately after DB success
     const { error } = await supabase.from("leads").insert(leadData);
 
     if (error) {
@@ -81,20 +82,17 @@ const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: Hero
         variant: "destructive",
       });
       setIsSubmitting(false);
-    } else {
-      // Track Google Ads conversion
-      trackLeadConversion("Hero Form");
-      
-      // Send email notification
-      try {
-        await supabase.functions.invoke("send-lead-notification", {
-          body: { ...leadData, source: "Hero Form" },
-        });
-      } catch (emailError) {
-        console.error("Email notification error:", emailError);
-      }
-      navigate("/thank-you");
+      return;
     }
+    
+    // Track conversion and navigate immediately - don't wait
+    trackLeadConversion("Hero Form");
+    navigate("/thank-you");
+    
+    // Fire-and-forget email notification (runs in background)
+    supabase.functions.invoke("send-lead-notification", {
+      body: { ...leadData, source: "Hero Form" },
+    }).catch(console.error);
   };
 
   return (

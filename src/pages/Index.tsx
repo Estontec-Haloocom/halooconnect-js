@@ -1,24 +1,29 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import ChannelsSection from "@/components/ChannelsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactForm from "@/components/ContactForm";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
-import OutcomesSection from "@/components/OutcomesSection";
-import SecuritySection from "@/components/SecuritySection";
-import ClientsSection from "@/components/ClientsSection";
-import TopFeaturesSection from "@/components/TopFeaturesSection";
-import SentimentSection from "@/components/SentimentSection";
-import HexaAISection from "@/components/HexaAISection";
-import BusinessIntelligenceSection from "@/components/BusinessIntelligenceSection";
-import HexaPerformanceSection from "@/components/HexaPerformanceSection";
-import DeploymentSection from "@/components/DeploymentSection";
-import MidPageCTA from "@/components/MidPageCTA";
 import SEOHead from "@/components/SEOHead";
-import PopupForm from "@/components/PopupForm";
+
+// Lazy load below-fold sections for better FCP/LCP
+const OutcomesSection = lazy(() => import("@/components/OutcomesSection"));
+const TopFeaturesSection = lazy(() => import("@/components/TopFeaturesSection"));
+const MidPageCTA = lazy(() => import("@/components/MidPageCTA"));
+const SentimentSection = lazy(() => import("@/components/SentimentSection"));
+const HexaAISection = lazy(() => import("@/components/HexaAISection"));
+const BusinessIntelligenceSection = lazy(() => import("@/components/BusinessIntelligenceSection"));
+const HexaPerformanceSection = lazy(() => import("@/components/HexaPerformanceSection"));
+const DeploymentSection = lazy(() => import("@/components/DeploymentSection"));
+const ChannelsSection = lazy(() => import("@/components/ChannelsSection"));
+const SecuritySection = lazy(() => import("@/components/SecuritySection"));
+const ClientsSection = lazy(() => import("@/components/ClientsSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const ContactForm = lazy(() => import("@/components/ContactForm"));
+const CTASection = lazy(() => import("@/components/CTASection"));
+const Footer = lazy(() => import("@/components/Footer"));
+const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
+const PopupForm = lazy(() => import("@/components/PopupForm"));
+
+// Simple loading placeholder
+const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const Index = () => {
   const faqSchema = {
@@ -64,25 +69,27 @@ const Index = () => {
       <main className="min-h-screen">
         <Header />
         <HeroSection />
-        <OutcomesSection />
-        <TopFeaturesSection />
-        <MidPageCTA variant="secondary" />
-        <SentimentSection />
-        <HexaAISection />
-        <MidPageCTA variant="primary" />
-        <BusinessIntelligenceSection />
-        <HexaPerformanceSection />
-        <DeploymentSection />
-        <ChannelsSection />
-        <MidPageCTA variant="secondary" />
-        <SecuritySection />
-        <ClientsSection />
-        <TestimonialsSection />
-        <ContactForm />
-        <CTASection />
-        <Footer />
-        <FloatingCTA />
-        <PopupForm />
+        <Suspense fallback={<SectionLoader />}>
+          <OutcomesSection />
+          <TopFeaturesSection />
+          <MidPageCTA variant="secondary" />
+          <SentimentSection />
+          <HexaAISection />
+          <MidPageCTA variant="primary" />
+          <BusinessIntelligenceSection />
+          <HexaPerformanceSection />
+          <DeploymentSection />
+          <ChannelsSection />
+          <MidPageCTA variant="secondary" />
+          <SecuritySection />
+          <ClientsSection />
+          <TestimonialsSection />
+          <ContactForm />
+          <CTASection />
+          <Footer />
+          <FloatingCTA />
+          <PopupForm />
+        </Suspense>
       </main>
     </>
   );

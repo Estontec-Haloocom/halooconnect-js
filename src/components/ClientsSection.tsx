@@ -48,6 +48,8 @@ const ClientsSection = () => {
                 src={client.logo} 
                 alt={`${client.name} logo`}
                 className="max-h-12 md:max-h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ))}
