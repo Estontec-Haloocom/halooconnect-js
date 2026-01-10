@@ -15,7 +15,7 @@ interface HeroFormProps {
   fixedCountryCode?: boolean;
 }
 
-const HeroForm = ({ defaultCountryCode = "+65", fixedCountryCode = false }: HeroFormProps) => {
+const HeroForm = ({ defaultCountryCode = "+91", fixedCountryCode = false }: HeroFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { t } = useTranslation();
