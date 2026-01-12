@@ -117,7 +117,7 @@ const HeroForm = ({
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
         </div>
-        <span className="text-xs font-medium text-foreground">
+        <span className="text-xs font-medium text-primary-foreground">
           <span className="font-bold bg-secondary text-primary-foreground">{recentActivity.count} people</span> from {recentActivity.city} requested demo today
         </span>
       </div>
@@ -130,7 +130,7 @@ const HeroForm = ({
             <span className="text-[10px] font-bold text-green-600 uppercase tracking-wide">Free 14-Day Trial</span>
           </div>
           <h3 className="text-xl font-bold mb-1 text-primary-foreground">Get Your Personalized Demo</h3>
-          <p className="text-sm text-muted-foreground">See how Connect 6.0 can transform your business</p>
+          <p className="text-sm text-destructive-foreground">See how Connect 6.0 can transform your business</p>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-3">
