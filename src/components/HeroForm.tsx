@@ -6,26 +6,27 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, Shield, Loader2, CheckCircle, Clock, Users, Zap } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
+import { CountrySelect, CitySelect } from "./LocationSelect";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
+
 interface HeroFormProps {
   defaultCountryCode?: string;
   fixedCountryCode?: boolean;
 }
+
 const HeroForm = ({
   defaultCountryCode = "+91",
   fixedCountryCode = false
 }: HeroFormProps) => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const navigate = useNavigate();
-  const {
-    t
-  } = useTranslation();
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState(defaultCountryCode);
+  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -38,6 +39,7 @@ const HeroForm = ({
     city: "Mumbai"
   });
   const cities = ["Mumbai", "Delhi", "Bangalore", "Dubai", "Singapore", "Chennai", "Hyderabad"];
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setRecentActivity({
@@ -47,14 +49,37 @@ const HeroForm = ({
     }, 8000);
     return () => clearInterval(interval);
   }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate location
+    if (!location) {
+      toast({
+        title: t("form.error"),
+        description: "Please select your country.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Validate city if India is selected
+    if (location === "India" && !city) {
+      toast({
+        title: t("form.error"),
+        description: "Please select your city.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     const recaptchaToken = await executeRecaptcha("hero_form");
     if (!recaptchaToken) {
@@ -66,14 +91,11 @@ const HeroForm = ({
       setIsSubmitting(false);
       return;
     }
-    const {
-      data: verifyData,
-      error: verifyError
-    } = await supabase.functions.invoke("verify-recaptcha", {
-      body: {
-        token: recaptchaToken
-      }
+
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
+      body: { token: recaptchaToken }
     });
+
     if (verifyError || !verifyData?.success) {
       toast({
         title: t("form.error"),
@@ -83,15 +105,17 @@ const HeroForm = ({
       setIsSubmitting(false);
       return;
     }
+
     const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
       country_code: countryCode,
-      company: formData.company.trim() || "Not provided"
+      company: formData.company.trim() || "Not provided",
+      location: location,
+      city: location === "India" ? city : null
     };
-    const {
-      error
-    } = await supabase.from("leads").insert(leadData);
+
+    const { error } = await supabase.from("leads").insert(leadData);
     if (error) {
       toast({
         title: t("form.error"),
@@ -101,6 +125,7 @@ const HeroForm = ({
       setIsSubmitting(false);
       return;
     }
+
     trackLeadConversion("Hero Form");
     navigate("/thank-you");
     supabase.functions.invoke("send-lead-notification", {
@@ -110,7 +135,9 @@ const HeroForm = ({
       }
     }).catch(console.error);
   };
-  return <div className="bg-card/98 backdrop-blur-lg rounded-2xl shadow-elevated border border-border/50 w-full max-w-md overflow-hidden">
+
+  return (
+    <div className="bg-card/98 backdrop-blur-lg rounded-2xl shadow-elevated border border-border/50 w-full max-w-md overflow-hidden">
       {/* Urgency Banner */}
       <div className="bg-primary/10 border-b border-primary/20 px-4 py-2.5 flex items-center justify-center gap-2">
         <div className="relative flex h-2 w-2">
@@ -135,25 +162,76 @@ const HeroForm = ({
         
         <form onSubmit={handleSubmit} className="space-y-3">
           <div className="relative">
-            <Input name="name" type="text" placeholder={t("form.name")} required value={formData.name} onChange={handleChange} className="h-12 pl-4 pr-4 text-base" disabled={isSubmitting} />
+            <Input 
+              name="name" 
+              type="text" 
+              placeholder={t("form.name")} 
+              required 
+              value={formData.name} 
+              onChange={handleChange} 
+              className="h-12 pl-4 pr-4 text-base" 
+              disabled={isSubmitting} 
+            />
           </div>
           
           <div className="flex">
             <CountryCodeSelect value={countryCode} onChange={setCountryCode} disabled={fixedCountryCode} />
-            <Input name="phone" type="tel" placeholder={getPlaceholderPhone(countryCode)} required value={formData.phone} onChange={handleChange} className="rounded-l-none h-12 flex-1 text-base" disabled={isSubmitting} />
+            <Input 
+              name="phone" 
+              type="tel" 
+              placeholder={getPlaceholderPhone(countryCode)} 
+              required 
+              value={formData.phone} 
+              onChange={handleChange} 
+              className="rounded-l-none h-12 flex-1 text-base" 
+              disabled={isSubmitting} 
+            />
           </div>
           
-          <Input name="company" type="text" placeholder={t("form.company")} value={formData.company} onChange={handleChange} className="h-12 text-base" disabled={isSubmitting} />
+          <Input 
+            name="company" 
+            type="text" 
+            placeholder={t("form.company")} 
+            value={formData.company} 
+            onChange={handleChange} 
+            className="h-12 text-base" 
+            disabled={isSubmitting} 
+          />
+
+          {/* Location Select */}
+          <CountrySelect 
+            value={location} 
+            onChange={(val) => {
+              setLocation(val);
+              if (val !== "India") setCity("");
+            }} 
+            disabled={isSubmitting} 
+          />
+
+          {/* City Select - Only show for India */}
+          {location === "India" && (
+            <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
+          )}
           
           {/* High-Converting CTA Button */}
-          <Button type="submit" variant="hero" size="lg" className="w-full h-14 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow" disabled={isSubmitting}>
-            {isSubmitting ? <>
+          <Button 
+            type="submit" 
+            variant="hero" 
+            size="lg" 
+            className="w-full h-14 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow" 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
                 <Loader2 className="w-5 h-5 animate-spin" />
                 Processing...
-              </> : <>
+              </>
+            ) : (
+              <>
                 Get My Free Demo
                 <ArrowRight className="w-5 h-5 ml-1" />
-              </>}
+              </>
+            )}
           </Button>
 
           {/* Trust Signals */}
@@ -182,15 +260,19 @@ const HeroForm = ({
       <div className="bg-muted/50 border-t border-border/50 px-4 py-3">
         <div className="flex items-center justify-center gap-4">
           <div className="flex -space-x-2">
-            {[1, 2, 3, 4].map(i => <div key={i} className="w-7 h-7 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-card flex items-center justify-center">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="w-7 h-7 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-card flex items-center justify-center">
                 <span className="text-[8px] font-bold text-foreground/70">👤</span>
-              </div>)}
+              </div>
+            ))}
           </div>
           <div className="text-xs text-muted-foreground">
             <span className="font-semibold text-foreground">4.9/5</span> from 500+ reviews
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default HeroForm;
