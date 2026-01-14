@@ -16,6 +16,8 @@ interface LeadNotificationRequest {
   company: string;
   email?: string;
   source: string;
+  location?: string;
+  city?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -31,7 +33,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "Haloo Connect <onboarding@resend.dev>",
-      to: ["levis.wilson@haloocom.com"], // ✅ only Levis
+      to: ["touheed.rahman@haloocom.com"],
       subject: `New Lead from ${leadData.source}: ${leadData.name}`,
       html: `
         <!DOCTYPE html>
@@ -80,6 +82,18 @@ const handler = async (req: Request): Promise<Response> => {
               </div>
 
               <div class="field">
+                <span class="label">Location:</span>
+                <span class="value">${leadData.location || 'Not provided'}</span>
+              </div>
+
+              ${leadData.city ? `
+              <div class="field">
+                <span class="label">City:</span>
+                <span class="value">${leadData.city}</span>
+              </div>
+              ` : ''}
+
+              <div class="field">
                 <span class="label">Source:</span>
                 <span class="value">${leadData.source}</span>
               </div>
@@ -126,4 +140,3 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
-

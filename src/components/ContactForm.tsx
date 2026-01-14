@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
+import { CountrySelect, CitySelect } from "./LocationSelect";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
@@ -14,6 +15,8 @@ const ContactForm = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState("+65");
+  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,6 +33,27 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate location
+    if (!location) {
+      toast({
+        title: "Error",
+        description: "Please select your country.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Validate city if India is selected
+    if (location === "India" && !city) {
+      toast({
+        title: "Error",
+        description: "Please select your city.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Execute reCAPTCHA
@@ -65,6 +89,8 @@ const ContactForm = () => {
       country_code: countryCode,
       company: formData.company.trim() || "Not provided",
       email: formData.email.trim() || null,
+      location: location,
+      city: location === "India" ? city : null
     };
 
     const { error } = await supabase.from("leads").insert(leadData);
@@ -193,6 +219,31 @@ const ContactForm = () => {
                     disabled={isSubmitting}
                   />
                 </div>
+
+                {/* Location Select */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Country *
+                  </label>
+                  <CountrySelect 
+                    value={location} 
+                    onChange={(val) => {
+                      setLocation(val);
+                      if (val !== "India") setCity("");
+                    }} 
+                    disabled={isSubmitting} 
+                  />
+                </div>
+
+                {/* City Select - Only show for India */}
+                {location === "India" && (
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      City *
+                    </label>
+                    <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
+                  </div>
+                )}
                 
                 <Button 
                   type="submit" 

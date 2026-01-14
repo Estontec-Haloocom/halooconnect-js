@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { X, ArrowRight, Loader2, Gift } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
+import { CountrySelect, CitySelect } from "./LocationSelect";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
@@ -19,6 +20,8 @@ const PopupForm = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState("+971");
+  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -51,6 +54,27 @@ const PopupForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate location
+    if (!location) {
+      toast({
+        title: t("form.error"),
+        description: "Please select your country.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Validate city if India is selected
+    if (location === "India" && !city) {
+      toast({
+        title: t("form.error"),
+        description: "Please select your city.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Execute reCAPTCHA
@@ -85,6 +109,8 @@ const PopupForm = () => {
       phone: formData.phone.trim(),
       country_code: countryCode,
       company: "Not provided",
+      location: location,
+      city: location === "India" ? city : null
     };
 
     const { error } = await supabase.from("leads").insert(leadData);
@@ -165,6 +191,21 @@ const PopupForm = () => {
                 disabled={isSubmitting}
               />
             </div>
+
+            {/* Location Select */}
+            <CountrySelect 
+              value={location} 
+              onChange={(val) => {
+                setLocation(val);
+                if (val !== "India") setCity("");
+              }} 
+              disabled={isSubmitting} 
+            />
+
+            {/* City Select - Only show for India */}
+            {location === "India" && (
+              <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
+            )}
 
             <Button
               type="submit"

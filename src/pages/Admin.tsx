@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Trash2, LogOut, RefreshCw, Users, Calendar, Phone, Building2 } from "lucide-react";
+import { Trash2, LogOut, RefreshCw, Users, Calendar, Phone, Building2, MapPin } from "lucide-react";
 import logo from "@/assets/haloo-connect-logo.png";
 
 interface Lead {
@@ -14,6 +14,8 @@ interface Lead {
   company: string;
   email: string | null;
   created_at: string;
+  location: string | null;
+  city: string | null;
 }
 
 const Admin = () => {
@@ -245,7 +247,7 @@ const Admin = () => {
 
       <main className="container py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <div className="bg-card rounded-xl p-6 border border-border/50">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -294,9 +296,22 @@ const Admin = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">
-                  {leads.filter((l) => l.company).length}
+                  {leads.filter((l) => l.company && l.company !== "Not provided").length}
                 </p>
                 <p className="text-sm text-muted-foreground">Companies</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-card rounded-xl p-6 border border-border/50 hidden md:block">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-orange-500" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">
+                  {leads.filter((l) => l.location === "India").length}
+                </p>
+                <p className="text-sm text-muted-foreground">From India</p>
               </div>
             </div>
           </div>
@@ -333,6 +348,7 @@ const Admin = () => {
                     <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Phone</th>
                     <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Company</th>
                     <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden lg:table-cell">Email</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Location</th>
                     <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden sm:table-cell">Date</th>
                     <th className="text-right py-4 px-6 text-sm font-medium text-foreground">Action</th>
                   </tr>
@@ -353,6 +369,12 @@ const Admin = () => {
                       </td>
                       <td className="py-4 px-6 hidden lg:table-cell">
                         <p className="text-muted-foreground">{lead.email || "-"}</p>
+                      </td>
+                      <td className="py-4 px-6 hidden md:table-cell">
+                        <p className="text-muted-foreground">
+                          {lead.location || "-"}
+                          {lead.city && `, ${lead.city}`}
+                        </p>
                       </td>
                       <td className="py-4 px-6 hidden sm:table-cell">
                         <p className="text-sm text-muted-foreground">{formatDate(lead.created_at)}</p>
