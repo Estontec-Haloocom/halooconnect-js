@@ -12,6 +12,7 @@ import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 const EXIT_POPUP_KEY = "halooconnect_exit_popup_dismissed";
+const EXIT_POPUP_SHOWN_KEY = "halooconnect_exit_popup_shown_date";
 
 const ExitIntentPopup = () => {
   const { toast } = useToast();
@@ -28,20 +29,33 @@ const ExitIntentPopup = () => {
   });
 
   useEffect(() => {
+    // Don't show if already dismissed this session
     const dismissed = sessionStorage.getItem(EXIT_POPUP_KEY);
     if (dismissed) return;
+    
+    // Don't show more than once per 3 days
+    const lastShown = localStorage.getItem(EXIT_POPUP_SHOWN_KEY);
+    if (lastShown) {
+      const daysSinceShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+      if (daysSinceShown < 3) return;
+    }
+    
+    // Don't show if popup form was already submitted or shown
+    const popupDismissed = sessionStorage.getItem("halooconnect_popup_dismissed");
+    if (popupDismissed) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
       // Trigger when mouse moves to top of viewport (exit intent)
       if (e.clientY <= 5 && !isVisible) {
         setIsVisible(true);
+        localStorage.setItem(EXIT_POPUP_SHOWN_KEY, Date.now().toString());
       }
     };
 
-    // Add a delay before listening to prevent immediate trigger
+    // Add a longer delay (30s) before listening - much less aggressive
     const timer = setTimeout(() => {
       document.addEventListener("mouseleave", handleMouseLeave);
-    }, 5000);
+    }, 30000);
 
     return () => {
       clearTimeout(timer);

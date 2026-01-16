@@ -138,8 +138,8 @@ const HeroForm = ({
 
   return (
     <div className="bg-card/98 backdrop-blur-lg rounded-2xl shadow-elevated border border-border/50 w-full max-w-md overflow-hidden">
-      {/* Urgency Banner */}
-      <div className="bg-primary/10 border-b border-primary/20 px-4 py-2.5 flex items-center justify-center gap-2">
+      {/* Urgency Banner - hidden on smallest mobile for compactness */}
+      <div className="hidden sm:flex bg-primary/10 border-b border-primary/20 px-4 py-2.5 items-center justify-center gap-2">
         <div className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -149,31 +149,31 @@ const HeroForm = ({
         </span>
       </div>
 
-      <div className="p-6">
-        {/* Value Proposition */}
-        <div className="text-center mb-5">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-3">
+      <div className="p-4 sm:p-6">
+        {/* Value Proposition - Compact on mobile */}
+        <div className="text-center mb-4 sm:mb-5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-2 sm:mb-3">
             <Zap className="w-3 h-3 text-green-500" />
             <span className="text-[10px] font-bold text-green-600 uppercase tracking-wide">Free 14-Day Trial</span>
           </div>
-          <h3 className="text-xl font-bold mb-1 text-primary-foreground">Get Your Personalized Demo</h3>
-          <p className="text-sm text-destructive-foreground">See how Connect 6.0 can transform your business</p>
+          <h3 className="text-lg sm:text-xl font-bold mb-1 text-primary-foreground">Get Your Free Demo</h3>
+          <p className="text-xs sm:text-sm text-destructive-foreground">Transform your contact center with AI</p>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-3">
-          <div className="relative">
-            <Input 
-              name="name" 
-              type="text" 
-              placeholder={t("form.name")} 
-              required 
-              value={formData.name} 
-              onChange={handleChange} 
-              className="h-12 pl-4 pr-4 text-base" 
-              disabled={isSubmitting} 
-            />
-          </div>
+          {/* Simplified: Name field */}
+          <Input 
+            name="name" 
+            type="text" 
+            placeholder={t("form.name")} 
+            required 
+            value={formData.name} 
+            onChange={handleChange} 
+            className="h-11 sm:h-12 pl-4 pr-4 text-sm sm:text-base" 
+            disabled={isSubmitting} 
+          />
           
+          {/* Phone with country code */}
           <div className="flex">
             <CountryCodeSelect value={countryCode} onChange={setCountryCode} disabled={fixedCountryCode} />
             <Input 
@@ -183,18 +183,19 @@ const HeroForm = ({
               required 
               value={formData.phone} 
               onChange={handleChange} 
-              className="rounded-l-none h-12 flex-1 text-base" 
+              className="rounded-l-none h-11 sm:h-12 flex-1 text-sm sm:text-base" 
               disabled={isSubmitting} 
             />
           </div>
           
+          {/* Company - optional, smaller on mobile */}
           <Input 
             name="company" 
             type="text" 
-            placeholder={t("form.company")} 
+            placeholder={`${t("form.company")} (optional)`} 
             value={formData.company} 
             onChange={handleChange} 
-            className="h-12 text-base" 
+            className="h-11 sm:h-12 text-sm sm:text-base" 
             disabled={isSubmitting} 
           />
 
@@ -213,42 +214,42 @@ const HeroForm = ({
             <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
           )}
           
-          {/* High-Converting CTA Button */}
+          {/* High-Converting CTA Button - Slightly smaller on mobile */}
           <Button 
             type="submit" 
             variant="hero" 
             size="lg" 
-            className="w-full h-14 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow" 
+            className="w-full h-12 sm:h-14 text-sm sm:text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow" 
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                 Processing...
               </>
             ) : (
               <>
                 Get My Free Demo
-                <ArrowRight className="w-5 h-5 ml-1" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1" />
               </>
             )}
           </Button>
 
-          {/* Trust Signals */}
-          <div className="grid grid-cols-2 gap-2 pt-2">
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <CheckCircle className="w-3.5 h-3.5 text-green-500" />
-              <span>No credit card required</span>
+          {/* Trust Signals - Simplified for mobile: 2 items instead of 4 */}
+          <div className="grid grid-cols-2 gap-2 pt-1 sm:pt-2">
+            <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground">
+              <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-500 flex-shrink-0" />
+              <span>No credit card</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Clock className="w-3.5 h-3.5 text-primary" />
-              <span>Setup in 30 minutes</span>
+            <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground">
+              <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary flex-shrink-0" />
+              <span>30 min setup</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <div className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground">
               <Users className="w-3.5 h-3.5 text-blue-500" />
               <span>500+ happy customers</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <div className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground">
               <Shield className="w-3.5 h-3.5 text-green-500" />
               <span>Enterprise security</span>
             </div>
@@ -256,8 +257,8 @@ const HeroForm = ({
         </form>
       </div>
 
-      {/* Bottom Trust Bar */}
-      <div className="bg-muted/50 border-t border-border/50 px-4 py-3">
+      {/* Bottom Trust Bar - Hidden on mobile for compactness */}
+      <div className="hidden sm:block bg-muted/50 border-t border-border/50 px-4 py-3">
         <div className="flex items-center justify-center gap-4">
           <div className="flex -space-x-2">
             {[1, 2, 3, 4].map(i => (

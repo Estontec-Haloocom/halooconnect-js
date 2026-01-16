@@ -12,6 +12,8 @@ import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 const POPUP_DISMISSED_KEY = "halooconnect_popup_dismissed";
+const POPUP_DISMISS_COUNT_KEY = "halooconnect_popup_dismiss_count";
+const POPUP_LAST_SHOWN_KEY = "halooconnect_popup_last_shown";
 
 const PopupForm = () => {
   const { toast } = useToast();
@@ -28,14 +30,26 @@ const PopupForm = () => {
   });
 
   useEffect(() => {
-    // Check if popup was already dismissed in this session
-    const dismissed = sessionStorage.getItem(POPUP_DISMISSED_KEY);
-    if (dismissed) return;
+    // Check if popup was dismissed permanently (after 2 dismissals)
+    const dismissCount = parseInt(localStorage.getItem(POPUP_DISMISS_COUNT_KEY) || "0");
+    if (dismissCount >= 2) return;
+    
+    // Check if already shown this session
+    const shownThisSession = sessionStorage.getItem(POPUP_DISMISSED_KEY);
+    if (shownThisSession) return;
+    
+    // Check if shown recently (within last 24 hours)
+    const lastShown = localStorage.getItem(POPUP_LAST_SHOWN_KEY);
+    if (lastShown) {
+      const hoursSinceShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60);
+      if (hoursSinceShown < 24) return;
+    }
 
-    // Show popup after 5 seconds
+    // Show popup after 15 seconds (increased from 5s) - less aggressive
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 5000);
+      localStorage.setItem(POPUP_LAST_SHOWN_KEY, Date.now().toString());
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -43,6 +57,9 @@ const PopupForm = () => {
   const handleClose = () => {
     setIsVisible(false);
     sessionStorage.setItem(POPUP_DISMISSED_KEY, "true");
+    // Track dismissal count for less aggressive behavior
+    const dismissCount = parseInt(localStorage.getItem(POPUP_DISMISS_COUNT_KEY) || "0");
+    localStorage.setItem(POPUP_DISMISS_COUNT_KEY, (dismissCount + 1).toString());
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
