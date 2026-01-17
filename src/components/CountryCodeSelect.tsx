@@ -33,11 +33,11 @@ const CountryCodeSelect = ({ value, onChange, disabled = false }: CountryCodeSel
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={`flex items-center gap-1 h-12 px-3 rounded-l-xl border-2 border-r-0 border-border bg-muted/50 transition-colors min-w-[90px] ${disabled ? 'cursor-default' : 'hover:bg-muted'}`}
+        className={`flex items-center gap-1 h-10 sm:h-11 px-2 sm:px-3 rounded-l-lg border border-r-0 border-input bg-background transition-colors min-w-[72px] sm:min-w-[90px] ${disabled ? 'cursor-default' : 'hover:bg-accent'}`}
       >
-        <span className="text-xl">{selectedCountry.flag}</span>
-        <span className="text-sm font-medium text-foreground">{selectedCountry.code}</span>
-        {!disabled && <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+        <span className="text-base sm:text-xl">{selectedCountry.flag}</span>
+        <span className="text-xs sm:text-sm font-medium text-foreground">{selectedCountry.code}</span>
+        {!disabled && <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />}
       </button>
       
       {isOpen && (
