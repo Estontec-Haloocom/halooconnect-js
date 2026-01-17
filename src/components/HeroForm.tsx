@@ -262,25 +262,27 @@ const HeroForm = ({
       </div>
 
       {/* Bottom Trust Bar - Visible on all with click-to-call */}
-      <div className="bg-muted/50 border-t border-border/50 px-3 py-2 sm:px-4 sm:py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="flex -space-x-1.5">
+      <div className="bg-muted/50 border-t border-border/50 px-3 py-2.5 sm:px-4 sm:py-3">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="flex -space-x-1">
               {[1, 2, 3].map(i => (
                 <div key={i} className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-card flex items-center justify-center">
                   <span className="text-[6px] sm:text-[8px]">👤</span>
                 </div>
               ))}
             </div>
-            <div className="text-[10px] sm:text-xs text-muted-foreground">
-              <span className="font-semibold text-foreground">4.9★</span> reviews
+            <div className="flex items-center gap-1 text-xs sm:text-sm">
+              <span className="text-yellow-500">★</span>
+              <span className="font-bold text-foreground">4.9</span>
+              <span className="text-muted-foreground hidden xs:inline">rating</span>
             </div>
           </div>
           <a 
             href="tel:+919876543210" 
-            className="flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[10px] sm:text-xs font-medium text-green-600 hover:bg-green-500/20 transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-green-500/15 border border-green-500/40 text-xs font-semibold text-green-600 hover:bg-green-500/25 transition-colors whitespace-nowrap"
           >
-            📞 Prefer a call?
+            📞 <span className="hidden xs:inline">Prefer a</span> Call<span className="hidden xs:inline">?</span>
           </a>
         </div>
       </div>
