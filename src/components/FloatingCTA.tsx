@@ -3,7 +3,8 @@ import whatsappIcon from "@/assets/whatsapp-icon.svg";
 
 const FloatingCTA = () => {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    // Only show on desktop (sm and above), hidden on mobile
+    <div className="fixed bottom-6 right-6 z-50 hidden sm:flex flex-col gap-3">
       {/* WhatsApp */}
       <a
         href="https://wa.me/919886620544?text=Hi%2C%20I%27m%20interested%20in%20Connect%206.0%20demo"

@@ -1,7 +1,8 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useCallback } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SEOHead from "@/components/SEOHead";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 // Lazy load below-fold sections for better FCP/LCP
 const OutcomesSection = lazy(() => import("@/components/OutcomesSection"));
@@ -27,6 +28,16 @@ const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
 const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const Index = () => {
+  const [showPopupForm, setShowPopupForm] = useState(false);
+
+  const handleFormClick = useCallback(() => {
+    // Scroll to contact form section
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -67,7 +78,7 @@ const Index = () => {
         canonical="https://halooconnect.com"
         schema={faqSchema}
       />
-      <main className="min-h-screen">
+      <main className="min-h-screen pb-16 sm:pb-0">
         <Header />
         <HeroSection />
         <Suspense fallback={<SectionLoader />}>
@@ -85,13 +96,16 @@ const Index = () => {
           <SecuritySection />
           <ClientsSection />
           <TestimonialsSection />
-          <ContactForm />
+          <div id="contact-form">
+            <ContactForm />
+          </div>
           <CTASection />
           <Footer />
           <FloatingCTA />
           <PopupForm />
           <ExitIntentPopup />
         </Suspense>
+        <StickyMobileCTA onFormClick={handleFormClick} />
       </main>
     </>
   );
