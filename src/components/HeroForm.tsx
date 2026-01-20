@@ -10,19 +10,21 @@ import { CountrySelect, CitySelect } from "./LocationSelect";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
-
 interface HeroFormProps {
   defaultCountryCode?: string;
   fixedCountryCode?: boolean;
 }
-
 const HeroForm = ({
   defaultCountryCode = "+91",
   fixedCountryCode = false
 }: HeroFormProps) => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const {
+    t
+  } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState(defaultCountryCode);
   const [location, setLocation] = useState("");
@@ -39,7 +41,6 @@ const HeroForm = ({
     city: "Mumbai"
   });
   const cities = ["Mumbai", "Delhi", "Bangalore", "Dubai", "Singapore", "Chennai", "Hyderabad"];
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setRecentActivity({
@@ -49,17 +50,15 @@ const HeroForm = ({
     }, 8000);
     return () => clearInterval(interval);
   }, []);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate location
     if (!location) {
       toast({
@@ -69,7 +68,7 @@ const HeroForm = ({
       });
       return;
     }
-    
+
     // Validate city if India is selected
     if (location === "India" && !city) {
       toast({
@@ -79,7 +78,6 @@ const HeroForm = ({
       });
       return;
     }
-
     setIsSubmitting(true);
     const recaptchaToken = await executeRecaptcha("hero_form");
     if (!recaptchaToken) {
@@ -91,11 +89,14 @@ const HeroForm = ({
       setIsSubmitting(false);
       return;
     }
-
-    const { data: verifyData, error: verifyError } = await supabase.functions.invoke("verify-recaptcha", {
-      body: { token: recaptchaToken }
+    const {
+      data: verifyData,
+      error: verifyError
+    } = await supabase.functions.invoke("verify-recaptcha", {
+      body: {
+        token: recaptchaToken
+      }
     });
-
     if (verifyError || !verifyData?.success) {
       toast({
         title: t("form.error"),
@@ -105,7 +106,6 @@ const HeroForm = ({
       setIsSubmitting(false);
       return;
     }
-
     const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
@@ -114,8 +114,9 @@ const HeroForm = ({
       location: location,
       city: location === "India" ? city : null
     };
-
-    const { error } = await supabase.from("leads").insert(leadData);
+    const {
+      error
+    } = await supabase.from("leads").insert(leadData);
     if (error) {
       toast({
         title: t("form.error"),
@@ -125,7 +126,6 @@ const HeroForm = ({
       setIsSubmitting(false);
       return;
     }
-
     trackLeadConversion("Hero Form");
     navigate("/thank-you");
     supabase.functions.invoke("send-lead-notification", {
@@ -135,9 +135,7 @@ const HeroForm = ({
       }
     }).catch(console.error);
   };
-
-  return (
-    <div className="bg-white dark:bg-card rounded-2xl shadow-2xl border border-gray-200 dark:border-border w-full max-w-md overflow-hidden">
+  return <div className="bg-white dark:bg-card rounded-2xl shadow-2xl border border-gray-200 dark:border-border w-full max-w-md overflow-hidden">
       {/* Urgency Banner - visible on all devices for conversion */}
       <div className="flex bg-gradient-to-r from-green-500 to-emerald-600 px-3 py-2 sm:px-4 sm:py-2.5 items-center justify-center gap-2">
         <div className="relative flex h-2 w-2">
@@ -163,101 +161,44 @@ const HeroForm = ({
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-3.5">
           {/* Name + Phone side by side on larger mobile for compactness */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <Input 
-              name="name" 
-              type="text" 
-              placeholder="Your Name *" 
-              required 
-              value={formData.name} 
-              onChange={handleChange} 
-              className="h-11 sm:h-12 pl-4 pr-4 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" 
-              disabled={isSubmitting} 
-            />
+            <Input name="name" type="text" placeholder="Your Name *" required value={formData.name} onChange={handleChange} className="h-11 sm:h-12 pl-4 pr-4 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" disabled={isSubmitting} />
             
             {/* Phone with country code */}
             <div className="flex">
               <CountryCodeSelect value={countryCode} onChange={setCountryCode} disabled={fixedCountryCode} />
-              <Input 
-                name="phone" 
-                type="tel" 
-                placeholder={getPlaceholderPhone(countryCode)} 
-                required 
-                value={formData.phone} 
-                onChange={handleChange} 
-                className="rounded-l-none h-11 sm:h-12 flex-1 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" 
-                disabled={isSubmitting} 
-              />
+              <Input name="phone" type="tel" placeholder={getPlaceholderPhone(countryCode)} required value={formData.phone} onChange={handleChange} className="rounded-l-none h-11 sm:h-12 flex-1 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" disabled={isSubmitting} />
             </div>
           </div>
           
           {/* Company + Location side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <Input 
-              name="company" 
-              type="text" 
-              placeholder="Company (optional)" 
-              value={formData.company} 
-              onChange={handleChange} 
-              className="h-11 sm:h-12 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" 
-              disabled={isSubmitting} 
-            />
+            <Input name="company" type="text" placeholder="Company (optional)" value={formData.company} onChange={handleChange} className="h-11 sm:h-12 text-sm bg-gray-50 dark:bg-background border-gray-300 dark:border-input text-gray-900 dark:text-foreground placeholder:text-gray-500 dark:placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" disabled={isSubmitting} />
 
-            <CountrySelect 
-              value={location} 
-              onChange={(val) => {
-                setLocation(val);
-                if (val !== "India") setCity("");
-              }} 
-              disabled={isSubmitting} 
-            />
+            <CountrySelect value={location} onChange={val => {
+            setLocation(val);
+            if (val !== "India") setCity("");
+          }} disabled={isSubmitting} />
           </div>
 
           {/* City Select - Only show for India */}
-          {location === "India" && (
-            <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
-          )}
+          {location === "India" && <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />}
           
           {/* High-Converting CTA Button with stronger copy */}
-          <Button 
-            type="submit" 
-            variant="hero" 
-            size="lg" 
-            className="w-full h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:to-primary text-white animate-pulse hover:animate-none hover:scale-[1.02]" 
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <>
+          <Button type="submit" variant="hero" size="lg" className="w-full h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:to-primary text-white animate-pulse hover:animate-none hover:scale-[1.02]" disabled={isSubmitting}>
+            {isSubmitting ? <>
                 <Loader2 className="w-5 h-5 animate-spin" />
                 <span className="ml-2">Booking Your Slot...</span>
-              </>
-            ) : (
-              <>
+              </> : <>
                 🚀 Book My Free Demo Now
                 <ArrowRight className="w-5 h-5 ml-2" />
-              </>
-            )}
+              </>}
           </Button>
 
           {/* Immediate callback promise */}
-          <p className="text-center text-xs sm:text-sm text-gray-600 dark:text-muted-foreground font-medium">
-            ⚡ We'll call you within <span className="font-bold text-primary">5 minutes</span>
-          </p>
+          
 
           {/* Trust Signals - Always visible */}
-          <div className="flex items-center justify-center gap-4 sm:gap-5 pt-2">
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700 dark:text-muted-foreground">
-              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-              <span className="font-medium">Free trial</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700 dark:text-muted-foreground">
-              <Shield className="w-4 h-4 text-green-500 flex-shrink-0" />
-              <span className="font-medium">No credit card</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700 dark:text-muted-foreground">
-              <Users className="w-4 h-4 text-blue-500 flex-shrink-0" />
-              <span className="font-medium">500+ clients</span>
-            </div>
-          </div>
+          
         </form>
       </div>
 
@@ -266,11 +207,9 @@ const HeroForm = ({
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex -space-x-1.5">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border-2 border-white dark:border-card flex items-center justify-center shadow-sm">
+              {[1, 2, 3].map(i => <div key={i} className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border-2 border-white dark:border-card flex items-center justify-center shadow-sm">
                   <span className="text-[8px] sm:text-[10px]">👤</span>
-                </div>
-              ))}
+                </div>)}
             </div>
             <div className="flex items-center gap-1.5 text-sm sm:text-base">
               <span className="text-yellow-500 text-base">★</span>
@@ -278,16 +217,11 @@ const HeroForm = ({
               <span className="text-gray-600 dark:text-muted-foreground">rating</span>
             </div>
           </div>
-          <a 
-            href="tel:+919876543210" 
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white text-xs sm:text-sm font-semibold hover:bg-green-600 transition-colors shadow-md whitespace-nowrap"
-          >
+          <a href="tel:+919876543210" className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 text-white text-xs sm:text-sm font-semibold hover:bg-green-600 transition-colors shadow-md whitespace-nowrap">
             📞 <span className="hidden xs:inline">Prefer a</span> Call<span className="hidden xs:inline">?</span>
           </a>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default HeroForm;
