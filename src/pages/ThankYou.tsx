@@ -33,32 +33,7 @@ const ThankYou = () => {
             </p>
 
             {/* What's Next */}
-            <div className="bg-card rounded-2xl p-8 border border-border/50 mb-8 animate-fade-in">
-              <h2 className="text-xl font-semibold text-foreground mb-6">What Happens Next?</h2>
-              <div className="grid md:grid-cols-3 gap-6 text-left">
-                <div className="text-center">
-                  <div className="w-10 h-10 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3">
-                    <span className="text-primary font-bold">1</span>
-                  </div>
-                  <h3 className="font-medium text-foreground mb-1">Review</h3>
-                  <p className="text-sm text-muted-foreground">Our team reviews your requirements</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-10 h-10 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3">
-                    <span className="text-primary font-bold">2</span>
-                  </div>
-                  <h3 className="font-medium text-foreground mb-1">Contact</h3>
-                  <p className="text-sm text-muted-foreground">We reach out to schedule your demo</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-10 h-10 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-3">
-                    <span className="text-primary font-bold">3</span>
-                  </div>
-                  <h3 className="font-medium text-foreground mb-1">Demo</h3>
-                  <p className="text-sm text-muted-foreground">Experience Connect 6.0 in action</p>
-                </div>
-              </div>
-            </div>
+            
 
             {/* Contact Info */}
             
