@@ -12,7 +12,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
           <div className="lg:col-span-1">
-            <img src={logo} alt="Haloo Connect" className="h-10 w-auto brightness-0 invert mb-4" />
+            <img 
+              src={logo} 
+              alt="Haloo Connect" 
+              className="h-10 w-auto mb-4 filter invert brightness-0" 
+            />
             <p className="text-secondary-foreground/70 text-sm mb-4">
               {t("footer.description")}
             </p>
@@ -22,7 +26,7 @@ const Footer = () => {
                 href="https://www.instagram.com/haloocomglobal_?igsh=MmlyaTgwNHZzZ3U=" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors"
+                className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors p-1"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -31,7 +35,7 @@ const Footer = () => {
                 href="https://www.facebook.com/haloocom/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors"
+                className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors p-1"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -44,22 +48,27 @@ const Footer = () => {
             <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.home")}
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/about" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.aboutUs")}
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/contact" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.contactUs")}
                 </Link>
               </li>
               <li>
-                <a href="https://haloocom.com/blog/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <a 
+                  href="https://haloocom.com/blog/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1"
+                >
                   {t("footer.blog")}
                 </a>
               </li>
@@ -71,54 +80,74 @@ const Footer = () => {
             <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.services")}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://haloocom.com/services/halooconnect/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <a 
+                  href="https://haloocom.com/services/halooconnect/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1"
+                >
                   {t("footer.contactCenter")}
                 </a>
               </li>
               <li>
-                <a href="https://haloocom.com/hexa-ai/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <a 
+                  href="https://haloocom.com/hexa-ai/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1"
+                >
                   {t("footer.hexaAi")}
                 </a>
               </li>
               <li>
-                <a href="https://haloocom.com/services/halooxchange/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <a 
+                  href="https://haloocom.com/services/halooxchange/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1"
+                >
                   {t("footer.unifiedComm")}
                 </a>
               </li>
               <li>
-                <a href="https://haloocom.com/connectplus-crm-dialer/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <a 
+                  href="https://haloocom.com/connectplus-crm-dialer/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1"
+                >
                   {t("footer.crmDialer")}
                 </a>
               </li>
             </ul>
           </div>
           
-          {/* Our Presence */}
+          {/* Our Presence - Fixed routes */}
           <div>
             <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.ourPresence")}</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/singapore" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.singapore")}
                 </Link>
               </li>
               <li>
-                <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.uae")}
                 </Link>
               </li>
               <li>
-                <Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/india" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.india")}
                 </Link>
               </li>
               <li>
-                <Link to="/singapore" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/kenya" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.kenya")}
                 </Link>
               </li>
               <li>
-                <Link to="/malaysia" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/nigeria" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors block py-1">
                   {t("footer.nigeria")}
                 </Link>
               </li>
@@ -130,7 +159,7 @@ const Footer = () => {
             <h4 className="text-secondary-foreground font-semibold mb-4">{t("footer.contact")}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 text-secondary-foreground/70 mt-0.5" />
+                <Phone className="w-4 h-4 text-secondary-foreground/70 mt-0.5 flex-shrink-0" />
                 <div className="text-secondary-foreground/70 text-sm space-y-1">
                   <p>🇸🇬 +65 8376 5007</p>
                   <p>🇦🇪 +971 50 429 8422</p>
@@ -138,8 +167,11 @@ const Footer = () => {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-secondary-foreground/70 mt-0.5" />
-                <a href="mailto:enquiry@haloocom.com" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Mail className="w-4 h-4 text-secondary-foreground/70 mt-0.5 flex-shrink-0" />
+                <a 
+                  href="mailto:enquiry@haloocom.com" 
+                  className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors"
+                >
                   enquiry@haloocom.com
                 </a>
               </li>
@@ -152,10 +184,20 @@ const Footer = () => {
             © {new Date().getFullYear()} Haloocom. {t("footer.copyright")}.
           </p>
           <div className="flex items-center gap-6">
-            <a href="https://haloocom.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/50 text-sm hover:text-secondary-foreground transition-colors">
+            <a 
+              href="https://haloocom.com/privacy-policy/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-secondary-foreground/50 text-sm hover:text-secondary-foreground transition-colors"
+            >
               {t("footer.privacyPolicy")}
             </a>
-            <a href="https://haloocom.com/terms-and-conditions/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/50 text-sm hover:text-secondary-foreground transition-colors">
+            <a 
+              href="https://haloocom.com/terms-and-conditions/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-secondary-foreground/50 text-sm hover:text-secondary-foreground transition-colors"
+            >
               {t("footer.terms")}
             </a>
           </div>
