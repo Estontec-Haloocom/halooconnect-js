@@ -207,13 +207,12 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           {location === "India" && <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />}
           
           {/* High-Converting CTA Button with stronger copy */}
-          <Button type="submit" variant="hero" size="lg" className="w-full h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:to-primary text-white animate-pulse hover:animate-none hover:scale-[1.02]" disabled={isSubmitting}>
+          <Button type="submit" variant="hero" size="lg" className="w-full h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/95 hover:to-primary text-white" disabled={isSubmitting}>
             {isSubmitting ? <>
                 <Loader2 className="w-5 h-5 animate-spin" />
                 <span className="ml-2">Booking Your Slot...</span>
               </> : <>
-                🚀 Book My Free Demo Now
-                <ArrowRight className="w-5 h-5 ml-2" />
+                Book My Free Demo Now
               </>}
           </Button>
           {/* Immediate callback promise */}

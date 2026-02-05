@@ -1,6 +1,6 @@
 import { CheckCircle, Phone, MessageCircle, Mail, Sparkles, Play, ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import heroBg from "@/assets/hero-bg.png";
+import heroContactCenter from "@/assets/hero-contact-center.jpg";
 import HeroForm from "./HeroForm";
 
 // Client logos for social proof
@@ -36,14 +36,14 @@ const HeroSection = () => {
       {/* Background */}
       <div className="absolute inset-0">
         <img 
-          src={heroBg} 
+          src={heroContactCenter} 
           alt="" 
           className="w-full h-full object-cover" 
           loading="eager" 
           fetchPriority="high" 
         />
-        <div className="absolute inset-0 bg-secondary/95" />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/80 via-secondary/90 to-secondary" />
+        <div className="absolute inset-0 bg-secondary/85" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1A1F71]/90 via-secondary/85 to-secondary/90" />
         {/* Animated gradient orbs - hidden on mobile for performance */}
         <div className="hidden md:block absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
         <div className="hidden md:block absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float animation-delay-200" />
