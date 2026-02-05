@@ -42,11 +42,11 @@ const HeroSection = () => {
           loading="eager" 
           fetchPriority="high" 
         />
-        <div className="absolute inset-0 bg-secondary/60" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1A1F71]/70 via-secondary/60 to-secondary/70" />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-black/60" />
         {/* Animated gradient orbs - hidden on mobile for performance */}
-        <div className="hidden md:block absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="hidden md:block absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float animation-delay-200" />
+        <div className="hidden md:block absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="hidden md:block absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float animation-delay-200" />
       </div>
 
       {/* Content */}
