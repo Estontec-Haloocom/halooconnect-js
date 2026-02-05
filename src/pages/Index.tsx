@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SEOHead from "@/components/SEOHead";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import TrustBanner from "@/components/TrustBanner";
 
 // Lazy load below-fold sections for better FCP/LCP
 const OutcomesSection = lazy(() => import("@/components/OutcomesSection"));
@@ -81,6 +82,7 @@ const Index = () => {
       <main className="min-h-screen pb-16 sm:pb-0">
         <Header />
         <HeroSection />
+        <TrustBanner />
         <Suspense fallback={<SectionLoader />}>
           <OutcomesSection />
           <TopFeaturesSection />
