@@ -24,10 +24,12 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="container relative z-10 flex-1 flex flex-col">
-        <div className="flex-1 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        
+        {/* 🔑 MOBILE = FLEX | DESKTOP = GRID */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
-          {/* Left Content – Headline & Text (TOP on Mobile) */}
-          <div className="text-center lg:text-left order-1">
+          {/* TEXT — ALWAYS FIRST */}
+          <div className="text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6 text-white">
               AI-Powered{" "}
               <span className="text-primary">Contact Center</span>{" "}
@@ -39,31 +41,27 @@ const HeroSection = () => {
               Trusted by 500+ enterprises worldwide.
             </p>
 
-            {/* Key Stats – Hidden on Mobile */}
+            {/* Stats – hidden on mobile */}
             <div className="hidden md:flex items-center gap-8 text-white/70">
-              <div className="text-center lg:text-left">
+              <div>
                 <div className="text-2xl font-bold text-white">40%</div>
                 <div className="text-sm">Reduced Handling Time</div>
               </div>
-
               <div className="w-px h-10 bg-white/20" />
-
-              <div className="text-center lg:text-left">
+              <div>
                 <div className="text-2xl font-bold text-white">95%</div>
                 <div className="text-sm">Customer Satisfaction</div>
               </div>
-
               <div className="w-px h-10 bg-white/20" />
-
-              <div className="text-center lg:text-left">
+              <div>
                 <div className="text-2xl font-bold text-white">60%</div>
                 <div className="text-sm">Cost Reduction</div>
               </div>
             </div>
           </div>
 
-          {/* Right – Form (BELOW text on Mobile) */}
-          <div className="flex justify-center lg:justify-end order-2 mt-6 lg:mt-0">
+          {/* FORM — ALWAYS BELOW ON MOBILE */}
+          <div className="flex justify-center lg:justify-end mt-6 lg:mt-0 w-full">
             <HeroForm />
           </div>
 
