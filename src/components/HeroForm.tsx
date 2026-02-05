@@ -163,7 +163,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 };
   return <div className="bg-white dark:bg-card rounded-2xl shadow-2xl border border-gray-200 dark:border-border w-full max-w-md overflow-hidden">
       {/* Urgency Banner - visible on all devices for conversion */}
-      <div className="flex bg-gradient-to-r from-green-500 to-emerald-600 px-3 py-2 sm:px-4 sm:py-2.5 items-center justify-center gap-2">
+      <div className="flex bg-gradient-to-r from-secondary to-secondary/90 px-3 py-2 sm:px-4 sm:py-2.5 items-center justify-center gap-2">
         <div className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
