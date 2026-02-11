@@ -1,7 +1,7 @@
 import { Globe, Users, Clock, ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import hexaImage from "@/assets/hexa-ai-assistant.png";
+import hexaVideo from "@/assets/hexa-ai-assistant.mp4";
 
 interface Feature {
   icon: LucideIcon;
@@ -37,9 +37,12 @@ const HexaAISection = () => {
           {/* Image Side */}
           <div className="order-2 lg:order-1 relative">
             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={hexaImage}
-                alt="HEXA AI Assistant - Multilingual digital workforce"
+              <video
+                src={hexaVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
               />
             </div>

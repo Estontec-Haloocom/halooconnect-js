@@ -1,6 +1,6 @@
 import { CheckCircle, Phone, MessageCircle, Mail, Sparkles, Play, ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import heroContactCenter from "@/assets/hero-contact-center.jpg";
+import heroContactCenterVideo from "@/assets/hero-contact-center.mp4";
 import HeroForm from "./HeroForm";
 
 const HeroSection = () => {
@@ -10,15 +10,16 @@ const HeroSection = () => {
     <section className="relative min-h-[90vh] flex flex-col justify-center pt-20 pb-8 md:pt-24 md:pb-16 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img 
-          src={heroContactCenter} 
-          alt="" 
+        <video 
+          src={heroContactCenterVideo} 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
           className="w-full h-full object-cover" 
-          loading="eager" 
-          fetchPriority="high" 
         />
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/55 to-black/45" />
       </div>
 
       {/* Content */}

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import hexaPerformanceImage from "@/assets/hexa-performance.png";
+import hexaPerformanceVideo from "@/assets/hexa-performance.mp4";
 
 const HexaPerformanceSection = () => {
   const { t } = useTranslation();
@@ -31,9 +31,12 @@ const HexaPerformanceSection = () => {
     <section className="py-20 md:py-28 bg-background overflow-hidden">
       {/* Hero Image */}
       <div className="w-full h-48 md:h-72 overflow-hidden relative mb-12">
-        <img
-          src={hexaPerformanceImage}
-          alt="HEXA AI in action - Call center performance"
+        <video
+          src={hexaPerformanceVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />

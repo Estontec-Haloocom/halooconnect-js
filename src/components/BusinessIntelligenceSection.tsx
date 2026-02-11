@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, MessageSquare, Filter, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import voiceSearchImage from "@/assets/voice-search-ai.png";
+import voiceSearchVideo from "@/assets/voice-search-ai.mp4";
 
 const BusinessIntelligenceSection = () => {
   const { t } = useTranslation();
@@ -72,9 +72,12 @@ const BusinessIntelligenceSection = () => {
           {/* Image Side */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={voiceSearchImage}
-                alt="AI-Powered Voice Search visualization"
+              <video
+                src={voiceSearchVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-auto object-cover"
               />
             </div>

@@ -1,7 +1,7 @@
 import { Server, Cloud, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import onPremiseImage from "@/assets/on-premise-server.png";
-import cloudImage from "@/assets/cloud-deployment.png";
+import onPremiseVideo from "@/assets/on-premise-server.mp4";
+import cloudVideo from "@/assets/cloud-deployment.mp4";
 
 const DeploymentSection = () => {
   const { t } = useTranslation();
@@ -34,9 +34,12 @@ const DeploymentSection = () => {
           {/* On-Premise */}
           <div className="bg-card rounded-2xl overflow-hidden border border-border/50">
             <div className="aspect-video overflow-hidden">
-              <img
-                src={onPremiseImage}
-                alt="On-Premise Server Infrastructure"
+              <video
+                src={onPremiseVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
               />
             </div>
@@ -62,9 +65,12 @@ const DeploymentSection = () => {
           {/* Cloud */}
           <div className="bg-card rounded-2xl overflow-hidden border border-border/50">
             <div className="aspect-video overflow-hidden">
-              <img
-                src={cloudImage}
-                alt="Cloud Deployment Infrastructure"
+              <video
+                src={cloudVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
               />
             </div>
