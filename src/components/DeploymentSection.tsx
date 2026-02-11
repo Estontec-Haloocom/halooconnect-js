@@ -1,9 +1,7 @@
 import { Server, Cloud, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import onPremiseVideo from "@/assets/on-premise-server.mp4";
-import onPremisePoster from "@/assets/on-premise-server.png";
-import cloudVideo from "@/assets/cloud-deployment.mp4";
-import cloudPoster from "@/assets/cloud-deployment.png";
+import onPremiseImg from "@/assets/on-premise-server-img.jpg";
+import cloudImg from "@/assets/cloud-deployment-img.jpg";
 
 const DeploymentSection = () => {
   const { t } = useTranslation();
@@ -36,15 +34,11 @@ const DeploymentSection = () => {
           {/* On-Premise */}
           <div className="bg-card rounded-2xl overflow-hidden border border-border/50">
             <div className="aspect-video overflow-hidden">
-              <video
-                src={onPremiseVideo}
-                poster={onPremisePoster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
+              <img
+                src={onPremiseImg}
+                alt="On-premise server infrastructure"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             <div className="p-6">
@@ -52,9 +46,7 @@ const DeploymentSection = () => {
                 <Server className="w-5 h-5 text-primary" />
                 <h3 className="text-xl font-semibold text-foreground">{t("deployment.onPremise.title")}</h3>
               </div>
-              <p className="text-muted-foreground mb-4">
-                {t("deployment.onPremise.description")}
-              </p>
+              <p className="text-muted-foreground mb-4">{t("deployment.onPremise.description")}</p>
               <ul className="space-y-2">
                 {onPremiseFeatures.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -69,15 +61,11 @@ const DeploymentSection = () => {
           {/* Cloud */}
           <div className="bg-card rounded-2xl overflow-hidden border border-border/50">
             <div className="aspect-video overflow-hidden">
-              <video
-                src={cloudVideo}
-                poster={cloudPoster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
+              <img
+                src={cloudImg}
+                alt="Cloud deployment infrastructure"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             <div className="p-6">
@@ -85,9 +73,7 @@ const DeploymentSection = () => {
                 <Cloud className="w-5 h-5 text-primary" />
                 <h3 className="text-xl font-semibold text-foreground">{t("deployment.cloud.title")}</h3>
               </div>
-              <p className="text-muted-foreground mb-4">
-                {t("deployment.cloud.description")}
-              </p>
+              <p className="text-muted-foreground mb-4">{t("deployment.cloud.description")}</p>
               <ul className="space-y-2">
                 {cloudFeatures.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -107,9 +93,7 @@ const DeploymentSection = () => {
           </div>
           <div>
             <h4 className="font-semibold text-foreground mb-1">{t("deployment.hybrid.title")}</h4>
-            <p className="text-muted-foreground text-sm">
-              {t("deployment.hybrid.description")}
-            </p>
+            <p className="text-muted-foreground text-sm">{t("deployment.hybrid.description")}</p>
           </div>
         </div>
       </div>

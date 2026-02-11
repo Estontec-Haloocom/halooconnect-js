@@ -1,29 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, MessageSquare, Filter, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import voiceSearchVideo from "@/assets/voice-search-ai.mp4";
-import voiceSearchPoster from "@/assets/voice-search-ai.png";
+import voiceSearchImg from "@/assets/voice-search-ai-img.jpg";
 
 const BusinessIntelligenceSection = () => {
   const { t } = useTranslation();
 
   const features = [
-    {
-      icon: Search,
-      textKey: "businessIntelligence.feature1",
-    },
-    {
-      icon: MessageSquare,
-      textKey: "businessIntelligence.feature2",
-    },
-    {
-      icon: Filter,
-      textKey: "businessIntelligence.feature3",
-    },
-    {
-      icon: TrendingUp,
-      textKey: "businessIntelligence.feature4",
-    },
+    { icon: Search, textKey: "businessIntelligence.feature1" },
+    { icon: MessageSquare, textKey: "businessIntelligence.feature2" },
+    { icon: Filter, textKey: "businessIntelligence.feature3" },
+    { icon: TrendingUp, textKey: "businessIntelligence.feature4" },
   ];
 
   return (
@@ -73,15 +60,11 @@ const BusinessIntelligenceSection = () => {
           {/* Image Side */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
-              <video
-                src={voiceSearchVideo}
-                poster={voiceSearchPoster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
+              <img
+                src={voiceSearchImg}
+                alt="Voice search AI and business intelligence visualization"
                 className="w-full h-auto object-cover"
+                loading="lazy"
               />
             </div>
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />

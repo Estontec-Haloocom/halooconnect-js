@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import sentimentVideo from "@/assets/sentiment-analysis.mp4";
-import sentimentPoster from "@/assets/sentiment-analysis.png";
+import sentimentImg from "@/assets/sentiment-analysis-img.jpg";
 
 const SentimentSection = () => {
   const { t } = useTranslation();
@@ -37,15 +36,11 @@ const SentimentSection = () => {
           {/* Image Side */}
           <div className="relative">
             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <video
-                src={sentimentVideo}
-                poster={sentimentPoster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
+              <img
+                src={sentimentImg}
+                alt="AI Sentiment Analysis visualization"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />

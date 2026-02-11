@@ -12,6 +12,7 @@ import ContactUs from "./pages/ContactUs";
 import UAELanding from "./pages/UAELanding";
 import SingaporeLanding from "./pages/SingaporeLanding";
 import MalaysiaLanding from "./pages/MalaysiaLanding";
+import PhilippinesLanding from "./pages/PhilippinesLanding";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/uae" element={<UAELanding />} />
             <Route path="/singapore" element={<SingaporeLanding />} />
             <Route path="/malaysia" element={<MalaysiaLanding />} />
+            <Route path="/philippines" element={<PhilippinesLanding />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
