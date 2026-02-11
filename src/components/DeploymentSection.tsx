@@ -1,7 +1,9 @@
 import { Server, Cloud, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import onPremiseVideo from "@/assets/on-premise-server.mp4";
+import onPremisePoster from "@/assets/on-premise-server.png";
 import cloudVideo from "@/assets/cloud-deployment.mp4";
+import cloudPoster from "@/assets/cloud-deployment.png";
 
 const DeploymentSection = () => {
   const { t } = useTranslation();
@@ -36,10 +38,12 @@ const DeploymentSection = () => {
             <div className="aspect-video overflow-hidden">
               <video
                 src={onPremiseVideo}
+                poster={onPremisePoster}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -67,10 +71,12 @@ const DeploymentSection = () => {
             <div className="aspect-video overflow-hidden">
               <video
                 src={cloudVideo}
+                poster={cloudPoster}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             </div>

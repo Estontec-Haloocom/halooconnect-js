@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import hexaPerformanceVideo from "@/assets/hexa-performance.mp4";
+import hexaPerformancePoster from "@/assets/hexa-performance.png";
 
 const HexaPerformanceSection = () => {
   const { t } = useTranslation();
@@ -33,10 +34,12 @@ const HexaPerformanceSection = () => {
       <div className="w-full h-48 md:h-72 overflow-hidden relative mb-12">
         <video
           src={hexaPerformanceVideo}
+          poster={hexaPerformancePoster}
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />

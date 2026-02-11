@@ -2,6 +2,7 @@ import { Globe, Users, Clock, ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import hexaVideo from "@/assets/hexa-ai-assistant.mp4";
+import hexaPoster from "@/assets/hexa-ai-assistant.png";
 
 interface Feature {
   icon: LucideIcon;
@@ -39,10 +40,12 @@ const HexaAISection = () => {
             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <video
                 src={hexaVideo}
+                poster={hexaPoster}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, MessageSquare, Filter, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import voiceSearchVideo from "@/assets/voice-search-ai.mp4";
+import voiceSearchPoster from "@/assets/voice-search-ai.png";
 
 const BusinessIntelligenceSection = () => {
   const { t } = useTranslation();
@@ -74,10 +75,12 @@ const BusinessIntelligenceSection = () => {
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <video
                 src={voiceSearchVideo}
+                poster={voiceSearchPoster}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-auto object-cover"
               />
             </div>

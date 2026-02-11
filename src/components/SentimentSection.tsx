@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import sentimentVideo from "@/assets/sentiment-analysis.mp4";
+import sentimentPoster from "@/assets/sentiment-analysis.png";
 
 const SentimentSection = () => {
   const { t } = useTranslation();
@@ -38,10 +39,12 @@ const SentimentSection = () => {
             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <video
                 src={sentimentVideo}
+                poster={sentimentPoster}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             </div>

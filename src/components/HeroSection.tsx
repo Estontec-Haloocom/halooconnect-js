@@ -1,6 +1,7 @@
 import { CheckCircle, Phone, MessageCircle, Mail, Sparkles, Play, ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import heroContactCenterVideo from "@/assets/hero-contact-center.mp4";
+import heroContactCenterPoster from "@/assets/hero-contact-center.jpg";
 import HeroForm from "./HeroForm";
 
 const HeroSection = () => {
@@ -12,10 +13,12 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <video 
           src={heroContactCenterVideo} 
+          poster={heroContactCenterPoster}
           autoPlay 
           loop 
           muted 
           playsInline
+          preload="auto"
           className="w-full h-full object-cover" 
         />
         <div className="absolute inset-0 bg-black/55" />
