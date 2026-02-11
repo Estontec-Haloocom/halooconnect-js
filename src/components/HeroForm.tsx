@@ -49,7 +49,7 @@ const HeroForm = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate country
+    // Country validation
     if (!location) {
       toast({
         title: t("form.error"),
@@ -59,7 +59,7 @@ const HeroForm = ({
       return;
     }
 
-    // Validate city only for India
+    // City validation only for India
     if (location === "India" && !city) {
       toast({
         title: t("form.error"),
@@ -72,15 +72,13 @@ const HeroForm = ({
     setIsSubmitting(true);
 
     try {
-      // Clean phone number
       const cleanPhone = formData.phone
         .trim()
-        .replace(/[\s\-\(\)]/g, "");
+        .replace(/[\s\-()]/g, "");
 
       const fullPhoneNumber =
         countryCode.replace("+", "") + cleanPhone;
 
-      // 🔔 Instant call trigger
       toast({
         title: "📞 Initiating Call...",
         description: "Our expert will call you shortly!"
@@ -100,7 +98,7 @@ const HeroForm = ({
       console.error("Call trigger failed:", err);
     }
 
-    // 🔐 reCAPTCHA
+    // reCAPTCHA
     const recaptchaToken = await executeRecaptcha("hero_form");
 
     if (!recaptchaToken) {
@@ -113,12 +111,12 @@ const HeroForm = ({
       return;
     }
 
-    const { data: verifyData, error: verifyError } =
+    const { data, error } =
       await supabase.functions.invoke("verify-recaptcha", {
         body: { token: recaptchaToken }
       });
 
-    if (verifyError || !verifyData?.success) {
+    if (error || !data?.success) {
       toast({
         title: t("form.error"),
         description: "Security verification failed.",
@@ -128,7 +126,6 @@ const HeroForm = ({
       return;
     }
 
-    // 🧾 Save lead
     const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
@@ -138,9 +135,10 @@ const HeroForm = ({
       city: location === "India" ? city : null
     };
 
-    const { error } = await supabase.from("leads").insert(leadData);
+    const { error: insertError } =
+      await supabase.from("leads").insert(leadData);
 
-    if (error) {
+    if (insertError) {
       toast({
         title: t("form.error"),
         description: t("form.errorMessage"),
@@ -150,11 +148,9 @@ const HeroForm = ({
       return;
     }
 
-    // 📊 Tracking + redirect
     trackLeadConversion("Hero Form");
     navigate("/thank-you");
 
-    // 🔔 Internal notification
     supabase.functions
       .invoke("send-lead-notification", {
         body: { ...leadData, source: "Hero Form" }
@@ -163,14 +159,14 @@ const HeroForm = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
+    <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
       <div className="p-6 sm:p-8">
         <div className="text-center mb-6">
-          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+          <h3 className="text-xl sm:text-2xl font-bold">
             Request a Demo
           </h3>
           <p className="text-sm text-muted-foreground">
-            Get a personalized walkthrough of our platform
+            Get a personalized walkthrough
           </p>
         </div>
 
@@ -182,7 +178,6 @@ const HeroForm = ({
             value={formData.name}
             onChange={handleChange}
             disabled={isSubmitting}
-            className="h-12 bg-muted/50"
           />
 
           <div className="flex">
@@ -199,7 +194,7 @@ const HeroForm = ({
               value={formData.phone}
               onChange={handleChange}
               disabled={isSubmitting}
-              className="h-12 rounded-l-none bg-muted/50"
+              className="rounded-l-none"
             />
           </div>
 
@@ -209,7 +204,6 @@ const HeroForm = ({
             value={formData.company}
             onChange={handleChange}
             disabled={isSubmitting}
-            className="h-12 bg-muted/50"
           />
 
           <CountrySelect
@@ -231,9 +225,8 @@ const HeroForm = ({
 
           <Button
             type="submit"
-            size="lg"
             disabled={isSubmitting}
-            className="w-full h-12 font-semibold"
+            className="w-full"
           >
             {isSubmitting ? (
               <>
@@ -255,4 +248,5 @@ const HeroForm = ({
 };
 
 export default HeroForm;
+
 
