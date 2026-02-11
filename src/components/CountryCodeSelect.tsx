@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 const countries = [
   { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
   { code: "+971", country: "AE", flag: "🇦🇪", name: "UAE" },
-  { code: "+60", country: "MY", flag: "🇲🇾", name: "Malaysia" },
+  { code: "+63", country: "MY", flag: "PH", name: "Philippines" },
   { code: "+91", country: "IN", flag: "🇮🇳", name: "India" },
 ];
 
