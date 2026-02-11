@@ -4,9 +4,9 @@ import { ChevronDown } from "lucide-react";
 const countries = [
   { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
   { code: "+971", country: "AE", flag: "🇦🇪", name: "UAE" },
-  { code: "+63", country: "PH", flag: "🇵🇭", name: "Philippines" }, // ✅ FIXED
+  { code: "+63", country: "PH", flag: "🇵🇭", name: "Philippines" },
   { code: "+60", country: "MY", flag: "🇲🇾", name: "Malaysia" },
-  { code: "+91", country: "IN", flag: "🇮🇳", name: "India" },
+  { code: "+91", country: "IN", flag: "🇮🇳", name: "India" }
 ];
 
 export const getPlaceholderPhone = (countryCode: string) => {
@@ -15,7 +15,7 @@ export const getPlaceholderPhone = (countryCode: string) => {
       return "8376 5007";
     case "+971":
       return "50 429 8422";
-    case "+63": // ✅ ADDED
+    case "+63":
       return "9123 456 789";
     case "+60":
       return "12 345 6789";
