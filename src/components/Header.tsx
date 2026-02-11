@@ -27,6 +27,7 @@ const Header = () => {
     { label: t("nav.uae"), href: "/uae" },
     { label: t("nav.singapore"), href: "/singapore" },
     { label: t("nav.malaysia"), href: "/malaysia" },
+    { label: "Philippines", href: "/philippines" },
   ];
 
   const scrollToForm = () => {

@@ -94,6 +94,7 @@ const Footer = () => {
               <li><Link to="/" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground">{t("footer.singapore")}</Link></li>
               <li><Link to="/uae" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground">{t("footer.uae")}</Link></li>
               <li><Link to="/india" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground">{t("footer.india")}</Link></li>
+              <li><Link to="/philippines" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground">Philippines</Link></li>
               <li><Link to="/kenya" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground">{t("footer.kenya")}</Link></li>
               <li><Link to="/nigeria" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground">{t("footer.nigeria")}</Link></li>
             </ul>
