@@ -49,9 +49,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://haloocom.com/blog/" target="_blank" rel="noopener noreferrer" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                <Link to="/blog" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
                   {t("footer.blog")}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

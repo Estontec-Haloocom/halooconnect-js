@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Trash2, LogOut, RefreshCw, Users, Calendar, Phone, Building2, MapPin } from "lucide-react";
+import { Trash2, LogOut, RefreshCw, Users, Calendar, Phone, Building2, MapPin, FileText } from "lucide-react";
 import logo from "@/assets/haloo-connect-logo.png";
 
 interface Lead {
@@ -19,6 +20,7 @@ interface Lead {
 }
 
 const Admin = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -238,10 +240,16 @@ const Admin = () => {
             <img src={logo} alt="Haloo Connect" className="h-8 md:h-10" />
             <span className="text-muted-foreground hidden sm:inline">Admin Dashboard</span>
           </div>
-          <Button variant="outline" size="sm" onClick={handleLogout}>
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => navigate("/admin/blog")}>
+              <FileText className="w-4 h-4 mr-2" />
+              Blog Manager
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
+            </Button>
+          </div>
         </div>
       </header>
 
