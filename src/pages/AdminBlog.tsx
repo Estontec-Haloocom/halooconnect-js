@@ -10,7 +10,7 @@ import logo from "@/assets/haloo-connect-logo.png";
 import {
   LogOut, Plus, Edit, Trash2, Save, ArrowLeft, Search,
   Globe, FileText, Clock, ChevronDown, ExternalLink, RefreshCw,
-  Upload, Image as ImageIcon, Eye, Tag, BarChart3, CheckCircle2, AlertCircle, Info
+  Upload, Image as ImageIcon, Eye, Tag, BarChart3, CheckCircle2, AlertCircle, Info, X
 } from "lucide-react";
 
 interface BlogPost {
@@ -30,7 +30,20 @@ interface BlogPost {
   created_at: string;
   updated_at: string;
   published_at: string | null;
+  category: string | null;
+  tags: string[] | null;
 }
+
+const BLOG_CATEGORIES = [
+  "AI & Automation",
+  "Contact Center",
+  "Customer Experience",
+  "Cloud Solutions",
+  "Industry Insights",
+  "Product Updates",
+  "Best Practices",
+  "Case Studies",
+];
 
 const AdminBlog = () => {
   const { toast } = useToast();
@@ -61,6 +74,9 @@ const AdminBlog = () => {
   const [metaKeywords, setMetaKeywords] = useState("");
   const [ogImage, setOgImage] = useState("");
   const [readTime, setReadTime] = useState(5);
+  const [category, setCategory] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [tagInput, setTagInput] = useState("");
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
@@ -81,7 +97,7 @@ const AdminBlog = () => {
       .from("blog_posts")
       .select("*")
       .order("updated_at", { ascending: false });
-    setPosts(data || []);
+    setPosts((data as BlogPost[]) || []);
   };
 
   const generateSlug = (t: string) =>
@@ -96,6 +112,7 @@ const AdminBlog = () => {
     setTitle(""); setSlug(""); setExcerpt(""); setContent(""); setCoverImage("");
     setAuthor("Haloo Connect"); setStatus("draft"); setMetaTitle(""); setMetaDescription("");
     setMetaKeywords(""); setOgImage(""); setReadTime(5); setEditingPost(null); setActiveTab("content");
+    setCategory(""); setTags([]); setTagInput("");
   };
 
   const openEditor = (post?: BlogPost) => {
@@ -107,6 +124,8 @@ const AdminBlog = () => {
       setMetaTitle(post.meta_title || ""); setMetaDescription(post.meta_description || "");
       setMetaKeywords(post.meta_keywords || ""); setOgImage(post.og_image || "");
       setReadTime(post.read_time_minutes || 5);
+      setCategory(post.category || "");
+      setTags(post.tags || []);
     } else {
       resetForm();
     }
@@ -134,8 +153,18 @@ const AdminBlog = () => {
 
     setter(publicUrl);
     setLoading(false);
-    toast({ title: "Image uploaded", description: "Image uploaded successfully" });
+    toast({ title: "Image uploaded" });
   }, [toast]);
+
+  const addTag = () => {
+    const t = tagInput.trim();
+    if (t && !tags.includes(t)) {
+      setTags([...tags, t]);
+    }
+    setTagInput("");
+  };
+
+  const removeTag = (tag: string) => setTags(tags.filter(t => t !== tag));
 
   const handleSave = async (publishNow = false) => {
     if (!title.trim()) {
@@ -161,8 +190,10 @@ const AdminBlog = () => {
       meta_keywords: metaKeywords.trim() || null,
       og_image: ogImage.trim() || null,
       read_time_minutes: finalReadTime,
+      category: category || null,
+      tags: tags.length > 0 ? tags : [],
       ...(publishNow && !editingPost?.published_at ? { published_at: new Date().toISOString() } : {}),
-    };
+    } as any;
 
     let error;
     if (editingPost) {
@@ -221,6 +252,8 @@ const AdminBlog = () => {
     { label: "Content has 300+ words", pass: content.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length >= 300, critical: true },
     { label: "Title includes focus keyword", pass: metaKeywords.split(",")[0]?.trim() ? title.toLowerCase().includes(metaKeywords.split(",")[0].trim().toLowerCase()) : false, critical: false },
     { label: "Meta description includes focus keyword", pass: metaKeywords.split(",")[0]?.trim() ? metaDescription.toLowerCase().includes(metaKeywords.split(",")[0].trim().toLowerCase()) : false, critical: false },
+    { label: "Category assigned", pass: !!category, critical: false },
+    { label: "Tags added", pass: tags.length > 0, critical: false },
   ];
 
   const seoScore = Math.round((seoChecks.filter(c => c.pass).length / seoChecks.length) * 100);
@@ -314,7 +347,7 @@ const AdminBlog = () => {
                 <Textarea
                   value={excerpt}
                   onChange={(e) => setExcerpt(e.target.value)}
-                  placeholder="Brief summary of the post that appears in listings and social shares..."
+                  placeholder="Brief summary for listings and social shares..."
                   rows={2}
                 />
                 <p className="text-xs text-muted-foreground mt-1">{excerpt.length} characters</p>
@@ -349,9 +382,7 @@ const AdminBlog = () => {
                         <button type="button" onClick={() => setCoverImage("")} className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs">×</button>
                       </div>
                     ) : (
-                      <div className="rounded-lg w-full h-40 bg-muted/50 border-2 border-dashed border-border flex items-center justify-center text-muted-foreground text-sm">
-                        No cover image
-                      </div>
+                      <div className="rounded-lg w-full h-40 bg-muted/50 border-2 border-dashed border-border flex items-center justify-center text-muted-foreground text-sm">No cover image</div>
                     )}
                   </div>
                 </div>
@@ -368,7 +399,7 @@ const AdminBlog = () => {
                       {uploadingOg ? <RefreshCw className="w-4 h-4 animate-spin mr-1" /> : <Upload className="w-4 h-4 mr-1" />}
                       Upload OG Image
                     </Button>
-                    <p className="text-xs text-muted-foreground">Recommended: 1200×630px for best social media display</p>
+                    <p className="text-xs text-muted-foreground">Recommended: 1200×630px</p>
                   </div>
                   <div>
                     {ogImage ? (
@@ -377,8 +408,47 @@ const AdminBlog = () => {
                         <button type="button" onClick={() => setOgImage("")} className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs">×</button>
                       </div>
                     ) : (
-                      <div className="rounded-lg w-full h-40 bg-muted/50 border-2 border-dashed border-border flex items-center justify-center text-muted-foreground text-sm">
-                        No OG image
+                      <div className="rounded-lg w-full h-40 bg-muted/50 border-2 border-dashed border-border flex items-center justify-center text-muted-foreground text-sm">No OG image</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Category & Tags */}
+              <div className="border border-border rounded-xl p-5 space-y-4">
+                <h3 className="font-semibold text-foreground flex items-center gap-2"><Tag className="w-5 h-5 text-primary" /> Category & Tags</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">Category</label>
+                    <select
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="flex h-12 w-full rounded-xl border-2 border-border bg-background px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <option value="">Select category...</option>
+                      {BLOG_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">Tags</label>
+                    <div className="flex gap-2">
+                      <Input
+                        value={tagInput}
+                        onChange={(e) => setTagInput(e.target.value)}
+                        onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
+                        placeholder="Add tag and press Enter"
+                        className="flex-1"
+                      />
+                      <Button variant="outline" size="sm" onClick={addTag} className="h-12">Add</Button>
+                    </div>
+                    {tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {tags.map(tag => (
+                          <span key={tag} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+                            {tag}
+                            <button type="button" onClick={() => removeTag(tag)} className="hover:text-destructive"><X className="w-3 h-3" /></button>
+                          </span>
+                        ))}
                       </div>
                     )}
                   </div>
@@ -387,8 +457,8 @@ const AdminBlog = () => {
 
               {/* Post Settings */}
               <div className="border border-border rounded-xl p-5 space-y-4">
-                <h3 className="font-semibold text-foreground flex items-center gap-2"><Tag className="w-5 h-5 text-primary" /> Post Settings</h3>
-                <div className="grid md:grid-cols-2 gap-4">
+                <h3 className="font-semibold text-foreground flex items-center gap-2"><FileText className="w-5 h-5 text-primary" /> Post Settings</h3>
+                <div className="grid md:grid-cols-3 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">Author</label>
                     <Input value={author} onChange={(e) => setAuthor(e.target.value)} />
@@ -405,8 +475,8 @@ const AdminBlog = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Estimated Read Time</label>
-                    <p className="text-sm text-muted-foreground">Auto-calculated: ~{estimateReadTime(content)} min</p>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">Read Time</label>
+                    <p className="text-sm text-muted-foreground mt-2">Auto: ~{estimateReadTime(content)} min</p>
                   </div>
                 </div>
               </div>
@@ -425,21 +495,14 @@ const AdminBlog = () => {
                   <div>
                     <h3 className="font-semibold text-foreground">SEO Score</h3>
                     <p className="text-sm text-muted-foreground">
-                      {seoScore >= 70 ? "Great! Your post is well-optimized." : seoScore >= 40 ? "Good start. Fix the issues below to improve." : "Needs work. Address the critical issues below."}
+                      {seoScore >= 70 ? "Great! Your post is well-optimized." : seoScore >= 40 ? "Good start. Fix the issues below." : "Needs work. Address critical issues."}
                     </p>
                   </div>
                 </div>
-
                 <div className="space-y-2">
                   {seoChecks.map((check, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm">
-                      {check.pass ? (
-                        <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
-                      ) : check.critical ? (
-                        <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-                      ) : (
-                        <Info className="w-4 h-4 text-yellow-500 flex-shrink-0" />
-                      )}
+                      {check.pass ? <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> : check.critical ? <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" /> : <Info className="w-4 h-4 text-yellow-500 flex-shrink-0" />}
                       <span className={check.pass ? "text-muted-foreground" : "text-foreground"}>{check.label}</span>
                       {check.critical && !check.pass && <span className="text-xs text-red-500 ml-auto">Critical</span>}
                     </div>
@@ -453,26 +516,21 @@ const AdminBlog = () => {
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 flex items-center justify-between">
                     Meta Title
-                    <span className={`text-xs ${metaTitle.length > 60 ? 'text-red-500' : metaTitle.length >= 10 ? 'text-green-500' : 'text-muted-foreground'}`}>
-                      {metaTitle.length}/60
-                    </span>
+                    <span className={`text-xs ${metaTitle.length > 60 ? 'text-red-500' : metaTitle.length >= 10 ? 'text-green-500' : 'text-muted-foreground'}`}>{metaTitle.length}/60</span>
                   </label>
                   <Input value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="SEO title (10-60 characters)" />
-                  {metaTitle.length > 60 && <p className="text-xs text-red-500 mt-1">Title will be truncated in search results</p>}
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 flex items-center justify-between">
                     Meta Description
-                    <span className={`text-xs ${metaDescription.length > 160 ? 'text-red-500' : metaDescription.length >= 50 ? 'text-green-500' : 'text-muted-foreground'}`}>
-                      {metaDescription.length}/160
-                    </span>
+                    <span className={`text-xs ${metaDescription.length > 160 ? 'text-red-500' : metaDescription.length >= 50 ? 'text-green-500' : 'text-muted-foreground'}`}>{metaDescription.length}/160</span>
                   </label>
                   <Textarea value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="SEO description (50-160 characters)" rows={3} />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">Focus Keywords</label>
                   <Input value={metaKeywords} onChange={(e) => setMetaKeywords(e.target.value)} placeholder="primary keyword, secondary keyword, ..." />
-                  <p className="text-xs text-muted-foreground mt-1">First keyword is the focus keyword used for analysis</p>
+                  <p className="text-xs text-muted-foreground mt-1">First keyword is focus keyword for analysis</p>
                 </div>
               </div>
 
@@ -482,7 +540,7 @@ const AdminBlog = () => {
                 <div className="p-4 bg-background rounded-lg border border-border">
                   <p className="text-blue-600 text-lg font-medium truncate">{metaTitle || title || "Page Title"}</p>
                   <p className="text-green-700 text-sm">halooconnect.com/blog/{slug || "post-slug"}</p>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{metaDescription || excerpt || "Add a meta description to control what appears here..."}</p>
+                  <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{metaDescription || excerpt || "Add a meta description..."}</p>
                 </div>
               </div>
 
@@ -538,12 +596,7 @@ const AdminBlog = () => {
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <div className="relative flex-1 sm:flex-initial">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search posts..."
-                className="pl-9 w-full sm:w-64"
-              />
+              <Input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search posts..." className="pl-9 w-full sm:w-64" />
             </div>
             <Button onClick={() => openEditor()} className="bg-primary text-primary-foreground">
               <Plus className="w-4 h-4 mr-1" /> New Post
@@ -563,18 +616,18 @@ const AdminBlog = () => {
         ) : (
           <div className="space-y-3">
             {filteredPosts.map((post) => (
-              <div
-                key={post.id}
-                className="bg-card rounded-xl border border-border/50 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 hover:shadow-md transition-shadow"
-              >
+              <div key={post.id} className="bg-card rounded-xl border border-border/50 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 hover:shadow-md transition-shadow">
                 {post.cover_image && (
                   <img src={post.cover_image} alt="" className="w-full sm:w-20 h-20 rounded-lg object-cover flex-shrink-0" />
                 )}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${post.status === 'published' ? 'bg-green-500/15 text-green-600' : 'bg-yellow-500/15 text-yellow-600'}`}>
                       {post.status}
                     </span>
+                    {post.category && (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{post.category}</span>
+                    )}
                     {post.read_time_minutes && (
                       <span className="text-xs text-muted-foreground flex items-center gap-1">
                         <Clock className="w-3 h-3" /> {post.read_time_minutes} min
@@ -583,21 +636,22 @@ const AdminBlog = () => {
                   </div>
                   <h3 className="font-semibold text-foreground truncate">{post.title}</h3>
                   <p className="text-sm text-muted-foreground truncate">{post.excerpt || "No excerpt"}</p>
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="flex gap-1 mt-1 flex-wrap">
+                      {post.tags.map(tag => (
+                        <span key={tag} className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{tag}</span>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
                   {post.status === "published" && (
                     <Button variant="ghost" size="sm" asChild>
-                      <a href={`/blog/${post.slug}`} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
+                      <a href={`/blog/${post.slug}`} target="_blank" rel="noopener noreferrer"><ExternalLink className="w-4 h-4" /></a>
                     </Button>
                   )}
-                  <Button variant="ghost" size="sm" onClick={() => openEditor(post)}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                  <Button variant="ghost" size="sm" onClick={() => handleDelete(post.id)} className="text-destructive hover:text-destructive">
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  <Button variant="ghost" size="sm" onClick={() => openEditor(post)}><Edit className="w-4 h-4" /></Button>
+                  <Button variant="ghost" size="sm" onClick={() => handleDelete(post.id)} className="text-destructive hover:text-destructive"><Trash2 className="w-4 h-4" /></Button>
                 </div>
               </div>
             ))}
