@@ -115,6 +115,9 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
             }
           }
         }
+        // Allow HTML paste to preserve formatting (spaces, lines, lists) from PDFs/pages
+        const html = event.clipboardData?.getData("text/html");
+        if (html) return false; // let tiptap handle HTML paste natively
         return false;
       },
     },
@@ -320,6 +323,10 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
         <MenuButton onClick={() => editor.chain().focus().toggleStrike().run()} active={editor.isActive("strike")} title="Strikethrough"><Strikethrough className="w-3.5 h-3.5" /></MenuButton>
         <MenuButton onClick={() => editor.chain().focus().toggleHighlight().run()} active={editor.isActive("highlight")} title="Highlight"><Highlighter className="w-3.5 h-3.5" /></MenuButton>
         <MenuButton onClick={setLink} active={editor.isActive("link")} title="Link"><LinkIcon className="w-3.5 h-3.5" /></MenuButton>
+        <div className="w-px h-4 bg-border mx-0.5" />
+        <MenuButton onClick={() => editor.chain().focus().toggleBulletList().run()} active={editor.isActive("bulletList")} title="Bullet List"><List className="w-3.5 h-3.5" /></MenuButton>
+        <MenuButton onClick={() => editor.chain().focus().toggleOrderedList().run()} active={editor.isActive("orderedList")} title="Numbered List"><ListOrdered className="w-3.5 h-3.5" /></MenuButton>
+        <div className="w-px h-4 bg-border mx-0.5" />
         <MenuButton onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} active={editor.isActive("heading", { level: 2 })} title="H2"><Heading2 className="w-3.5 h-3.5" /></MenuButton>
         <MenuButton onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} active={editor.isActive("heading", { level: 3 })} title="H3"><Heading3 className="w-3.5 h-3.5" /></MenuButton>
         <MenuButton onClick={() => editor.chain().focus().toggleBlockquote().run()} active={editor.isActive("blockquote")} title="Quote"><Quote className="w-3.5 h-3.5" /></MenuButton>

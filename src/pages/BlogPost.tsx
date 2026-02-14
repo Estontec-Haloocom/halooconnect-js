@@ -162,7 +162,7 @@ const BlogPost = () => {
 
             {/* Blog Content */}
             <article
-              className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-img:rounded-xl"
+              className="blog-content prose prose-lg max-w-none prose-headings:text-foreground prose-headings:mt-8 prose-headings:mb-4 prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-4 prose-a:text-primary prose-strong:text-foreground prose-img:rounded-xl prose-li:text-muted-foreground prose-li:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-table:border-collapse prose-td:border prose-td:border-border prose-td:p-3 prose-th:border prose-th:border-border prose-th:p-3 prose-th:bg-muted/50 prose-hr:my-8 prose-pre:bg-muted prose-code:text-primary"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 

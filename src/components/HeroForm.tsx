@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
-import { CountrySelect, CitySelect } from "./LocationSelect";
 import { supabase } from "@/integrations/supabase/client";
 import { trackLeadConversion } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
@@ -25,11 +24,10 @@ const HeroForm = ({
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countryCode, setCountryCode] = useState(defaultCountryCode);
-  const [location, setLocation] = useState("");
-  const [city, setCity] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    email: "",
     company: ""
   });
 
@@ -42,26 +40,6 @@ const HeroForm = ({
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
-  
-  // Validate location
-  if (!location) {
-    toast({
-      title: t("form.error"),
-      description: "Please select your country.",
-      variant: "destructive"
-    });
-    return;
-  }
-  
-  // Validate city if India is selected
-  if (location === "India" && !city) {
-    toast({
-      title: t("form.error"),
-      description: "Please select your city.",
-      variant: "destructive"
-    });
-    return;
-  }
   
   setIsSubmitting(true);
   
@@ -117,10 +95,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const leadData = {
     name: formData.name.trim(),
     phone: formData.phone.trim(),
+    email: formData.email.trim(),
     country_code: countryCode,
     company: formData.company.trim() || "Not provided",
-    location: location,
-    city: location === "India" ? city : null
   };
   
   const { error } = await supabase.from("leads").insert(leadData);
@@ -186,6 +163,17 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           </div>
           
           <Input 
+            name="email" 
+            type="email" 
+            placeholder="Email Address *" 
+            required 
+            value={formData.email} 
+            onChange={handleChange} 
+            className="h-12 text-sm bg-muted/50 border-border" 
+            disabled={isSubmitting} 
+          />
+          
+          <Input 
             name="company" 
             type="text" 
             placeholder="Company Name" 
@@ -194,19 +182,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             className="h-12 text-sm bg-muted/50 border-border" 
             disabled={isSubmitting} 
           />
-          
-          <CountrySelect 
-            value={location} 
-            onChange={val => {
-              setLocation(val);
-              if (val !== "India") setCity("");
-            }} 
-            disabled={isSubmitting} 
-          />
-          
-          {location === "India" && (
-            <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
-          )}
           
           <Button 
             type="submit" 
