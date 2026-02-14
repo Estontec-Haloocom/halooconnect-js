@@ -240,20 +240,44 @@ const AdminBlog = () => {
     return null;
   }
 
-  // SEO Analysis
+  const contentText = content.replace(/<[^>]*>/g, "");
+  const contentWords = contentText.split(/\s+/).filter(Boolean);
+  const focusKeyword = metaKeywords.split(",")[0]?.trim()?.toLowerCase() || "";
+  const hasH2 = /<h2/i.test(content);
+  const hasH3 = /<h3/i.test(content);
+  const hasImages = /<img/i.test(content);
+  const hasInternalLinks = /href=["']\//.test(content);
+  const hasExternalLinks = /href=["']https?:\/\//.test(content);
+  const hasBulletList = /<ul/i.test(content);
+  const hasOrderedList = /<ol/i.test(content);
+  const keywordInContent = focusKeyword ? contentText.toLowerCase().includes(focusKeyword) : false;
+  const keywordDensity = focusKeyword && contentWords.length > 0 
+    ? ((contentText.toLowerCase().split(focusKeyword).length - 1) / contentWords.length * 100).toFixed(1) 
+    : "0";
+
   const seoChecks = [
     { label: "Meta title set (10-60 chars)", pass: metaTitle.length >= 10 && metaTitle.length <= 60, critical: true },
     { label: "Meta description set (50-160 chars)", pass: metaDescription.length >= 50 && metaDescription.length <= 160, critical: true },
-    { label: "Keywords defined", pass: metaKeywords.length > 5, critical: false },
-    { label: "Slug is SEO-friendly", pass: slug.length > 3 && !slug.includes(" "), critical: false },
+    { label: "Focus keyword defined", pass: focusKeyword.length > 2, critical: true },
+    { label: "Focus keyword in title", pass: focusKeyword ? title.toLowerCase().includes(focusKeyword) : false, critical: true },
+    { label: "Focus keyword in meta title", pass: focusKeyword ? metaTitle.toLowerCase().includes(focusKeyword) : false, critical: false },
+    { label: "Focus keyword in meta description", pass: focusKeyword ? metaDescription.toLowerCase().includes(focusKeyword) : false, critical: false },
+    { label: "Focus keyword in content", pass: keywordInContent, critical: false },
+    { label: `Keyword density (${keywordDensity}% — aim 1-3%)`, pass: parseFloat(keywordDensity) >= 0.5 && parseFloat(keywordDensity) <= 3, critical: false },
+    { label: "SEO-friendly slug (no spaces)", pass: slug.length > 3 && !slug.includes(" "), critical: false },
+    { label: "Focus keyword in slug", pass: focusKeyword ? slug.includes(focusKeyword.replace(/\s+/g, "-")) : false, critical: false },
     { label: "Excerpt provided (20+ chars)", pass: excerpt.length >= 20, critical: false },
     { label: "Cover image set", pass: coverImage.length > 5, critical: false },
     { label: "OG image set for social sharing", pass: ogImage.length > 5, critical: false },
-    { label: "Content has 300+ words", pass: content.replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length >= 300, critical: true },
-    { label: "Title includes focus keyword", pass: metaKeywords.split(",")[0]?.trim() ? title.toLowerCase().includes(metaKeywords.split(",")[0].trim().toLowerCase()) : false, critical: false },
-    { label: "Meta description includes focus keyword", pass: metaKeywords.split(",")[0]?.trim() ? metaDescription.toLowerCase().includes(metaKeywords.split(",")[0].trim().toLowerCase()) : false, critical: false },
+    { label: "Content has 300+ words", pass: contentWords.length >= 300, critical: true },
+    { label: "Content has H2 headings", pass: hasH2, critical: true },
+    { label: "Content has H3 subheadings", pass: hasH3, critical: false },
+    { label: "Content has images", pass: hasImages, critical: false },
+    { label: "Content has bullet/numbered lists", pass: hasBulletList || hasOrderedList, critical: false },
+    { label: "Has internal links", pass: hasInternalLinks, critical: false },
+    { label: "Has external links", pass: hasExternalLinks, critical: false },
     { label: "Category assigned", pass: !!category, critical: false },
-    { label: "Tags added", pass: tags.length > 0, critical: false },
+    { label: "Tags added (3+ recommended)", pass: tags.length >= 3, critical: false },
   ];
 
   const seoScore = Math.round((seoChecks.filter(c => c.pass).length / seoChecks.length) * 100);
@@ -499,9 +523,9 @@ const AdminBlog = () => {
                     </p>
                   </div>
                 </div>
-                <div className="space-y-2">
+                <div className="grid md:grid-cols-2 gap-x-6 gap-y-1.5">
                   {seoChecks.map((check, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm">
+                    <div key={i} className="flex items-center gap-2 text-sm py-0.5">
                       {check.pass ? <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> : check.critical ? <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" /> : <Info className="w-4 h-4 text-yellow-500 flex-shrink-0" />}
                       <span className={check.pass ? "text-muted-foreground" : "text-foreground"}>{check.label}</span>
                       {check.critical && !check.pass && <span className="text-xs text-red-500 ml-auto">Critical</span>}
@@ -510,15 +534,49 @@ const AdminBlog = () => {
                 </div>
               </div>
 
+              {/* Content Stats */}
+              <div className="border border-border rounded-xl p-5 space-y-3">
+                <h3 className="font-semibold text-foreground">Content Analysis</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center p-3 bg-muted/30 rounded-lg">
+                    <div className="text-2xl font-bold text-foreground">{contentWords.length}</div>
+                    <div className="text-xs text-muted-foreground">Words</div>
+                  </div>
+                  <div className="text-center p-3 bg-muted/30 rounded-lg">
+                    <div className="text-2xl font-bold text-foreground">{contentText.length}</div>
+                    <div className="text-xs text-muted-foreground">Characters</div>
+                  </div>
+                  <div className="text-center p-3 bg-muted/30 rounded-lg">
+                    <div className="text-2xl font-bold text-foreground">~{estimateReadTime(content)} min</div>
+                    <div className="text-xs text-muted-foreground">Read Time</div>
+                  </div>
+                  <div className="text-center p-3 bg-muted/30 rounded-lg">
+                    <div className="text-2xl font-bold text-foreground">{keywordDensity}%</div>
+                    <div className="text-xs text-muted-foreground">Keyword Density</div>
+                  </div>
+                </div>
+              </div>
+
               {/* SEO Fields */}
               <div className="border border-border rounded-xl p-5 space-y-4">
-                <h3 className="font-semibold text-foreground">Meta Tags</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-foreground">Meta Tags</h3>
+                  <Button variant="outline" size="sm" onClick={() => {
+                    if (!metaTitle && title) setMetaTitle(title.slice(0, 60));
+                    if (!metaDescription && excerpt) setMetaDescription(excerpt.slice(0, 160));
+                  }}>
+                    Auto-fill from content
+                  </Button>
+                </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 flex items-center justify-between">
                     Meta Title
                     <span className={`text-xs ${metaTitle.length > 60 ? 'text-red-500' : metaTitle.length >= 10 ? 'text-green-500' : 'text-muted-foreground'}`}>{metaTitle.length}/60</span>
                   </label>
                   <Input value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} placeholder="SEO title (10-60 characters)" />
+                  <div className="w-full bg-muted/50 rounded-full h-1 mt-1.5">
+                    <div className={`h-1 rounded-full transition-all ${metaTitle.length > 60 ? 'bg-red-500' : metaTitle.length >= 10 ? 'bg-green-500' : 'bg-yellow-500'}`} style={{ width: `${Math.min((metaTitle.length / 60) * 100, 100)}%` }} />
+                  </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 flex items-center justify-between">
@@ -526,11 +584,27 @@ const AdminBlog = () => {
                     <span className={`text-xs ${metaDescription.length > 160 ? 'text-red-500' : metaDescription.length >= 50 ? 'text-green-500' : 'text-muted-foreground'}`}>{metaDescription.length}/160</span>
                   </label>
                   <Textarea value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} placeholder="SEO description (50-160 characters)" rows={3} />
+                  <div className="w-full bg-muted/50 rounded-full h-1 mt-1.5">
+                    <div className={`h-1 rounded-full transition-all ${metaDescription.length > 160 ? 'bg-red-500' : metaDescription.length >= 50 ? 'bg-green-500' : 'bg-yellow-500'}`} style={{ width: `${Math.min((metaDescription.length / 160) * 100, 100)}%` }} />
+                  </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Focus Keywords</label>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">Focus Keywords <span className="text-xs text-muted-foreground">(comma-separated, first = primary)</span></label>
                   <Input value={metaKeywords} onChange={(e) => setMetaKeywords(e.target.value)} placeholder="primary keyword, secondary keyword, ..." />
-                  <p className="text-xs text-muted-foreground mt-1">First keyword is focus keyword for analysis</p>
+                  {focusKeyword && (
+                    <div className="mt-2 flex items-center gap-2 flex-wrap">
+                      <span className="text-xs text-muted-foreground">Focus:</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{focusKeyword}</span>
+                      {metaKeywords.split(",").slice(1).map((kw, i) => kw.trim() && (
+                        <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{kw.trim()}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">Canonical URL</label>
+                  <Input value={`https://halooconnect.com/blog/${slug || "post-slug"}`} readOnly className="bg-muted/30 text-muted-foreground" />
+                  <p className="text-xs text-muted-foreground mt-1">Auto-generated from slug</p>
                 </div>
               </div>
 
@@ -539,7 +613,7 @@ const AdminBlog = () => {
                 <h3 className="font-semibold text-foreground">Google Search Preview</h3>
                 <div className="p-4 bg-background rounded-lg border border-border">
                   <p className="text-blue-600 text-lg font-medium truncate">{metaTitle || title || "Page Title"}</p>
-                  <p className="text-green-700 text-sm">halooconnect.com/blog/{slug || "post-slug"}</p>
+                  <p className="text-green-700 text-sm">halooconnect.com › blog › {slug || "post-slug"}</p>
                   <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{metaDescription || excerpt || "Add a meta description..."}</p>
                 </div>
               </div>
@@ -547,16 +621,38 @@ const AdminBlog = () => {
               {/* Social Preview */}
               <div className="border border-border rounded-xl p-5 space-y-3">
                 <h3 className="font-semibold text-foreground">Social Share Preview</h3>
-                <div className="rounded-lg border border-border overflow-hidden max-w-md">
-                  {(ogImage || coverImage) ? (
-                    <img src={ogImage || coverImage} alt="Social preview" className="w-full h-40 object-cover" />
-                  ) : (
-                    <div className="w-full h-40 bg-muted/50 flex items-center justify-center text-muted-foreground text-sm">No image set</div>
-                  )}
-                  <div className="p-3 bg-muted/30">
-                    <p className="text-xs text-muted-foreground uppercase">halooconnect.com</p>
-                    <p className="font-semibold text-foreground text-sm truncate">{metaTitle || title || "Post Title"}</p>
-                    <p className="text-xs text-muted-foreground line-clamp-2">{metaDescription || excerpt || "Description"}</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* Facebook/LinkedIn card */}
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-2 font-medium">Facebook / LinkedIn</p>
+                    <div className="rounded-lg border border-border overflow-hidden">
+                      {(ogImage || coverImage) ? (
+                        <img src={ogImage || coverImage} alt="Social preview" className="w-full h-40 object-cover" />
+                      ) : (
+                        <div className="w-full h-40 bg-muted/50 flex items-center justify-center text-muted-foreground text-sm">No image set</div>
+                      )}
+                      <div className="p-3 bg-muted/30">
+                        <p className="text-xs text-muted-foreground uppercase">halooconnect.com</p>
+                        <p className="font-semibold text-foreground text-sm truncate">{metaTitle || title || "Post Title"}</p>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{metaDescription || excerpt || "Description"}</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Twitter card */}
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-2 font-medium">Twitter / X</p>
+                    <div className="rounded-2xl border border-border overflow-hidden">
+                      {(ogImage || coverImage) ? (
+                        <img src={ogImage || coverImage} alt="Twitter preview" className="w-full h-40 object-cover" />
+                      ) : (
+                        <div className="w-full h-40 bg-muted/50 flex items-center justify-center text-muted-foreground text-sm">No image</div>
+                      )}
+                      <div className="p-3">
+                        <p className="font-medium text-foreground text-sm truncate">{metaTitle || title || "Post Title"}</p>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{metaDescription || excerpt || "Description"}</p>
+                        <p className="text-xs text-muted-foreground mt-1">halooconnect.com</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

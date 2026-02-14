@@ -61,12 +61,25 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
     extensions: [
       StarterKit.configure({
         heading: { levels: [1, 2, 3] },
+        bulletList: {
+          keepMarks: true,
+          keepAttributes: true,
+          HTMLAttributes: { class: 'list-disc pl-6 my-3 space-y-1' },
+        },
+        orderedList: {
+          keepMarks: true,
+          keepAttributes: true,
+          HTMLAttributes: { class: 'list-decimal pl-6 my-3 space-y-1' },
+        },
+        listItem: {
+          HTMLAttributes: { class: 'leading-relaxed' },
+        },
       }),
       Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-primary underline cursor-pointer' } }),
       Image.configure({ HTMLAttributes: { class: 'rounded-lg max-w-full mx-auto my-4 shadow-sm' }, allowBase64: false }),
       Placeholder.configure({ placeholder: "Start writing your blog post... Use the toolbar or select text for quick formatting." }),
       Underline,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      TextAlign.configure({ types: ["heading", "paragraph", "image"] }),
       Highlight.configure({ multicolor: true }),
       TextStyle,
       Color,
@@ -90,7 +103,7 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
       attributes: {
-        class: 'prose prose-lg max-w-none min-h-[500px] p-6 focus:outline-none [&_img]:rounded-lg [&_img]:shadow-md [&_img]:my-4 [&_table]:border-collapse [&_table]:w-full [&_td]:border [&_td]:border-border [&_td]:p-2 [&_th]:border [&_th]:border-border [&_th]:p-2 [&_th]:bg-muted/50',
+        class: 'prose prose-lg max-w-none min-h-[500px] p-6 focus:outline-none [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-3 [&_li]:leading-relaxed [&_img]:rounded-lg [&_img]:shadow-md [&_img]:my-4 [&_table]:border-collapse [&_table]:w-full [&_td]:border [&_td]:border-border [&_td]:p-2 [&_th]:border [&_th]:border-border [&_th]:p-2 [&_th]:bg-muted/50',
       },
       handleDrop: (view, event, _slice, moved) => {
         if (!moved && event.dataTransfer?.files?.length) {
