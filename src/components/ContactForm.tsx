@@ -87,8 +87,8 @@ const ContactForm = () => {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
       country_code: countryCode,
-      company: formData.company.trim() || "Not provided",
-      email: formData.email.trim() || null,
+      company: formData.company.trim(),
+      email: formData.email.trim(),
       location: location,
       city: location === "India" ? city : null
     };
@@ -172,13 +172,14 @@ const ContactForm = () => {
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Work Email
+                    Work Email *
                   </label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     placeholder="john@company.com"
+                    required
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isSubmitting}
@@ -207,13 +208,14 @@ const ContactForm = () => {
                 
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                    Company Name
+                    Company Name *
                   </label>
                   <Input
                     id="company"
                     name="company"
                     type="text"
                     placeholder="Your Company"
+                    required
                     value={formData.company}
                     onChange={handleChange}
                     disabled={isSubmitting}

@@ -97,7 +97,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     phone: formData.phone.trim(),
     email: formData.email.trim(),
     country_code: countryCode,
-    company: formData.company.trim() || "Not provided",
+    company: formData.company.trim(),
   };
   
   const { error } = await supabase.from("leads").insert(leadData);
@@ -176,8 +176,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           <Input 
             name="company" 
             type="text" 
-            placeholder="Company Name" 
-            value={formData.company} 
+            placeholder="Company Name *" 
+            required
+            value={formData.company}
             onChange={handleChange} 
             className="h-12 text-sm bg-muted/50 border-border" 
             disabled={isSubmitting} 

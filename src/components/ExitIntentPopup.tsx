@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { X, ArrowRight, Loader2, Gift, Percent, Clock, CheckCircle } from "lucide-react";
+import { X, ArrowRight, Loader2, CheckCircle } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { CountrySelect, CitySelect } from "./LocationSelect";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +26,8 @@ const ExitIntentPopup = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    email: "",
+    company: "",
   });
 
   useEffect(() => {
@@ -128,8 +130,9 @@ const ExitIntentPopup = () => {
     const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
+      email: formData.email.trim(),
       country_code: countryCode,
-      company: "Exit Intent - Special Offer",
+      company: formData.company.trim(),
       location: location,
       city: location === "India" ? city : null
     };
@@ -151,7 +154,7 @@ const ExitIntentPopup = () => {
     navigate("/thank-you");
     
     supabase.functions.invoke("send-lead-notification", {
-      body: { ...leadData, source: "Exit Intent Popup - 20% Discount" },
+      body: { ...leadData, source: "Exit Intent Popup" },
     }).catch(console.error);
   };
 
@@ -169,24 +172,18 @@ const ExitIntentPopup = () => {
           <X className="w-4 h-4 text-gray-600" />
         </button>
 
-        {/* Discount Banner */}
-        <div className="bg-gradient-to-r from-primary via-red-500 to-primary px-6 py-4 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-2">
-            <Clock className="w-4 h-4 text-white" />
-            <span className="text-xs font-bold text-white uppercase tracking-wide">Limited Time Offer</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center justify-center gap-2">
-            <Percent className="w-8 h-8" />
-            20% OFF
+        {/* Header Banner */}
+        <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-4 text-center">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+            Before You Go!
           </h2>
-          <p className="text-white/90 text-sm mt-1">On your first 3 months!</p>
+          <p className="text-white/90 text-sm mt-1">Get a free personalized demo</p>
         </div>
 
         <div className="p-6">
-          {/* Value Props */}
           <div className="mb-5">
-            <h3 className="text-xl font-bold text-gray-900 text-center mb-4">
-              Wait! Don't miss this exclusive offer
+            <h3 className="text-lg font-bold text-foreground text-center mb-3">
+              Let us show you how Connect 6.0 can help
             </h3>
             <div className="space-y-2">
               {[
@@ -194,8 +191,8 @@ const ExitIntentPopup = () => {
                 "Priority onboarding support",
                 "30-day money-back guarantee"
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-gray-700">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                <div key={i} className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                   <span className="text-sm">{item}</span>
                 </div>
               ))}
@@ -206,11 +203,22 @@ const ExitIntentPopup = () => {
             <Input
               name="name"
               type="text"
-              placeholder={t("form.name")}
+              placeholder="Full Name *"
               required
               value={formData.name}
               onChange={handleChange}
-              className="h-12 text-base border-gray-300 focus:border-primary"
+              className="h-12 text-base border-border"
+              disabled={isSubmitting}
+            />
+
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email Address *"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="h-12 text-base border-border"
               disabled={isSubmitting}
             />
 
@@ -223,10 +231,21 @@ const ExitIntentPopup = () => {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className="rounded-l-none h-12 flex-1 text-base border-gray-300 focus:border-primary"
+                className="rounded-l-none h-12 flex-1 text-base border-border"
                 disabled={isSubmitting}
               />
             </div>
+
+            <Input
+              name="company"
+              type="text"
+              placeholder="Company Name *"
+              required
+              value={formData.company}
+              onChange={handleChange}
+              className="h-12 text-base border-border"
+              disabled={isSubmitting}
+            />
 
             {/* Location Select */}
             <CountrySelect 
@@ -238,7 +257,6 @@ const ExitIntentPopup = () => {
               disabled={isSubmitting} 
             />
 
-            {/* City Select - Only show for India */}
             {location === "India" && (
               <CitySelect value={city} onChange={setCity} disabled={isSubmitting} />
             )}
@@ -247,33 +265,32 @@ const ExitIntentPopup = () => {
               type="submit"
               variant="hero"
               size="lg"
-              className="w-full h-14 text-lg font-bold animate-pulse-glow"
+              className="w-full h-14 text-lg font-bold"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Processing...
+                  Submitting...
                 </>
               ) : (
                 <>
-                  <Gift className="w-5 h-5" />
-                  Claim My 20% Discount
+                  Get Free Demo
                   <ArrowRight className="w-5 h-5" />
                 </>
               )}
             </Button>
           </form>
 
-          <p className="text-xs text-gray-500 text-center mt-4">
-            No credit card required • Cancel anytime
+          <p className="text-xs text-muted-foreground text-center mt-4">
+            No credit card required • We'll contact you within 24 hours
           </p>
 
           <button
             onClick={handleClose}
-            className="w-full text-center text-sm text-gray-400 hover:text-gray-600 mt-3 py-2 transition-colors"
+            className="w-full text-center text-sm text-muted-foreground hover:text-foreground mt-3 py-2 transition-colors"
           >
-            No thanks, I'll pay full price
+            No thanks, maybe later
           </button>
         </div>
       </div>
