@@ -27,6 +27,7 @@ import {
 import { useCallback, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Sparkles } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface BlogRichTextEditorProps {
   content: string;
@@ -58,6 +59,7 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [showTableMenu, setShowTableMenu] = useState(false);
   const [aligning, setAligning] = useState(false);
+  const { toast } = useToast();
 
   const editor = useEditor({
     extensions: [
@@ -202,7 +204,10 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
   const handleAIAlign = useCallback(async () => {
     if (!editor) return;
     const currentHtml = editor.getHTML();
-    if (!currentHtml || currentHtml === "<p></p>") return;
+    if (!currentHtml || currentHtml === "<p></p>") {
+      toast({ title: "No content", description: "Write some content first before using AI alignment.", variant: "destructive" });
+      return;
+    }
 
     setAligning(true);
     try {
@@ -215,13 +220,15 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
       if (data?.html) {
         editor.commands.setContent(data.html);
         onChange(data.html);
+        toast({ title: "✨ AI Alignment Complete", description: "Content structure, spacing, and SEO layout optimized successfully." });
       }
     } catch (err: any) {
       console.error("AI align failed:", err.message);
+      toast({ title: "AI Alignment Failed", description: err.message || "Something went wrong. Please try again.", variant: "destructive" });
     } finally {
       setAligning(false);
     }
-  }, [editor, onChange]);
+  }, [editor, onChange, toast]);
 
   if (!editor) return null;
 
