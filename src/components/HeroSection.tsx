@@ -30,7 +30,7 @@ const HeroSection = () => {
         <div className="flex-1 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
           {/* Left Content - Clean and Professional */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="text-center lg:text-left order-1">
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6 text-white">
               AI-Powered{" "}
@@ -64,7 +64,7 @@ const HeroSection = () => {
           </div>
 
           {/* Right - Form */}
-          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+          <div className="flex justify-center lg:justify-end order-2">
             <HeroForm />
           </div>
         </div>
