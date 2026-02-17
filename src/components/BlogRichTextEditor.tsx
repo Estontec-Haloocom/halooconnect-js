@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Sparkles } from "lucide-react";
 
 interface BlogRichTextEditorProps {
   content: string;
@@ -56,6 +57,7 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
   const [uploading, setUploading] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [showTableMenu, setShowTableMenu] = useState(false);
+  const [aligning, setAligning] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -197,6 +199,30 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
     setShowTableMenu(false);
   }, [editor]);
 
+  const handleAIAlign = useCallback(async () => {
+    if (!editor) return;
+    const currentHtml = editor.getHTML();
+    if (!currentHtml || currentHtml === "<p></p>") return;
+
+    setAligning(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("ai-blog-align", {
+        body: { html: currentHtml },
+      });
+
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      if (data?.html) {
+        editor.commands.setContent(data.html);
+        onChange(data.html);
+      }
+    } catch (err: any) {
+      console.error("AI align failed:", err.message);
+    } finally {
+      setAligning(false);
+    }
+  }, [editor, onChange]);
+
   if (!editor) return null;
 
   const ToolbarGroup = ({ children }: { children: React.ReactNode }) => (
@@ -318,6 +344,11 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
           </MenuButton>
           <MenuButton onClick={addImageByUrl} title="Image from URL"><ImageIcon className="w-4 h-4" /></MenuButton>
         </ToolbarGroup>
+        <ToolbarGroup>
+          <MenuButton onClick={handleAIAlign} title="AI Auto-Align & Format" disabled={aligning}>
+            <Sparkles className={`w-4 h-4 ${aligning ? 'animate-pulse text-primary' : ''}`} />
+          </MenuButton>
+        </ToolbarGroup>
       </div>
 
       {/* Upload indicator */}
@@ -325,6 +356,13 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
         <div className="px-4 py-2 bg-primary/10 text-primary text-sm flex items-center gap-2 border-b border-border">
           <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           Uploading image...
+        </div>
+      )}
+
+      {aligning && (
+        <div className="px-4 py-2 bg-primary/10 text-primary text-sm flex items-center gap-2 border-b border-border">
+          <Sparkles className="w-4 h-4 animate-pulse" />
+          AI is aligning & formatting your content...
         </div>
       )}
 
