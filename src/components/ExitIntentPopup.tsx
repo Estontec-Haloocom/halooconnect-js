@@ -161,45 +161,45 @@ const ExitIntentPopup = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md relative animate-scale-in overflow-hidden">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-sm relative animate-scale-in overflow-hidden">
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors z-10"
+          className="absolute top-3 right-3 w-7 h-7 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors z-10"
           aria-label="Close popup"
         >
-          <X className="w-4 h-4 text-gray-600" />
+          <X className="w-3.5 h-3.5 text-gray-600" />
         </button>
 
         {/* Header Banner */}
-        <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-4 text-center">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+        <div className="bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-center">
+          <h2 className="text-lg sm:text-xl font-extrabold text-white">
             Before You Go!
           </h2>
-          <p className="text-white/90 text-sm mt-1">Get a free personalized demo</p>
+          <p className="text-white/90 text-xs mt-0.5">Get a free personalized demo</p>
         </div>
 
-        <div className="p-6">
-          <div className="mb-5">
-            <h3 className="text-lg font-bold text-foreground text-center mb-3">
+        <div className="p-4 sm:p-5">
+          <div className="mb-3">
+            <h3 className="text-sm sm:text-base font-bold text-foreground text-center mb-2">
               Let us show you how Connect 6.0 can help
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {[
                 "Free personalized demo session",
                 "Priority onboarding support",
                 "30-day money-back guarantee"
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm">{item}</span>
+                <div key={i} className="flex items-center gap-1.5 text-muted-foreground">
+                  <CheckCircle className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                  <span className="text-xs">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <Input
               name="name"
               type="text"
@@ -207,7 +207,7 @@ const ExitIntentPopup = () => {
               required
               value={formData.name}
               onChange={handleChange}
-              className="h-12 text-base border-border"
+              className="h-9 sm:h-10 text-sm rounded-lg border-border"
               disabled={isSubmitting}
             />
 
@@ -218,7 +218,7 @@ const ExitIntentPopup = () => {
               required
               value={formData.email}
               onChange={handleChange}
-              className="h-12 text-base border-border"
+              className="h-9 sm:h-10 text-sm rounded-lg border-border"
               disabled={isSubmitting}
             />
 
@@ -231,7 +231,7 @@ const ExitIntentPopup = () => {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className="rounded-l-none h-12 flex-1 text-base border-border"
+                className="rounded-l-none rounded-r-lg h-9 sm:h-10 flex-1 text-sm border-border"
                 disabled={isSubmitting}
               />
             </div>
@@ -243,7 +243,7 @@ const ExitIntentPopup = () => {
               required
               value={formData.company}
               onChange={handleChange}
-              className="h-12 text-base border-border"
+              className="h-9 sm:h-10 text-sm rounded-lg border-border"
               disabled={isSubmitting}
             />
 
@@ -265,30 +265,30 @@ const ExitIntentPopup = () => {
               type="submit"
               variant="hero"
               size="lg"
-              className="w-full h-14 text-lg font-bold"
+              className="w-full h-10 sm:h-11 text-sm sm:text-base font-bold rounded-lg"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   Submitting...
                 </>
               ) : (
                 <>
                   Get Free Demo
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </Button>
           </form>
 
-          <p className="text-xs text-muted-foreground text-center mt-4">
+          <p className="text-[10px] sm:text-xs text-muted-foreground text-center mt-3">
             No credit card required • We'll contact you within 24 hours
           </p>
 
           <button
             onClick={handleClose}
-            className="w-full text-center text-sm text-muted-foreground hover:text-foreground mt-3 py-2 transition-colors"
+            className="w-full text-center text-xs text-muted-foreground hover:text-foreground mt-2 py-1.5 transition-colors"
           >
             No thanks, maybe later
           </button>
