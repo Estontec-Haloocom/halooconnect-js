@@ -76,7 +76,7 @@ const Blog = () => {
           </div>
           <div className="container relative z-10 flex-1 flex flex-col">
             <div className="flex-1 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <div className="text-center lg:text-left order-2 lg:order-1">
+              <div className="text-center lg:text-left order-1">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6 text-white">
                   Insights & <span className="text-primary">Resources</span>
                 </h1>
@@ -84,7 +84,7 @@ const Blog = () => {
                   Expert articles on AI-powered contact center solutions, customer engagement, and industry best practices.
                 </p>
               </div>
-              <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+              <div className="flex justify-center lg:justify-end order-2">
                 <HeroForm />
               </div>
             </div>
