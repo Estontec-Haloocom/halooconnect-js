@@ -122,7 +122,7 @@ const BlogPost = () => {
 
           <div className="container relative z-10 flex-1 flex flex-col">
             <div className="flex-1 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <div className="text-center lg:text-left order-2 lg:order-1">
+              <div className="text-center lg:text-left order-1">
                 <Link to="/blog" className="inline-flex items-center gap-1 text-white/60 hover:text-white text-sm mb-4 transition-colors">
                   <ArrowLeft className="w-4 h-4" /> Back to Blog
                 </Link>
@@ -137,7 +137,7 @@ const BlogPost = () => {
                   )}
                 </div>
               </div>
-              <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+              <div className="flex justify-center lg:justify-end order-2">
                 <HeroForm />
               </div>
             </div>
