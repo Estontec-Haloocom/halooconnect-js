@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, MessageSquare, Filter, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import voiceSearchImg from "@/assets/voice-search-ai-img.jpg";
+import AnimatedVoiceSearch from "@/components/visuals/AnimatedVoiceSearch";
 
 const BusinessIntelligenceSection = () => {
   const { t } = useTranslation();
@@ -57,18 +57,9 @@ const BusinessIntelligenceSection = () => {
             </Button>
           </div>
 
-          {/* Image Side */}
+          {/* Animated Visual */}
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={voiceSearchImg}
-                alt="Voice search AI and business intelligence visualization"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/30 rounded-full blur-3xl" />
+            <AnimatedVoiceSearch />
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { Globe, Users, Clock, ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import hexaImg from "@/assets/hexa-ai-assistant-img.jpg";
+import AnimatedHexaAI from "@/components/visuals/AnimatedHexaAI";
 
 interface Feature {
   icon: LucideIcon;
@@ -36,16 +36,7 @@ const HexaAISection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}
           <div className="order-2 lg:order-1 relative">
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={hexaImg}
-                alt="Hexa AI Assistant holographic visualization"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-secondary/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/30 rounded-full blur-3xl" />
+            <AnimatedHexaAI />
           </div>
 
           {/* Content Side */}

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import hexaPerformanceImg from "@/assets/hexa-performance-img.jpg";
+import AnimatedPerformance from "@/components/visuals/AnimatedPerformance";
 
 const HexaPerformanceSection = () => {
   const { t } = useTranslation();
@@ -14,14 +14,8 @@ const HexaPerformanceSection = () => {
   return (
     <section className="py-20 md:py-28 bg-background overflow-hidden">
       {/* Hero Image */}
-      <div className="w-full h-48 md:h-72 overflow-hidden relative mb-12">
-        <img
-          src={hexaPerformanceImg}
-          alt="Performance analytics dashboard visualization"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+      <div className="w-full mb-12">
+        <AnimatedPerformance />
       </div>
 
       <div className="container">

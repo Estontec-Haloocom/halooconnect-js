@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import sentimentImg from "@/assets/sentiment-analysis-img.jpg";
+import AnimatedSentiment from "@/components/visuals/AnimatedSentiment";
 
 const SentimentSection = () => {
   const { t } = useTranslation();
@@ -35,16 +35,7 @@ const SentimentSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}
           <div className="relative">
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={sentimentImg}
-                alt="AI Sentiment Analysis visualization"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/30 rounded-full blur-3xl" />
+            <AnimatedSentiment />
           </div>
 
           {/* Content Side */}

@@ -1,7 +1,6 @@
 import { Server, Cloud, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import onPremiseImg from "@/assets/on-premise-server-img.jpg";
-import cloudImg from "@/assets/cloud-deployment-img.jpg";
+import AnimatedDeployment from "@/components/visuals/AnimatedDeployment";
 
 const DeploymentSection = () => {
   const { t } = useTranslation();
@@ -33,14 +32,7 @@ const DeploymentSection = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           {/* On-Premise */}
           <div className="bg-card rounded-2xl overflow-hidden border border-border/50">
-            <div className="aspect-video overflow-hidden">
-              <img
-                src={onPremiseImg}
-                alt="On-premise server infrastructure"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+            <AnimatedDeployment variant="on-premise" />
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Server className="w-5 h-5 text-primary" />
@@ -60,14 +52,7 @@ const DeploymentSection = () => {
 
           {/* Cloud */}
           <div className="bg-card rounded-2xl overflow-hidden border border-border/50">
-            <div className="aspect-video overflow-hidden">
-              <img
-                src={cloudImg}
-                alt="Cloud deployment infrastructure"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+            <AnimatedDeployment variant="cloud" />
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Cloud className="w-5 h-5 text-primary" />
