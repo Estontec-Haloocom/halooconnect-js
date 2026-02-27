@@ -23,3 +23,13 @@ export const trackLeadConversion = (formSource: string) => {
     });
   }
 };
+
+export const trackDemoClick = (buttonLocation: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'get_free_demo_click', {
+      'event_category': 'CTA',
+      'event_label': buttonLocation,
+      'send_to': ['G-1SWPLK7DD1', 'G-SFQ8H03ZY7'],
+    });
+  }
+};

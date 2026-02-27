@@ -1,5 +1,6 @@
 import { MessageSquare } from "lucide-react";
 import whatsappIcon from "@/assets/whatsapp-icon.svg";
+import { trackDemoClick } from "@/lib/gtag";
 
 interface StickyMobileCTAProps {
   onFormClick: () => void;
@@ -23,7 +24,7 @@ const StickyMobileCTA = ({ onFormClick }: StickyMobileCTAProps) => {
           
           {/* Form Button */}
           <button
-            onClick={onFormClick}
+            onClick={() => { trackDemoClick("Sticky Mobile CTA"); onFormClick(); }}
             className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:bg-primary/90 transition-all animate-pulse hover:animate-none hover:scale-105"
           >
             <MessageSquare className="w-5 h-5" />

@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Phone, Calendar, ArrowRight, CheckCircle } from "lucide-react";
+import { trackDemoClick } from "@/lib/gtag";
 interface MidPageCTAProps {
   variant?: "primary" | "secondary";
   country?: string;
@@ -13,6 +14,7 @@ const MidPageCTA = ({
     t
   } = useTranslation();
   const scrollToForm = () => {
+    trackDemoClick("Mid Page CTA");
     document.getElementById("contact-form")?.scrollIntoView({
       behavior: "smooth"
     });

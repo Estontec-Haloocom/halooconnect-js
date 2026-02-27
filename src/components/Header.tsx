@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import logo from "@/assets/haloo-connect-logo.png";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { trackDemoClick } from "@/lib/gtag";
 import LanguageSelector from "./LanguageSelector";
 import {
   DropdownMenu,
@@ -31,6 +32,7 @@ const Header = () => {
   ];
 
   const scrollToForm = () => {
+    trackDemoClick("Header");
     if (location.pathname === "/") {
       document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
     } else {

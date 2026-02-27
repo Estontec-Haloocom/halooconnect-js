@@ -7,7 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "./CountryCodeSelect";
 import { supabase } from "@/integrations/supabase/client";
-import { trackLeadConversion } from "@/lib/gtag";
+import { trackLeadConversion, trackDemoClick } from "@/lib/gtag";
 import { executeRecaptcha } from "@/lib/recaptcha";
 
 interface HeroFormProps {
@@ -42,6 +42,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   
   setIsSubmitting(true);
+  trackDemoClick("Hero Form Submit");
   
   try {
     const cleanPhone = formData.phone.trim().replace(/[\s\-\(\)]/g, '');

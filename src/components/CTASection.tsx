@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Zap, Phone, Calendar } from "lucide-react";
+import { trackDemoClick } from "@/lib/gtag";
 const CTASection = () => {
   const {
     t
   } = useTranslation();
   const scrollToForm = () => {
+    trackDemoClick("CTA Section");
     document.getElementById("contact-form")?.scrollIntoView({
       behavior: "smooth"
     });
