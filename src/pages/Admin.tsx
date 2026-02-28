@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Trash2, LogOut, RefreshCw, Users, Calendar, Phone, Building2, MapPin, FileText } from "lucide-react";
+import { Trash2, LogOut, RefreshCw, Users, Calendar, Phone, Building2, MapPin, FileText, BarChart3 } from "lucide-react";
 import logo from "@/assets/haloo-connect-logo.png";
 
 interface Lead {
@@ -19,6 +19,17 @@ interface Lead {
   city: string | null;
 }
 
+interface AnalysisLead {
+  id: string;
+  full_name: string | null;
+  email: string | null;
+  company_name: string;
+  website: string;
+  business_type: string;
+  readiness_score: number | null;
+  created_at: string;
+}
+
 const Admin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -30,6 +41,9 @@ const Admin = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [leadsLoading, setLeadsLoading] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"leads" | "analysis">("leads");
+  const [analysisLeads, setAnalysisLeads] = useState<AnalysisLead[]>([]);
+  const [analysisLoading, setAnalysisLoading] = useState(false);
 
   useEffect(() => {
     // Set up auth listener
@@ -38,6 +52,7 @@ const Admin = () => {
       setIsLoading(false);
       if (session) {
         fetchLeads();
+        fetchAnalysisLeads();
       }
     });
 
@@ -47,6 +62,7 @@ const Admin = () => {
       setIsLoading(false);
       if (session) {
         fetchLeads();
+        fetchAnalysisLeads();
       }
     });
 
@@ -70,6 +86,20 @@ const Admin = () => {
       setLeads(data || []);
     }
     setLeadsLoading(false);
+  };
+
+  const fetchAnalysisLeads = async () => {
+    setAnalysisLoading(true);
+    const { data, error } = await supabase
+      .from("analysis_leads")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) {
+      toast({ title: "Error", description: "Failed to fetch analysis leads", variant: "destructive" });
+    } else {
+      setAnalysisLeads(data || []);
+    }
+    setAnalysisLoading(false);
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -325,89 +355,138 @@ const Admin = () => {
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-foreground">Lead Submissions</h2>
-          <Button variant="outline" size="sm" onClick={fetchLeads} disabled={leadsLoading}>
-            <RefreshCw className={`w-4 h-4 mr-2 ${leadsLoading ? "animate-spin" : ""}`} />
-            Refresh
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6">
+          <Button variant={activeTab === "leads" ? "default" : "outline"} size="sm" onClick={() => setActiveTab("leads")}>
+            <Users className="w-4 h-4 mr-2" />
+            Contact Leads
+          </Button>
+          <Button variant={activeTab === "analysis" ? "default" : "outline"} size="sm" onClick={() => setActiveTab("analysis")}>
+            <BarChart3 className="w-4 h-4 mr-2" />
+            Analysis Leads ({analysisLeads.length})
           </Button>
         </div>
 
-        {/* Leads Table */}
-        {leadsLoading ? (
-          <div className="bg-card rounded-xl border border-border/50 p-12 text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto" />
-            <p className="text-muted-foreground mt-4">Loading leads...</p>
-          </div>
-        ) : leads.length === 0 ? (
-          <div className="bg-card rounded-xl border border-border/50 p-12 text-center">
-            <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">No leads yet</h3>
-            <p className="text-muted-foreground">Form submissions will appear here</p>
-          </div>
-        ) : (
-          <div className="bg-card rounded-xl border border-border/50 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-muted/50 border-b border-border">
-                  <tr>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Name</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Phone</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Company</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden lg:table-cell">Email</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Location</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden sm:table-cell">Date</th>
-                    <th className="text-right py-4 px-6 text-sm font-medium text-foreground">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  {leads.map((lead) => (
-                    <tr key={lead.id} className="hover:bg-muted/30 transition-colors">
-                      <td className="py-4 px-6">
-                        <p className="font-medium text-foreground">{lead.name}</p>
-                      </td>
-                      <td className="py-4 px-6">
-                        <p className="text-foreground">
-                          {lead.country_code} {lead.phone}
-                        </p>
-                      </td>
-                      <td className="py-4 px-6 hidden md:table-cell">
-                        <p className="text-muted-foreground">{lead.company || "-"}</p>
-                      </td>
-                      <td className="py-4 px-6 hidden lg:table-cell">
-                        <p className="text-muted-foreground">{lead.email || "-"}</p>
-                      </td>
-                      <td className="py-4 px-6 hidden md:table-cell">
-                        <p className="text-muted-foreground">
-                          {lead.location || "-"}
-                          {lead.city && `, ${lead.city}`}
-                        </p>
-                      </td>
-                      <td className="py-4 px-6 hidden sm:table-cell">
-                        <p className="text-sm text-muted-foreground">{formatDate(lead.created_at)}</p>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDelete(lead.id)}
-                          disabled={deletingId === lead.id}
-                          className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                        >
-                          {deletingId === lead.id ? (
-                            <RefreshCw className="w-4 h-4 animate-spin" />
-                          ) : (
-                            <Trash2 className="w-4 h-4" />
-                          )}
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        {activeTab === "leads" && (
+          <>
+            {/* Actions */}
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-foreground">Lead Submissions</h2>
+              <Button variant="outline" size="sm" onClick={fetchLeads} disabled={leadsLoading}>
+                <RefreshCw className={`w-4 h-4 mr-2 ${leadsLoading ? "animate-spin" : ""}`} />
+                Refresh
+              </Button>
             </div>
-          </div>
+
+            {leadsLoading ? (
+              <div className="bg-card rounded-xl border border-border/50 p-12 text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto" />
+                <p className="text-muted-foreground mt-4">Loading leads...</p>
+              </div>
+            ) : leads.length === 0 ? (
+              <div className="bg-card rounded-xl border border-border/50 p-12 text-center">
+                <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No leads yet</h3>
+                <p className="text-muted-foreground">Form submissions will appear here</p>
+              </div>
+            ) : (
+              <div className="bg-card rounded-xl border border-border/50 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Name</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Phone</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Company</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden lg:table-cell">Email</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Location</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden sm:table-cell">Date</th>
+                        <th className="text-right py-4 px-6 text-sm font-medium text-foreground">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      {leads.map((lead) => (
+                        <tr key={lead.id} className="hover:bg-muted/30 transition-colors">
+                          <td className="py-4 px-6"><p className="font-medium text-foreground">{lead.name}</p></td>
+                          <td className="py-4 px-6"><p className="text-foreground">{lead.country_code} {lead.phone}</p></td>
+                          <td className="py-4 px-6 hidden md:table-cell"><p className="text-muted-foreground">{lead.company || "-"}</p></td>
+                          <td className="py-4 px-6 hidden lg:table-cell"><p className="text-muted-foreground">{lead.email || "-"}</p></td>
+                          <td className="py-4 px-6 hidden md:table-cell"><p className="text-muted-foreground">{lead.location || "-"}{lead.city && `, ${lead.city}`}</p></td>
+                          <td className="py-4 px-6 hidden sm:table-cell"><p className="text-sm text-muted-foreground">{formatDate(lead.created_at)}</p></td>
+                          <td className="py-4 px-6 text-right">
+                            <Button variant="ghost" size="sm" onClick={() => handleDelete(lead.id)} disabled={deletingId === lead.id}
+                              className="text-destructive hover:text-destructive hover:bg-destructive/10">
+                              {deletingId === lead.id ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {activeTab === "analysis" && (
+          <>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-foreground">Analysis Leads</h2>
+              <Button variant="outline" size="sm" onClick={fetchAnalysisLeads} disabled={analysisLoading}>
+                <RefreshCw className={`w-4 h-4 mr-2 ${analysisLoading ? "animate-spin" : ""}`} />
+                Refresh
+              </Button>
+            </div>
+
+            {analysisLoading ? (
+              <div className="bg-card rounded-xl border border-border/50 p-12 text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto" />
+                <p className="text-muted-foreground mt-4">Loading...</p>
+              </div>
+            ) : analysisLeads.length === 0 ? (
+              <div className="bg-card rounded-xl border border-border/50 p-12 text-center">
+                <BarChart3 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No analysis leads yet</h3>
+                <p className="text-muted-foreground">AI Readiness Analyzer submissions will appear here</p>
+              </div>
+            ) : (
+              <div className="bg-card rounded-xl border border-border/50 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Name</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Email</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Company</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden md:table-cell">Website</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden sm:table-cell">Industry</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground">Score</th>
+                        <th className="text-left py-4 px-6 text-sm font-medium text-foreground hidden sm:table-cell">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      {analysisLeads.map((lead) => (
+                        <tr key={lead.id} className="hover:bg-muted/30 transition-colors">
+                          <td className="py-4 px-6"><p className="font-medium text-foreground">{lead.full_name || "-"}</p></td>
+                          <td className="py-4 px-6"><p className="text-muted-foreground">{lead.email || "-"}</p></td>
+                          <td className="py-4 px-6 hidden md:table-cell"><p className="text-muted-foreground">{lead.company_name}</p></td>
+                          <td className="py-4 px-6 hidden md:table-cell"><p className="text-muted-foreground text-xs">{lead.website}</p></td>
+                          <td className="py-4 px-6 hidden sm:table-cell"><p className="text-muted-foreground">{lead.business_type}</p></td>
+                          <td className="py-4 px-6">
+                            <span className="inline-flex items-center px-2 py-1 rounded-lg bg-destructive/10 text-destructive text-sm font-bold">
+                              {lead.readiness_score ?? "-"}/100
+                            </span>
+                          </td>
+                          <td className="py-4 px-6 hidden sm:table-cell"><p className="text-sm text-muted-foreground">{formatDate(lead.created_at)}</p></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </main>
     </div>
