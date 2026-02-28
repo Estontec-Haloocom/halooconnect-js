@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      analysis_leads: {
+        Row: {
+          business_type: string
+          company_name: string
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          readiness_score: number | null
+          website: string
+        }
+        Insert: {
+          business_type: string
+          company_name: string
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          readiness_score?: number | null
+          website: string
+        }
+        Update: {
+          business_type?: string
+          company_name?: string
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          readiness_score?: number | null
+          website?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author: string
