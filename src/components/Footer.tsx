@@ -53,6 +53,11 @@ const Footer = () => {
                   {t("footer.blog")}
                 </Link>
               </li>
+              <li>
+                <Link to="/analysis" className="text-secondary-foreground/70 text-sm hover:text-secondary-foreground transition-colors">
+                  AI Readiness Analyzer
+                </Link>
+              </li>
             </ul>
           </div>
 
