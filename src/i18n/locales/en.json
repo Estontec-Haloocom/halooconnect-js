@@ -297,22 +297,22 @@
     "footer": "Join the ranks of businesses transforming their customer experience with Connect 6.0."
   },
   "hexaAI": {
-    "title": "Meet HEXA AI: Your",
-    "titleHighlight": "Multilingual Digital Workforce",
-    "description": "HEXA AI isn't just a bot – it's a versatile digital employee that speaks your customers' language, literally.",
+    "title": "HEXA AI Voice Bot:",
+    "titleHighlight": "120+ Language Support",
+    "description": "The best AI voice bot for call centers. HEXA handles inbound & outbound calls in 120+ languages — sales, support, collections & appointment scheduling on autopilot.",
     "feature1": {
       "title": "120+ Languages",
-      "description": "Interact naturally with customers worldwide in over 120 languages, breaking down communication barriers and expanding your global reach effortlessly."
+      "description": "Multilingual AI voice bot speaks English, Arabic, Hindi, Mandarin, Malay, Filipino, Tamil & 115+ more languages natively."
     },
     "feature2": {
-      "title": "Multi-Persona Capability",
-      "description": "HEXA adapts its personality and approach based on the task – becoming a persuasive sales representative, a patient support specialist, or a firm collections agent as needed."
+      "title": "Sales, Support & Collections",
+      "description": "HEXA adapts persona by task — AI sales agent, patient support specialist, or automated collections agent. Handles outbound campaigns at scale."
     },
     "feature3": {
-      "title": "Always Available",
-      "description": "Provide 24/7 customer service without the overhead, handling routine inquiries while seamlessly escalating complex issues to human agents."
+      "title": "24/7 Automated Customer Service",
+      "description": "Zero hold times, zero abandoned calls. AI handles routine queries and seamlessly transfers complex issues to live agents."
     },
-    "cta": "Experience HEXA AI"
+    "cta": "Try HEXA AI Free"
   },
   "aboutUs": {
     "label": "About Us",
