@@ -220,24 +220,24 @@
     }
   },
   "sentiment": {
-    "title": "Advanced Sentiment Analysis",
-    "titleHighlight": "& Quality Assurance",
-    "description": "Transform quality assurance from a time-consuming manual process into an intelligent, scalable system that provides coaching opportunities and ensures compliance across every interaction.",
+    "title": "AI Quality Monitoring",
+    "titleHighlight": "& Sentiment Analysis",
+    "description": "Replace manual QA with AI-powered quality monitoring. Automatically score 100% of calls, detect customer sentiment in real-time, and coach agents with data-driven insights.",
     "step1": {
-      "title": "Real-Time Transcription",
-      "description": "Every call is automatically transcribed with industry-leading accuracy, creating searchable text records."
+      "title": "Speech-to-Text Transcription",
+      "description": "Automatic call transcription with 95%+ accuracy. Search across all recordings instantly."
     },
     "step2": {
-      "title": "Sentiment Detection",
-      "description": "Our AI analyzes emotional tone, detecting frustration, satisfaction, or urgency."
+      "title": "Real-Time Sentiment Detection",
+      "description": "AI analyzes customer emotions live — flag escalations, detect frustration & identify upsell opportunities."
     },
     "step3": {
-      "title": "Intelligent Scoring",
-      "description": "Automated quality audits score agent performance against customizable criteria and compliance standards."
+      "title": "Automated Agent Scoring",
+      "description": "AI quality audits score every call against compliance standards. Replace manual QA sampling with 100% coverage."
     },
     "step4": {
-      "title": "Actionable Summaries",
-      "description": "AI-generated call summaries highlight key points, outcomes, and follow-up actions needed."
+      "title": "AI Call Summaries",
+      "description": "Auto-generated call summaries with key topics, outcomes & follow-up actions. Save hours of manual review."
     }
   },
   "businessIntelligence": {
