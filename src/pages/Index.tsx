@@ -73,9 +73,9 @@ const Index = () => {
   return (
     <>
       <SEOHead 
-        title="Haloo Connect | #1 AI-Powered Contact Center Software Dubai, UAE & Singapore"
-        description="Transform customer engagement with Connect 6.0 - AI-powered omnichannel contact center. Voice, WhatsApp, Email unified. 500+ enterprises trust us. Free 14-day trial. Setup in 30 mins."
-        keywords="contact center software, AI call center, omnichannel platform, cloud contact center Dubai, call center UAE, customer engagement Singapore, WhatsApp business API, predictive dialing, CRM integration, best call center software 2025"
+        title="Best AI Call Center Software 2025 | Cloud Contact Center Solution | Haloo Connect"
+        description="Top-rated AI-powered cloud contact center software. Predictive dialer, IVR, WhatsApp Business API, CRM integration, AI voice bot in 120+ languages. Free demo. Trusted by 500+ enterprises."
+        keywords="best call center software, AI contact center, cloud call center software, predictive dialer, IVR software, omnichannel contact center, WhatsApp Business API, AI voice bot, call center CRM, automatic call distribution, workforce management, quality monitoring software, outbound dialer, inbound call center software, customer service platform, call center analytics, speech analytics, sentiment analysis software"
         canonical="https://halooconnect.com"
         schema={faqSchema}
       />
