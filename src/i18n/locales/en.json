@@ -241,16 +241,16 @@
     }
   },
   "businessIntelligence": {
-    "title": "AI-Powered Business Intelligence:",
-    "titleHighlight": "Search at the Speed of Thought",
-    "subtitle": "Google-Like Search Across Voice Data",
-    "description1": "Imagine having the power to search through millions of voice recordings as easily as searching the web. Connect 6.0's revolutionary AI-based Business Intelligence tool transforms your voice data into actionable insights.",
-    "description2": "Our advanced text-based search engine indexes every conversation, making it effortless to find specific interactions, topics, or customer mentions across your entire call history. No more endless listening sessions – just instant, relevant results.",
-    "feature1": "Search millions of recordings in seconds",
-    "feature2": "Natural language queries that understand context",
-    "feature3": "Filter by agent, date, sentiment, or custom parameters",
-    "feature4": "Surface trends and patterns automatically",
-    "cta": "Explore BI Features"
+    "title": "Call Center Analytics &",
+    "titleHighlight": "AI Business Intelligence",
+    "subtitle": "Search Millions of Call Recordings Instantly",
+    "description1": "Search through your entire call history as easily as searching the web. Connect 6.0's AI-powered business intelligence transforms voice data into actionable call center analytics and workforce insights.",
+    "description2": "Advanced speech analytics indexes every conversation automatically. Find specific customer mentions, compliance issues, or trending topics across millions of recordings in seconds — not hours.",
+    "feature1": "Search millions of call recordings instantly",
+    "feature2": "Natural language queries with context understanding",
+    "feature3": "Filter by agent, date, sentiment, or custom KPIs",
+    "feature4": "Automated trend detection & predictive insights",
+    "cta": "Explore Analytics"
   },
   "hexaPerformance": {
     "title": "HEXA AI in Action:",
