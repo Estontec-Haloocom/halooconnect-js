@@ -274,20 +274,20 @@
     }
   },
   "channels": {
-    "label": "Omnichannel",
-    "title": "All Your Channels,",
-    "titleHighlight": "One Platform",
-    "description": "Connect with your customers on their preferred channels. Voice, WhatsApp, Email, SMS, and social media - all unified in a single, powerful dashboard.",
+    "label": "Omnichannel Platform",
+    "title": "Omnichannel Contact Center:",
+    "titleHighlight": "One Unified Platform",
+    "description": "Voice, WhatsApp Business API, Email, SMS, Facebook & Instagram — unified in one cloud contact center dashboard with complete interaction history.",
     "voiceCalls": "Voice Calls",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "WhatsApp API",
     "email": "Email",
     "sms": "SMS",
     "facebook": "Facebook",
     "instagram": "Instagram",
-    "benefit1": "Unified conversation history across all channels",
-    "benefit2": "Seamless handoff between channels",
-    "benefit3": "Single view of customer interactions",
-    "cta": "Start Free Trial"
+    "benefit1": "360° customer view across all channels",
+    "benefit2": "Seamless cross-channel handoff & routing",
+    "benefit3": "Unified agent desktop for all interactions",
+    "cta": "Get Free Demo"
   },
   "clients": {
     "title": "Trusted by",
