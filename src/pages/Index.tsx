@@ -22,7 +22,7 @@ const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"
 const ContactForm = lazy(() => import("@/components/ContactForm"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 const Footer = lazy(() => import("@/components/Footer"));
-const FloatingCTA = lazy(() => import("@/components/FloatingCTA"));
+
 
 const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
 
