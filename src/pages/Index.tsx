@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import SEOHead from "@/components/SEOHead";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import TrustBanner from "@/components/TrustBanner";
+import ScrollReveal from "@/components/ScrollReveal";
 
 // Lazy load below-fold sections for better FCP/LCP
 const OutcomesSection = lazy(() => import("@/components/OutcomesSection"));
@@ -32,7 +33,6 @@ const Index = () => {
   const [showPopupForm, setShowPopupForm] = useState(false);
 
   const handleFormClick = useCallback(() => {
-    // Scroll to contact form section
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
       contactForm.scrollIntoView({ behavior: 'smooth' });
@@ -84,22 +84,22 @@ const Index = () => {
         <HeroSection />
         <TrustBanner />
         <Suspense fallback={<SectionLoader />}>
-          <OutcomesSection />
-          <TopFeaturesSection />
+          <ScrollReveal><OutcomesSection /></ScrollReveal>
+          <ScrollReveal delay={50}><TopFeaturesSection /></ScrollReveal>
           <MidPageCTA variant="secondary" />
-          <SentimentSection />
-          <HexaAISection />
+          <ScrollReveal><SentimentSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaAISection /></ScrollReveal>
           <MidPageCTA variant="primary" />
-          <BusinessIntelligenceSection />
-          <HexaPerformanceSection />
-          <DeploymentSection />
-          <ChannelsSection />
+          <ScrollReveal><BusinessIntelligenceSection /></ScrollReveal>
+          <ScrollReveal delay={50}><HexaPerformanceSection /></ScrollReveal>
+          <ScrollReveal><DeploymentSection /></ScrollReveal>
+          <ScrollReveal><ChannelsSection /></ScrollReveal>
           <MidPageCTA variant="secondary" />
-          <SecuritySection />
-          <ClientsSection />
-          <TestimonialsSection />
+          <ScrollReveal><SecuritySection /></ScrollReveal>
+          <ScrollReveal><ClientsSection /></ScrollReveal>
+          <ScrollReveal><TestimonialsSection /></ScrollReveal>
           <div id="contact-form">
-            <ContactForm />
+            <ScrollReveal><ContactForm /></ScrollReveal>
           </div>
           <CTASection />
           <Footer />
