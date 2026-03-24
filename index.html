@@ -19,31 +19,35 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       
-      // Load analytics after page load
-      window.addEventListener('load', function() {
+      // Load analytics well after page is interactive (3s delay)
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(function() {
+          loadAnalytics();
+        }, { timeout: 4000 });
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(loadAnalytics, 3000);
+        });
+      }
+      function loadAnalytics() {
+        var ga = document.createElement('script');
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-SFQ8H03ZY7';
+        ga.async = true;
+        document.head.appendChild(ga);
+        ga.onload = function() {
+          gtag('js', new Date());
+          gtag('config', 'G-SFQ8H03ZY7');
+          gtag('config', 'AW-17370447750');
+          gtag('config', 'G-1SWPLK7DD1');
+        };
         setTimeout(function() {
-          // Google Analytics
-          var ga = document.createElement('script');
-          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-SFQ8H03ZY7';
-          ga.async = true;
-          document.head.appendChild(ga);
-          ga.onload = function() {
-            gtag('js', new Date());
-            gtag('config', 'G-SFQ8H03ZY7');
-            gtag('config', 'AW-17370447750');
-            gtag('config', 'G-1SWPLK7DD1');
-          };
-          
-          // Microsoft Clarity - load after analytics
-          setTimeout(function() {
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "uy2v1hso4o");
-          }, 1000);
-        }, 100);
-      });
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "uy2v1hso4o");
+        }, 2000);
+      }
     </script>
     
     <!-- Favicon -->
