@@ -77,7 +77,7 @@ const Index = () => {
         canonical="https://halooconnect.com"
         schema={faqSchema}
       />
-      <main className="min-h-screen pb-16 sm:pb-0">
+      <main className="min-h-screen">
         <Header />
         <HeroSection />
         <TrustBanner />
