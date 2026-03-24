@@ -104,7 +104,6 @@ const Index = () => {
           
           <ExitIntentPopup />
         </Suspense>
-        </Suspense>
       </main>
     </>
   );
