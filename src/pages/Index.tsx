@@ -104,7 +104,7 @@ const Index = () => {
           
           <ExitIntentPopup />
         </Suspense>
-        <StickyMobileCTA onFormClick={handleFormClick} />
+        </Suspense>
       </main>
     </>
   );
