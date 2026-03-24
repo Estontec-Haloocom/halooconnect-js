@@ -29,7 +29,6 @@ const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
 const SectionLoader = () => <div className="min-h-[200px]" />;
 
 const Index = () => {
-  const [showPopupForm, setShowPopupForm] = useState(false);
 
   const handleFormClick = useCallback(() => {
     const contactForm = document.getElementById('contact-form');
