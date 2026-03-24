@@ -1,8 +1,7 @@
-import { lazy, Suspense, useState, useCallback } from "react";
+import { lazy, Suspense, useCallback } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SEOHead from "@/components/SEOHead";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
 import TrustBanner from "@/components/TrustBanner";
 import ScrollReveal from "@/components/ScrollReveal";
 
