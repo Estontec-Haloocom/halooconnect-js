@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import heroContactCenterPoster from "@/assets/hero-contact-center.jpg";
+import heroContactCenterPoster from "@/assets/hero-contact-center.webp";
 import HeroForm from "./HeroForm";
 import HeroTrustStrip from "./HeroTrustStrip";
 import { useIsMobile } from "@/hooks/use-mobile";
