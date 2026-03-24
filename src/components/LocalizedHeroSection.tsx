@@ -1,7 +1,8 @@
-import heroContactCenterVideo from "@/assets/hero-contact-center.mp4";
+import { useEffect, useState } from "react";
 import heroContactCenterPoster from "@/assets/hero-contact-center.jpg";
 import HeroForm from "./HeroForm";
 import HeroTrustStrip from "./HeroTrustStrip";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LocalizedHeroProps {
   country: string;
