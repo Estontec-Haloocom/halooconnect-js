@@ -1,3 +1,5 @@
+"use client";
+
 import { useEditor, EditorContent } from "@tiptap/react";
 import { BubbleMenu } from "@tiptap/react/menus";
 import StarterKit from "@tiptap/starter-kit";
@@ -25,7 +27,7 @@ import {
   RemoveFormatting, Pilcrow, WrapText
 } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { supabaseNext } from "@/integrations/supabase/next-client";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -146,7 +148,7 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
     const ext = file.name.split(".").pop() || "jpg";
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${ext}`;
 
-    const { data, error } = await supabase.storage
+    const { data, error } = await supabaseNext.storage
       .from("blog-images")
       .upload(fileName, file, { contentType: file.type });
 
@@ -156,7 +158,7 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
       return;
     }
 
-    const { data: { publicUrl } } = supabase.storage
+    const { data: { publicUrl } } = supabaseNext.storage
       .from("blog-images")
       .getPublicUrl(data.path);
 
@@ -217,12 +219,12 @@ const BlogRichTextEditor = ({ content, onChange }: BlogRichTextEditorProps) => {
       }
 
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-blog-align`,
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/ai-blog-align`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}`,
           },
           body: JSON.stringify({ html: currentHtml }),
           signal: AbortSignal.timeout(300000), // 5 min timeout for large content

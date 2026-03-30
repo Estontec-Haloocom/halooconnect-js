@@ -1,9 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, FileText, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
+import { supabaseNext } from "@/integrations/supabase/next-client";
 import { generateReport } from "@/lib/generateReport";
 
 interface LeadCaptureModalProps {
@@ -42,7 +44,7 @@ const LeadCaptureModal = ({ open, onClose, analysisData, score }: LeadCaptureMod
 
     try {
       // Store in database
-      await supabase.from("analysis_leads").insert({
+      await supabaseNext.from("analysis_leads").insert({
         full_name: fullName.trim(),
         email: email.trim(),
         company_name: companyName.trim(),
@@ -61,7 +63,7 @@ const LeadCaptureModal = ({ open, onClose, analysisData, score }: LeadCaptureMod
       });
 
       // Send email notification via edge function (fire-and-forget)
-      supabase.functions.invoke("send-analysis-report", {
+      supabaseNext.functions.invoke("send-analysis-report", {
         body: {
           fullName: fullName.trim(),
           email: email.trim(),

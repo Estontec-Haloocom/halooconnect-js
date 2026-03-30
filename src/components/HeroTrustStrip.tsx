@@ -5,10 +5,10 @@ import boschLogo from "@/assets/clients/bosch.avif";
 
 const HeroTrustStrip = () => {
   const logos = [
-    { src: tataLogo, alt: "Tata" },
-    { src: swiggyLogo, alt: "Swiggy" },
-    { src: godrejLogo, alt: "Godrej" },
-    { src: boschLogo, alt: "Bosch" },
+    { image: tataLogo, alt: "Tata" },
+    { image: swiggyLogo, alt: "Swiggy" },
+    { image: godrejLogo, alt: "Godrej" },
+    { image: boschLogo, alt: "Bosch" },
   ];
 
   return (
@@ -17,7 +17,7 @@ const HeroTrustStrip = () => {
       {logos.map((logo, i) => (
         <img
           key={i}
-          src={logo.src}
+          src={logo.image.src}
           alt={logo.alt}
           className="h-5 md:h-6 w-auto brightness-0 invert opacity-50"
           loading="eager"

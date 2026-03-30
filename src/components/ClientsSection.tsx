@@ -44,12 +44,11 @@ const ClientsSection = () => {
               key={client.name}
               className="bg-card rounded-xl p-6 md:p-8 border border-border/50 hover:border-primary/30 transition-all hover:shadow-lg flex items-center justify-center h-24 md:h-32"
             >
-              <img 
-                src={client.logo} 
+              <img
+                src={client.logo.src}
                 alt={`${client.name} logo`}
                 className="max-h-12 md:max-h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                 loading="lazy"
-                decoding="async"
               />
             </div>
           ))}

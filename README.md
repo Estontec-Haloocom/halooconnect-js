@@ -1,73 +1,57 @@
-# Welcome to your Lovable project
+# Haloo Connect
 
-## Project info
+AI-powered cloud contact center website built on Next.js.
 
-**URL**: https://lovable.dev/projects/8c91bd32-107c-4ac1-bcf3-a9bf09149891
+## Stack
 
-## How can I edit this code?
+- Next.js App Router
+- TypeScript
+- React 18
+- Tailwind CSS
+- Supabase
+- Sanity Studio
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/8c91bd32-107c-4ac1-bcf3-a9bf09149891) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Local Development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Core Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run dev
+npm run build
+npm run start
+npm run sanity
+npm run sanity:deploy
+npm run migrate:blog-to-sanity
+```
 
-**Use GitHub Codespaces**
+## Sanity
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Sanity Studio is mounted at `/studio`.
 
-## What technologies are used for this project?
+Required environment variables:
 
-This project is built with:
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=""
+NEXT_PUBLIC_SANITY_DATASET="production"
+NEXT_PUBLIC_SANITY_API_VERSION="2026-03-30"
+SANITY_API_READ_TOKEN=""
+SANITY_API_WRITE_TOKEN=""
+NEXT_PUBLIC_BLOG_SOURCE_MODE="fallback"
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Detailed migration notes:
 
-## How can I deploy this project?
+- [docs/sanity-migration.md](./docs/sanity-migration.md)
 
-Simply open [Lovable](https://lovable.dev/projects/8c91bd32-107c-4ac1-bcf3-a9bf09149891) and click on Share -> Publish.
+## Blog Source of Truth
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Current public blog routes support Sanity-first content with Supabase fallback.
+- Set `NEXT_PUBLIC_BLOG_SOURCE_MODE="sanity-only"` when all migrated content is verified and you want Sanity to become the only live blog source.
+- `/admin/blog` is now the Sanity-first publishing hub.
+- Legacy Supabase blog management still exists at `/admin/blog/legacy` during migration.
+- New content should be created in Sanity Studio.

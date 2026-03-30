@@ -8,12 +8,12 @@ import ScrollReveal from "./ScrollReveal";
 
 const TrustBanner = () => {
   const logos = [
-    { src: tataLogo, alt: "Tata" },
-    { src: swiggyLogo, alt: "Swiggy" },
-    { src: godrejLogo, alt: "Godrej" },
-    { src: boschLogo, alt: "Bosch" },
-    { src: delhiveryLogo, alt: "Delhivery" },
-    { src: quessLogo, alt: "Quess" },
+    { image: tataLogo, alt: "Tata" },
+    { image: swiggyLogo, alt: "Swiggy" },
+    { image: godrejLogo, alt: "Godrej" },
+    { image: boschLogo, alt: "Bosch" },
+    { image: delhiveryLogo, alt: "Delhivery" },
+    { image: quessLogo, alt: "Quess" },
   ];
 
   return (
@@ -27,7 +27,7 @@ const TrustBanner = () => {
             {logos.map((logo, i) => (
               <img
                 key={i}
-                src={logo.src}
+                src={logo.image.src}
                 alt={logo.alt}
                 className="h-8 md:h-10 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 loading="lazy"
