@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const SITE_NAME = "Haloo Connect";
 export const SITE_URL = "https://connect.haloocom.com";
+const DEFAULT_OG_ALT = "Haloo Connect AI Contact Center Platform";
 export const DEFAULT_DESCRIPTION =
   "AI-powered cloud contact center software with omnichannel support, WhatsApp Business API, IVR, predictive dialer, analytics, and AI voice automation.";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`;
@@ -38,6 +39,12 @@ export function buildMetadata({
   images = [DEFAULT_OG_IMAGE],
 }: BuildMetadataInput): Metadata {
   const canonical = `${SITE_URL}${path}`;
+  const ogImages = images.map((image) => ({
+    url: image,
+    width: 1200,
+    height: 630,
+    alt: DEFAULT_OG_ALT,
+  }));
 
   return {
     title,
@@ -54,13 +61,13 @@ export function buildMetadata({
       description,
       siteName: SITE_NAME,
       locale: "en_US",
-      images,
+      images: ogImages,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images,
+      images: ogImages.map((image) => image.url),
     },
     robots: noIndex
       ? {

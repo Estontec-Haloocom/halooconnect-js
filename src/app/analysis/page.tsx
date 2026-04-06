@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import AnalysisPageNext from "@/next/pages/AnalysisPageNext";
 import JsonLd from "@/next/components/JsonLd";
 import AiOverviewSection from "@/components/AiOverviewSection";
@@ -61,6 +62,31 @@ export default function AnalysisPage() {
           "Supports modernization planning across omnichannel customer journeys.",
         ]}
       />
+      <section className="border-t border-border/60 bg-muted/20 py-10">
+        <div className="container">
+          <h2 className="text-xl font-semibold text-foreground">Keep Exploring Haloo Connect</h2>
+          <p className="mt-2 text-muted-foreground">
+            Dive deeper into platform capabilities, regional deployments, and implementation guidance.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link href="/" className="text-sm font-medium text-primary hover:underline">
+              Platform Overview
+            </Link>
+            <Link href="/blog" className="text-sm font-medium text-primary hover:underline">
+              Contact Center Blog
+            </Link>
+            <Link href="/contact" className="text-sm font-medium text-primary hover:underline">
+              Talk to Sales
+            </Link>
+            <Link href="/singapore" className="text-sm font-medium text-primary hover:underline">
+              Singapore
+            </Link>
+            <Link href="/uae" className="text-sm font-medium text-primary hover:underline">
+              UAE
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

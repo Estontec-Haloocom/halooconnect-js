@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import HeaderNext from "@/next/components/HeaderNext";
 import FooterNext from "@/next/components/FooterNext";
 import HeroFormNext from "@/next/components/HeroFormNext";
@@ -102,6 +103,35 @@ export default async function BlogPage() {
               <div className="order-2 flex justify-center lg:justify-end">
                 <HeroFormNext />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-border/60 bg-muted/20 py-8">
+          <div className="container">
+            <h2 className="text-xl font-semibold text-foreground">Latest Articles</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Browse recent insights on AI contact center operations and cloud customer service.
+            </p>
+            <ul className="mt-4 grid gap-2 md:grid-cols-2">
+              {data.slice(0, 8).map((post) => (
+                <li key={post.id}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="text-sm text-primary hover:underline"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 flex flex-wrap gap-3 text-sm">
+              <Link href="/analysis" className="font-medium text-primary hover:underline">
+                Run AI Readiness Analyzer
+              </Link>
+              <Link href="/contact" className="font-medium text-primary hover:underline">
+                Book a Demo
+              </Link>
             </div>
           </div>
         </section>

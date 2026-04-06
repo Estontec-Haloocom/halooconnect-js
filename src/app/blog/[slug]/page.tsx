@@ -201,6 +201,17 @@ export default async function BlogPostPage({
               >
                 <ArrowLeft className="h-4 w-4" /> Back to all articles
               </Link>
+              <div className="mt-5 flex flex-wrap gap-4 text-sm">
+                <Link href="/analysis" className="font-medium text-primary hover:underline">
+                  Run AI Readiness Analyzer
+                </Link>
+                <Link href="/contact" className="font-medium text-primary hover:underline">
+                  Talk to Sales
+                </Link>
+                <Link href="/" className="font-medium text-primary hover:underline">
+                  Explore Platform
+                </Link>
+              </div>
             </div>
           </div>
         </section>

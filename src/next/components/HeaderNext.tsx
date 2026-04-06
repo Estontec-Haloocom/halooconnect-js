@@ -25,6 +25,7 @@ const HeaderNext = () => {
   const navLinks = [
     { label: t("nav.home"), href: "/" },
     { label: t("nav.aboutUs"), href: "/about" },
+    { label: t("footer.blog"), href: "/blog" },
     { label: t("nav.contact"), href: "/contact" },
   ];
 
