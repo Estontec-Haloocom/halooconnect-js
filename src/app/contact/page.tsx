@@ -20,6 +20,37 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How do I book a Haloo Connect demo?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Submit the contact form with your requirements and the team will follow up to schedule a tailored product demo.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can we discuss regional rollout plans during the consultation?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. The consultation can cover rollout planning across Singapore, UAE, Malaysia, Philippines, and India along with channel and integration priorities.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you provide AI readiness guidance before implementation?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Teams can review workflow bottlenecks and automation opportunities before committing to broader deployment phases.",
+      },
+    },
+  ],
+};
+
 const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
@@ -65,6 +96,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <JsonLd data={faqSchema} />
       <JsonLd data={contactSchema} />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={webPageSchema} />

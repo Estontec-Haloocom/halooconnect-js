@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const SITE_NAME = "Haloo Connect";
 export const SITE_URL = "https://connect.haloocom.com";
 const DEFAULT_OG_ALT = "Haloo Connect AI Contact Center Platform";
+const TITLE_TEMPLATE_SUFFIX = " | Haloo Connect";
+const MAX_TITLE_TAG_LENGTH = 60;
+const MAX_META_DESCRIPTION_LENGTH = 155;
 export const DEFAULT_DESCRIPTION =
   "AI-powered cloud contact center software with omnichannel support, WhatsApp Business API, IVR, predictive dialer, analytics, and AI voice automation.";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`;
@@ -29,6 +32,30 @@ type BuildMetadataInput = {
   images?: string[];
 };
 
+function truncateForTitleTag(input: string, maxLength: number) {
+  const normalized = input.replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+
+  // Keep words intact where possible and still stay within budget.
+  const ellipsis = "...";
+  const budget = Math.max(maxLength - ellipsis.length, 1);
+  const soft = normalized.slice(0, budget);
+  const lastSpace = soft.lastIndexOf(" ");
+  const head = (lastSpace > 0 ? soft.slice(0, lastSpace) : soft).trim();
+  return `${head}${ellipsis}`;
+}
+
+function buildTitleTagTitle(inputTitle: string) {
+  const baseBudget = Math.max(MAX_TITLE_TAG_LENGTH - TITLE_TEMPLATE_SUFFIX.length, 1);
+  return truncateForTitleTag(inputTitle, baseBudget);
+}
+
+function buildMetaDescription(inputDescription: string) {
+  return truncateForTitleTag(inputDescription, MAX_META_DESCRIPTION_LENGTH);
+}
+
 export function buildMetadata({
   title,
   description,
@@ -45,11 +72,13 @@ export function buildMetadata({
     height: 630,
     alt: DEFAULT_OG_ALT,
   }));
+  const titleTagTitle = buildTitleTagTitle(title);
+  const metaDescription = buildMetaDescription(description);
 
   return {
     metadataBase: new URL(SITE_URL),
-    title,
-    description,
+    title: titleTagTitle,
+    description: metaDescription,
     keywords: [...DEFAULT_KEYWORDS, ...keywords],
     alternates: {
       canonical,
@@ -59,7 +88,7 @@ export function buildMetadata({
       type,
       url: canonical,
       title,
-      description,
+      description: metaDescription,
       siteName: SITE_NAME,
       locale: "en_US",
       images: ogImages,
@@ -67,7 +96,7 @@ export function buildMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: metaDescription,
       images: ogImages.map((image) => image.url),
     },
     robots: noIndex

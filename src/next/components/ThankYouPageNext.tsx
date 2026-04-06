@@ -39,13 +39,24 @@ const ThankYouPageNext = () => {
                 Back to Homepage
               </Button>
             </Link>
+            <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm">
+              <Link href="/contact" className="font-medium text-primary hover:underline">
+                Contact Team
+              </Link>
+              <Link href="/analysis" className="font-medium text-primary hover:underline">
+                AI Readiness Analyzer
+              </Link>
+              <Link href="/blog" className="font-medium text-primary hover:underline">
+                Read Blog
+              </Link>
+            </div>
           </div>
         </div>
       </main>
 
       <footer className="border-t border-border/50 py-6">
         <div className="container text-center text-sm text-muted-foreground">
-          © 2024 Haloo Connect. All rights reserved.
+          {"\u00A9"} 2024 Haloo Connect. All rights reserved.
         </div>
       </footer>
     </div>

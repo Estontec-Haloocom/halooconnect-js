@@ -158,6 +158,33 @@ const AboutPageNext = () => {
           </Link>
         </div>
       </section>
+      <section className="border-t border-border/60 bg-background py-12">
+        <div className="container mx-auto max-w-4xl space-y-6">
+          <h2 className="text-2xl font-semibold text-foreground">TL;DR: Haloo Connect at a Glance</h2>
+          <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+            <li>We build AI-powered cloud contact center software for regional and enterprise teams.</li>
+            <li>We focus on measurable improvements in response speed, quality, and operational visibility.</li>
+            <li>We support deployment planning across Singapore, UAE, Malaysia, Philippines, and India.</li>
+          </ul>
+          <h3 className="text-xl font-semibold text-foreground">What does Haloo Connect do?</h3>
+          <p className="text-muted-foreground">
+            Haloo Connect helps customer-facing teams modernize communication operations by combining omnichannel
+            routing, automation, and analytics in one cloud platform.
+          </p>
+          <h3 className="text-xl font-semibold text-foreground">
+            Why do teams choose an AI-first contact center approach?
+          </h3>
+          <p className="text-muted-foreground">
+            Teams choose AI-first architecture to reduce repetitive workload, improve consistency, and scale customer
+            service outcomes without increasing operational complexity at the same pace.
+          </p>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <Link href="/contact" className="font-medium text-primary hover:underline">Talk to Sales</Link>
+            <Link href="/analysis" className="font-medium text-primary hover:underline">Run Readiness Audit</Link>
+            <Link href="/blog" className="font-medium text-primary hover:underline">Read Blog</Link>
+          </div>
+        </div>
+      </section>
       <FooterNext />
       <FloatingCTA />
     </main>

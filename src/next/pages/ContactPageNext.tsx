@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import HeaderNext from "@/next/components/HeaderNext";
@@ -157,6 +158,39 @@ const ContactPageNext = () => {
                 </form>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <section className="border-t border-border/60 bg-muted/20 py-12">
+        <div className="container max-w-4xl space-y-6">
+          <h2 className="text-2xl font-semibold text-foreground">TL;DR: Contacting Haloo Connect</h2>
+          <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+            <li>Book a tailored demo based on your team size, channels, and KPIs.</li>
+            <li>Review rollout options for cloud migration and AI-assisted workflows.</li>
+            <li>Get practical next steps for implementation and measurement.</li>
+          </ul>
+          <h3 className="text-xl font-semibold text-foreground">
+            What should you prepare before a contact center demo?
+          </h3>
+          <p className="text-muted-foreground">
+            Bring your current channel mix, target service levels, and top operational bottlenecks so the team can
+            map features and rollout priorities to real business outcomes.
+          </p>
+          <h3 className="text-xl font-semibold text-foreground">
+            How quickly can teams start implementation?
+          </h3>
+          <p className="text-muted-foreground">
+            Pilot timelines vary by integration depth, but most organizations begin with high-impact workflows and
+            expand in controlled phases.
+          </p>
+          <blockquote className="rounded-xl border-l-4 border-primary bg-background px-4 py-3 text-sm italic text-foreground/90">
+            "The fastest ROI usually comes from fixing the highest-volume customer journeys first."
+          </blockquote>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <Link href="/analysis" className="font-medium text-primary hover:underline">Run AI Readiness Analyzer</Link>
+            <Link href="/blog" className="font-medium text-primary hover:underline">Read Implementation Articles</Link>
+            <Link href="/about" className="font-medium text-primary hover:underline">About Haloo Connect</Link>
+            <Link href="/thank-you" className="font-medium text-primary hover:underline">View Confirmation Page</Link>
           </div>
         </div>
       </section>

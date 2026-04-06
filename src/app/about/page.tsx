@@ -20,6 +20,29 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What does Haloo Connect specialize in?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Haloo Connect specializes in AI-powered cloud contact center software for voice and digital customer communication operations.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Which markets does Haloo Connect serve?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Haloo Connect supports enterprise and growth teams across Singapore, UAE, Malaysia, Philippines, India, and related regional operations.",
+      },
+    },
+  ],
+};
+
 const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
@@ -48,6 +71,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <JsonLd data={faqSchema} />
       <JsonLd data={aboutSchema} />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={webPageSchema} />
