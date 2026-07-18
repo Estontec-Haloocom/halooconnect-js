@@ -11,7 +11,6 @@ import CountryCodeSelect, { getPlaceholderPhone } from "@/components/CountryCode
 import { CountrySelect, CitySelect } from "@/components/LocationSelect";
 import { supabaseNext } from "@/integrations/supabase/next-client";
 import { trackLeadConversion } from "@/lib/gtag";
-import { executeRecaptcha } from "@/lib/recaptcha";
 
 const EXIT_POPUP_KEY = "halooconnect_exit_popup_dismissed";
 const EXIT_POPUP_SHOWN_KEY = "halooconnect_exit_popup_shown_date";
@@ -102,32 +101,6 @@ const ExitIntentPopupNext = () => {
     }
 
     setIsSubmitting(true);
-
-    const recaptchaToken = await executeRecaptcha("exit_popup_form");
-    if (!recaptchaToken) {
-      toast({
-        title: t("form.error"),
-        description: "reCAPTCHA verification failed. Please try again.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    const { data: verifyData, error: verifyError } =
-      await supabaseNext.functions.invoke("verify-recaptcha", {
-        body: { token: recaptchaToken },
-      });
-
-    if (verifyError || !verifyData?.success) {
-      toast({
-        title: t("form.error"),
-        description: "Security verification failed. Please try again.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
 
     const leadData = {
       name: formData.name.trim(),
@@ -285,7 +258,7 @@ const ExitIntentPopupNext = () => {
           </form>
 
           <p className="mt-3 text-center text-[10px] text-muted-foreground sm:text-xs">
-            No credit card required • We'll contact you within 24 hours
+            No credit card required - We'll contact you within 24 hours
           </p>
 
           <button

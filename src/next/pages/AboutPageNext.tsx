@@ -82,7 +82,7 @@ const AboutPageNext = () => {
               <p className="mb-4 text-muted-foreground">{t("aboutUs.story.paragraph1")}</p>
               <p className="mb-4 text-muted-foreground">{t("aboutUs.story.paragraph2")}</p>
               <p className="mb-6 text-muted-foreground">{t("aboutUs.story.paragraph3")}</p>
-              <Link href="/contact">
+              <Link href="/#contact-form">
                 <Button variant="hero" size="lg">
                   {t("aboutUs.story.cta")}
                   <ArrowRight className="h-5 w-5" />
@@ -150,7 +150,7 @@ const AboutPageNext = () => {
           <p className="mx-auto mb-8 max-w-2xl text-lg text-primary-foreground/80">
             {t("aboutUs.cta.description")}
           </p>
-          <Link href="/contact">
+          <Link href="/#contact-form">
             <Button variant="outline" size="lg" className="border-primary-foreground bg-primary-foreground text-primary hover:bg-primary-foreground/90">
               {t("aboutUs.cta.button")}
               <ArrowRight className="h-5 w-5" />
@@ -179,7 +179,7 @@ const AboutPageNext = () => {
             service outcomes without increasing operational complexity at the same pace.
           </p>
           <div className="flex flex-wrap gap-3 text-sm">
-            <Link href="/contact" className="font-medium text-primary hover:underline">Talk to Sales</Link>
+            <Link href="/#contact-form" className="font-medium text-primary hover:underline">Talk to Sales</Link>
             <Link href="/analysis" className="font-medium text-primary hover:underline">Run Readiness Audit</Link>
             <Link href="/blog" className="font-medium text-primary hover:underline">Read Blog</Link>
           </div>

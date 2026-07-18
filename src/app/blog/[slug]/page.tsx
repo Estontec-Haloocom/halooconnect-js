@@ -248,7 +248,7 @@ export default async function BlogPostPage({
                 <Link href="/analysis" className="font-medium text-primary hover:underline">
                   Run AI Readiness Analyzer
                 </Link>
-                <Link href="/contact" className="font-medium text-primary hover:underline">
+                <Link href="/#contact-form" className="font-medium text-primary hover:underline">
                   Talk to Sales
                 </Link>
                 <Link href="/" className="font-medium text-primary hover:underline">

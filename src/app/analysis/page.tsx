@@ -137,7 +137,7 @@ export default function AnalysisPage() {
             <Link href="/blog" className="text-sm font-medium text-primary hover:underline">
               Contact Center Blog
             </Link>
-            <Link href="/contact" className="text-sm font-medium text-primary hover:underline">
+            <Link href="/#contact-form" className="text-sm font-medium text-primary hover:underline">
               Talk to Sales
             </Link>
             <Link href="/singapore" className="text-sm font-medium text-primary hover:underline">

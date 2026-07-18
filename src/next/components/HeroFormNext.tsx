@@ -10,7 +10,6 @@ import { Loader2, Shield } from "lucide-react";
 import CountryCodeSelect, { getPlaceholderPhone } from "@/components/CountryCodeSelect";
 import { supabaseNext } from "@/integrations/supabase/next-client";
 import { trackLeadConversion, trackDemoClick } from "@/lib/gtag";
-import { executeRecaptcha } from "@/lib/recaptcha";
 
 interface HeroFormNextProps {
   defaultCountryCode?: string;
@@ -47,7 +46,7 @@ const HeroFormNext = ({
     trackDemoClick("Hero Form Submit");
 
     try {
-      const cleanPhone = formData.phone.trim().replace(/[\s\-\(\)]/g, "");
+      const cleanPhone = formData.phone.trim().replace(/[\s\-()]/g, "");
       const fullPhoneNumber = countryCode.replace("+", "") + cleanPhone;
 
       toast({
@@ -67,32 +66,6 @@ const HeroFormNext = ({
       }).catch(console.error);
     } catch (callError) {
       console.error("Error preparing call:", callError);
-    }
-
-    const recaptchaToken = await executeRecaptcha("hero_form");
-    if (!recaptchaToken) {
-      toast({
-        title: t("form.error"),
-        description: "reCAPTCHA verification failed. Please try again.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    const { data: verifyData, error: verifyError } =
-      await supabaseNext.functions.invoke("verify-recaptcha", {
-        body: { token: recaptchaToken },
-      });
-
-    if (verifyError || !verifyData?.success) {
-      toast({
-        title: t("form.error"),
-        description: "Security verification failed. Please try again.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
     }
 
     const leadData = {

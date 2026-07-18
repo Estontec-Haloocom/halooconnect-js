@@ -30,6 +30,7 @@ type BuildMetadataInput = {
   type?: "website" | "article";
   noIndex?: boolean;
   images?: string[];
+  verification?: Metadata["verification"];
 };
 
 function truncateForTitleTag(input: string, maxLength: number) {
@@ -64,6 +65,7 @@ export function buildMetadata({
   type = "website",
   noIndex = false,
   images = [DEFAULT_OG_IMAGE],
+  verification,
 }: BuildMetadataInput): Metadata {
   const canonical = `${SITE_URL}${path}`;
   const ogImages = images.map((image) => ({
@@ -84,6 +86,7 @@ export function buildMetadata({
       canonical,
     },
     category: "technology",
+    verification,
     openGraph: {
       type,
       url: canonical,

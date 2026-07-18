@@ -51,7 +51,7 @@ const FooterNext = () => {
             <ul className="space-y-2">
               <li><Link href="/" prefetch={false} className="text-sm text-secondary-foreground/70 transition-colors hover:text-secondary-foreground">{t("footer.home")}</Link></li>
               <li><Link href="/about" prefetch={false} className="text-sm text-secondary-foreground/70 transition-colors hover:text-secondary-foreground">{t("footer.aboutUs")}</Link></li>
-              <li><Link href="/contact" prefetch={false} className="text-sm text-secondary-foreground/70 transition-colors hover:text-secondary-foreground">{t("footer.contactUs")}</Link></li>
+              <li><Link href="/#contact-form" prefetch={false} className="text-sm text-secondary-foreground/70 transition-colors hover:text-secondary-foreground">{t("footer.contactUs")}</Link></li>
               <li><Link href="/blog" prefetch={false} className="text-sm text-secondary-foreground/70 transition-colors hover:text-secondary-foreground">{t("footer.blog")}</Link></li>
               <li><Link href="/analysis" prefetch={false} className="text-sm text-secondary-foreground/70 transition-colors hover:text-secondary-foreground">AI Readiness Analyzer</Link></li>
             </ul>
@@ -78,7 +78,7 @@ const FooterNext = () => {
               <li><Link href="/uae" prefetch={false} className="text-sm text-secondary-foreground/70 hover:text-secondary-foreground">{t("footer.uae")}</Link></li>
               <li><Link href="/malaysia" prefetch={false} className="text-sm text-secondary-foreground/70 hover:text-secondary-foreground">Malaysia</Link></li>
               <li><Link href="/philippines" prefetch={false} className="text-sm text-secondary-foreground/70 hover:text-secondary-foreground">Philippines</Link></li>
-              <li><Link href="/contact" prefetch={false} className="text-sm text-secondary-foreground/70 hover:text-secondary-foreground">Talk to Sales</Link></li>
+              <li><Link href="/#contact-form" prefetch={false} className="text-sm text-secondary-foreground/70 hover:text-secondary-foreground">Talk to Sales</Link></li>
               <li><Link href="/analysis" prefetch={false} className="text-sm text-secondary-foreground/70 hover:text-secondary-foreground">AI Audit Tool</Link></li>
             </ul>
           </div>

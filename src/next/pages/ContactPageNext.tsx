@@ -12,11 +12,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight, Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react";
-import CountryCodeSelect from "@/components/CountryCodeSelect";
+import CountryCodeSelect, { getPlaceholderPhone } from "@/components/CountryCodeSelect";
 import { CountrySelect, CitySelect } from "@/components/LocationSelect";
 import { supabaseNext } from "@/integrations/supabase/next-client";
 import { trackLeadConversion } from "@/lib/gtag";
-import { executeRecaptcha } from "@/lib/recaptcha";
 
 const ContactPageNext = () => {
   const { t } = useTranslation();
@@ -51,20 +50,6 @@ const ContactPageNext = () => {
     }
 
     setIsSubmitting(true);
-    const recaptchaToken = await executeRecaptcha("contact_page");
-    if (!recaptchaToken) {
-      toast({ title: t("form.error"), description: "reCAPTCHA verification failed. Please try again.", variant: "destructive" });
-      setIsSubmitting(false);
-      return;
-    }
-
-    const { data: verifyData, error: verifyError } = await supabaseNext.functions.invoke("verify-recaptcha", { body: { token: recaptchaToken } });
-    if (verifyError || !verifyData?.success) {
-      toast({ title: t("form.error"), description: "Security verification failed. Please try again.", variant: "destructive" });
-      setIsSubmitting(false);
-      return;
-    }
-
     const leadData = {
       name: formData.name.trim(),
       phone: formData.phone.trim(),
@@ -73,6 +58,7 @@ const ContactPageNext = () => {
       email: formData.email.trim() || null,
       location,
       city: location === "India" ? city : null,
+      message: formData.message.trim() || null,
     };
 
     const { error } = await supabaseNext.from("leads").insert(leadData);
@@ -83,12 +69,15 @@ const ContactPageNext = () => {
     }
 
     trackLeadConversion("Contact Page");
-    try {
-      await supabaseNext.functions.invoke("send-lead-notification", { body: { ...leadData, source: "Contact Page" } });
-    } catch (emailError) {
-      console.error("Email notification error:", emailError);
-    }
     router.push("/thank-you");
+
+    supabaseNext.functions
+      .invoke("send-lead-notification", {
+        body: { ...leadData, source: "Contact Page" },
+      })
+      .catch((emailError) => {
+        console.error("Email notification error:", emailError);
+      });
   };
 
   return (
@@ -146,7 +135,7 @@ const ContactPageNext = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div><label className="mb-2 block text-sm font-medium text-foreground">{t("form.name")}</label><Input name="name" type="text" placeholder="John Smith" required value={formData.name} onChange={handleChange} disabled={isSubmitting} /></div>
                   <div><label className="mb-2 block text-sm font-medium text-foreground">{t("form.email")}</label><Input name="email" type="email" placeholder="john@company.com" value={formData.email} onChange={handleChange} disabled={isSubmitting} /></div>
-                  <div><label className="mb-2 block text-sm font-medium text-foreground">{t("form.phone")} *</label><div className="flex"><CountryCodeSelect value={countryCode} onChange={setCountryCode} /><Input name="phone" type="tel" placeholder="8123 4567" required value={formData.phone} onChange={handleChange} className="flex-1 rounded-l-none" disabled={isSubmitting} /></div></div>
+                  <div><label className="mb-2 block text-sm font-medium text-foreground">{t("form.phone")} *</label><div className="flex"><CountryCodeSelect value={countryCode} onChange={setCountryCode} /><Input name="phone" type="tel" placeholder={getPlaceholderPhone(countryCode)} required value={formData.phone} onChange={handleChange} className="flex-1 rounded-l-none" disabled={isSubmitting} /></div></div>
                   <div><label className="mb-2 block text-sm font-medium text-foreground">{t("form.company")}</label><Input name="company" type="text" placeholder="Your Company" value={formData.company} onChange={handleChange} disabled={isSubmitting} /></div>
                   <div><label className="mb-2 block text-sm font-medium text-foreground">Country *</label><CountrySelect value={location} onChange={(value) => { setLocation(value); if (value !== "India") setCity(""); }} disabled={isSubmitting} /></div>
                   {location === "India" && <div><label className="mb-2 block text-sm font-medium text-foreground">City *</label><CitySelect value={city} onChange={setCity} disabled={isSubmitting} /></div>}

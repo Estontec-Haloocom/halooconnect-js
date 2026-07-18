@@ -30,6 +30,7 @@ interface Lead {
   created_at: string;
   location: string | null;
   city: string | null;
+  message?: string | null;
 }
 
 interface AnalysisLead {
@@ -41,7 +42,10 @@ interface AnalysisLead {
   business_type: string;
   readiness_score: number | null;
   created_at: string;
+  message?: string | null;
 }
+
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
 const AdminPageNext = () => {
   const router = useRouter();
@@ -120,7 +124,7 @@ const AdminPageNext = () => {
     e.preventDefault();
     setLoginLoading(true);
 
-    if (email !== "admin@connect.com") {
+    if (ADMIN_EMAIL && email !== ADMIN_EMAIL) {
       toast({ title: "Access Denied", description: "Invalid admin credentials", variant: "destructive" });
       setLoginLoading(false);
       return;
@@ -129,26 +133,12 @@ const AdminPageNext = () => {
     const { error } = await supabaseNext.auth.signInWithPassword({ email, password });
 
     if (error) {
-      if (error.message.includes("Invalid login credentials")) {
-        const { error: signUpError } = await supabaseNext.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
-        });
-
-        if (signUpError) {
-          toast({ title: "Login Failed", description: signUpError.message, variant: "destructive" });
-        } else {
-          const { error: loginError } = await supabaseNext.auth.signInWithPassword({ email, password });
-          if (loginError) {
-            toast({ title: "Login Failed", description: "Please try again", variant: "destructive" });
-          }
-        }
-      } else {
-        toast({ title: "Login Failed", description: error.message, variant: "destructive" });
-      }
+      toast({
+        title: "Login Failed",
+        description: "Invalid admin credentials or admin user not created in Supabase Auth.",
+        variant: "destructive",
+      });
     }
-
     setLoginLoading(false);
   };
 
@@ -364,6 +354,7 @@ const AdminPageNext = () => {
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground md:table-cell">Company</th>
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground lg:table-cell">Email</th>
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground md:table-cell">Location</th>
+                        <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground xl:table-cell">Message</th>
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground sm:table-cell">Date</th>
                         <th className="px-6 py-4 text-right text-sm font-medium text-foreground">Action</th>
                       </tr>
@@ -376,6 +367,7 @@ const AdminPageNext = () => {
                           <td className="hidden px-6 py-4 md:table-cell"><p className="text-muted-foreground">{lead.company || "-"}</p></td>
                           <td className="hidden px-6 py-4 lg:table-cell"><p className="text-muted-foreground">{lead.email || "-"}</p></td>
                           <td className="hidden px-6 py-4 md:table-cell"><p className="text-muted-foreground">{lead.location || "-"}{lead.city && `, ${lead.city}`}</p></td>
+                          <td className="hidden max-w-xs px-6 py-4 xl:table-cell"><p className="line-clamp-2 text-sm text-muted-foreground">{lead.message || "-"}</p></td>
                           <td className="hidden px-6 py-4 sm:table-cell"><p className="text-sm text-muted-foreground">{formatDate(lead.created_at)}</p></td>
                           <td className="px-6 py-4 text-right">
                             <Button
@@ -428,6 +420,7 @@ const AdminPageNext = () => {
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground md:table-cell">Website</th>
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground sm:table-cell">Industry</th>
                         <th className="px-6 py-4 text-left text-sm font-medium text-foreground">Score</th>
+                        <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground xl:table-cell">Message</th>
                         <th className="hidden px-6 py-4 text-left text-sm font-medium text-foreground sm:table-cell">Date</th>
                       </tr>
                     </thead>
@@ -444,6 +437,7 @@ const AdminPageNext = () => {
                               {lead.readiness_score ?? "-"}/100
                             </span>
                           </td>
+                          <td className="hidden max-w-xs px-6 py-4 xl:table-cell"><p className="line-clamp-2 text-sm text-muted-foreground">{lead.message || "-"}</p></td>
                           <td className="hidden px-6 py-4 sm:table-cell"><p className="text-sm text-muted-foreground">{formatDate(lead.created_at)}</p></td>
                         </tr>
                       ))}

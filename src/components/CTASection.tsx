@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Zap, Phone, Calendar } from "lucide-react";
+import { Zap, Calendar } from "lucide-react";
 import { trackDemoClick } from "@/lib/gtag";
 const CTASection = () => {
   const {
@@ -8,9 +8,12 @@ const CTASection = () => {
   } = useTranslation();
   const scrollToForm = () => {
     trackDemoClick("CTA Section");
-    document.getElementById("contact-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
+    const form = document.getElementById("contact-form");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    window.location.href = "/#contact-form";
   };
   return <section className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
       {/* Background pattern */}
@@ -47,8 +50,8 @@ const CTASection = () => {
               <Calendar className="w-5 h-5" />
               {t("cta.scheduleDemo")}
             </Button>
-            <Button onClick={() => window.open('tel:+919876543210')} size="xl" variant="heroOutline">
-              <Phone className="w-5 h-5" />
+            <Button onClick={scrollToForm} size="xl" variant="heroOutline">
+              <Calendar className="w-5 h-5" />
               {t("cta.callUs")}
             </Button>
           </div>

@@ -119,7 +119,7 @@ export default function PhilippinesPage() {
             through guided workflows and automation.
           </p>
           <div className="flex flex-wrap gap-3 text-sm">
-            <Link href="/contact" className="font-medium text-primary hover:underline">Talk to Sales</Link>
+            <Link href="/#contact-form" className="font-medium text-primary hover:underline">Talk to Sales</Link>
             <Link href="/analysis" className="font-medium text-primary hover:underline">Audit Your Readiness</Link>
             <Link href="/blog" className="font-medium text-primary hover:underline">Read BPO Strategy Articles</Link>
           </div>

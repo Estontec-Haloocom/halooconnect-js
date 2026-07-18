@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Zap, Phone, Calendar } from "lucide-react";
+import { Zap, Calendar } from "lucide-react";
 
 interface LocalizedCTASectionProps {
   country?: string;
@@ -10,21 +10,14 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
   const { t } = useTranslation();
 
   const scrollToForm = () => {
-    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    const form = document.getElementById("contact-form");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    window.location.href = "/#contact-form";
   };
 
-  const getPhone = () => {
-    if (country?.includes("UAE") || country?.includes("Dubai")) {
-      return "+971 50 429 8422";
-    }
-    if (country?.includes("Singapore")) {
-      return "+65 8376 5007";
-    }
-    if (country?.includes("Malaysia")) {
-      return "+60 3 1234 5678";
-    }
-    return "+65 8376 5007";
-  };
 
   return (
     <section className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
@@ -65,11 +58,11 @@ const LocalizedCTASection = ({ country }: LocalizedCTASectionProps) => {
               {t("cta.scheduleDemo")}
             </Button>
             <Button
-              onClick={() => window.open(`tel:${getPhone().replace(/\s/g, "")}`)}
+              onClick={scrollToForm}
               size="xl"
               variant="heroOutline"
             >
-              <Phone className="w-5 h-5" />
+              <Calendar className="w-5 h-5" />
               {t("cta.callUs")}
             </Button>
           </div>

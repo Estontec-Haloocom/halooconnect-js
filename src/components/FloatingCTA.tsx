@@ -13,7 +13,7 @@ const FloatingCTA = () => {
         className="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-elevated hover:scale-110 transition-transform duration-300 group"
         title="Chat on WhatsApp"
       >
-        <img src={whatsappIcon} alt="WhatsApp" className="w-8 h-8" />
+        <img src={whatsappIcon.src} alt="WhatsApp" className="w-8 h-8" />
         <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-card text-foreground text-sm font-medium shadow-soft opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
           WhatsApp Us
         </span>

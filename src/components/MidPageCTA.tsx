@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Phone, Calendar, ArrowRight, CheckCircle } from "lucide-react";
+import { Calendar, ArrowRight, CheckCircle } from "lucide-react";
 import { trackDemoClick } from "@/lib/gtag";
 interface MidPageCTAProps {
   variant?: "primary" | "secondary";
@@ -15,21 +15,12 @@ const MidPageCTA = ({
   } = useTranslation();
   const scrollToForm = () => {
     trackDemoClick("Mid Page CTA");
-    document.getElementById("contact-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
-  };
-  const getPhone = () => {
-    switch (country) {
-      case "UAE & Dubai":
-        return "+971-508293464";
-      case "Singapore":
-        return "+65-83765007";
-      case "Malaysia":
-        return "+60-1548525268";
-      default:
-        return "+65-83765007";
+    const form = document.getElementById("contact-form");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth" });
+      return;
     }
+    window.location.href = "/#contact-form";
   };
   if (variant === "secondary") {
     return <section className="py-12 bg-muted/50">
@@ -44,8 +35,8 @@ const MidPageCTA = ({
                 <Calendar className="w-5 h-5" />
                 {t("cta.scheduleDemo")}
               </Button>
-              <Button onClick={() => window.open(`tel:${getPhone()}`)} variant="outline" size="lg">
-                <Phone className="w-5 h-5" />
+              <Button onClick={scrollToForm} variant="outline" size="lg">
+                <Calendar className="w-5 h-5" />
                 {t("cta.callUs")}
               </Button>
             </div>
@@ -86,9 +77,9 @@ const MidPageCTA = ({
                 Get Free Demo
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <Button onClick={() => window.open(`tel:${getPhone()}`)} size="xl" variant="heroOutline">
-                <Phone className="w-5 h-5" />
-                Call Now
+              <Button onClick={scrollToForm} size="xl" variant="heroOutline">
+                <Calendar className="w-5 h-5" />
+                {t("cta.callUs")}
               </Button>
             </div>
           </div>

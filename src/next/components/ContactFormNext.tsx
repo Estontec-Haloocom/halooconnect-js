@@ -10,7 +10,6 @@ import CountryCodeSelect, { getPlaceholderPhone } from "@/components/CountryCode
 import { CountrySelect, CitySelect } from "@/components/LocationSelect";
 import { supabaseNext } from "@/integrations/supabase/next-client";
 import { trackLeadConversion } from "@/lib/gtag";
-import { executeRecaptcha } from "@/lib/recaptcha";
 
 const ContactFormNext = () => {
   const { toast } = useToast();
@@ -55,32 +54,6 @@ const ContactFormNext = () => {
     }
 
     setIsSubmitting(true);
-
-    const recaptchaToken = await executeRecaptcha("contact_form");
-    if (!recaptchaToken) {
-      toast({
-        title: "Error",
-        description: "reCAPTCHA verification failed. Please try again.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    const { data: verifyData, error: verifyError } =
-      await supabaseNext.functions.invoke("verify-recaptcha", {
-        body: { token: recaptchaToken },
-      });
-
-    if (verifyError || !verifyData?.success) {
-      toast({
-        title: "Error",
-        description: "Security verification failed. Please try again.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
 
     const leadData = {
       name: formData.name.trim(),
